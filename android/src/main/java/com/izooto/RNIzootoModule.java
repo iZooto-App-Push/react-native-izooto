@@ -1,5 +1,7 @@
 package com.izooto;
 
+import android.util.Log;
+
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
@@ -33,10 +35,16 @@ public class RNIzootoModule extends ReactContextBaseJavaModule implements TokenR
     public void initAndroid() {
         if(!isInit) {
             isInit=true;
-            iZooto.initialize(mReactApplicationContext)
-                    .setTokenReceivedListener(this)
-                    .setNotificationReceiveListener(this)
-                    .setLandingURLListener(this).build();
+            try {
+                iZooto.initialize(mReactApplicationContext)
+                        .setTokenReceivedListener(this)
+                        .setNotificationReceiveListener(this)
+                        .setLandingURLListener(this).build();
+            }
+            catch (IllegalStateException ex)
+            {
+                Log.e("Exception",""+ex.toString());
+            }
         }
 
     }
