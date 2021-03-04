@@ -14,6 +14,5 @@
 ```javascript
 import iZooto from 'react-native-izooto';
 
-// TODO: What to do with the module?
-iZooto;
-```
+
+
