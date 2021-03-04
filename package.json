@@ -1,7 +1,7 @@
 {
   "name": "react-native-izooto",
   "title": "React Native iZooto",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "React Native iZooto SDK",
   "main": "src/index.js",
   "typings": "src/index.d.ts",
@@ -9,6 +9,9 @@
     "README.md",
     "android",
     "index.js",
+    "EventManager.js",
+    "events.js",
+    "index.d.ts",
     "ios",
     "react-native-izooto.podspec"
   ],
