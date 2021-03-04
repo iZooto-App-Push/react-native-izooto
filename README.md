@@ -1,3 +1,5 @@
+## React Native iZooto SDK
+
 # react-native-izooto
 
 ## Getting started
@@ -10,8 +12,8 @@
 
 ## Usage
 ```javascript
-import RNIzooto from 'react-native-izooto';
+import iZooto from 'react-native-izooto';
 
 // TODO: What to do with the module?
-RNIzooto;
+iZooto;
 ```

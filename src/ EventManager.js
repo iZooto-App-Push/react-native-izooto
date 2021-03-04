@@ -13,11 +13,11 @@ const eventList = [
     NOTIFICATION_WEBVIEW
 ]
 
-export default class eventmanager {
-    constructor(CBReactNativeiZootoManager) {
-        this.CBReactNativeiZootoManager = CBReactNativeiZootoManager;
+export default class EventManager {
+    constructor(RNIzootoModule) {
+        this.RNIzootoModule = RNIzootoModule;
         this.notificationCache = new Map();
-        this.izootoEventEmitter = new NativeEventEmitter(CBReactNativeiZootoManager);
+        this.izootoEventEmitter = new NativeEventEmitter(RNIzootoModule);
         this.eventHandlerMap = new Map();       // used for setters (single replacable callback)
         this.eventHandlerArrayMap = new Map();  // used for adders (multiple callbacks possible)
         this.listeners = [];
@@ -26,7 +26,7 @@ export default class eventmanager {
 
     setupListeners() {
         // set up the event emitter and listeners
-        if (this.CBReactNativeiZootoManager != null) {
+        if (this.RNIzootoModule != null) {
 
             for(let i = 0; i < eventList.length; i++) {
                 let eventName = eventList[i];

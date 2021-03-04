@@ -1,7 +1,6 @@
 'use strict';
 import { NativeModules ,Platform} from 'react-native';
-import eventmanager from './eventmanager';
-
+import EventManager from './ EventManager';
 import {
     NOTIFICATION_RECEIVED,
     NOTIFICATION_OPENED,
@@ -9,7 +8,7 @@ import {
     NOTIFICATION_WEBVIEW,
 } from './events';
 const  RNIzootoModule = NativeModules.iZooto;
-const eventManager = new eventmanager(RNIzootoModule);
+const eventManager = new EventManager(RNIzootoModule);
 
 export default class iZooto {
     /* I N I T I A L I Z A T I O N */
