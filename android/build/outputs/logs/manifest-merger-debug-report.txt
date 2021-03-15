@@ -8,7 +8,7 @@ INJECTED from /Users/amit/Desktop/reactnative/iZootoPlugin/reactLibrary/react-na
 INJECTED from /Users/amit/Desktop/reactnative/iZootoPlugin/reactLibrary/react-native-izooto/android/src/main/AndroidManifest.xml:1:1-4:12
 INJECTED from /Users/amit/Desktop/reactnative/iZootoPlugin/reactLibrary/react-native-izooto/android/src/main/AndroidManifest.xml:1:1-4:12
 	package
-		ADDED from /Users/amit/Desktop/reactnative/iZootoPlugin/reactLibrary/react-native-izooto/android/src/main/AndroidManifest.xml:2:11-31
+		ADDED from /Users/amit/Desktop/reactnative/iZootoPlugin/reactLibrary/react-native-izooto/android/src/main/AndroidManifest.xml:2:11-33
 		INJECTED from /Users/amit/Desktop/reactnative/iZootoPlugin/reactLibrary/react-native-izooto/android/src/main/AndroidManifest.xml
 		INJECTED from /Users/amit/Desktop/reactnative/iZootoPlugin/reactLibrary/react-native-izooto/android/src/main/AndroidManifest.xml
 	android:versionName

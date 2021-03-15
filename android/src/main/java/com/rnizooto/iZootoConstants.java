@@ -1,4 +1,4 @@
-package com.izooto;
+package com.rnizooto;
 
 public interface iZootoConstants {
      String OPEN_NOTIFICATION="iZooto_Notification_Opened";

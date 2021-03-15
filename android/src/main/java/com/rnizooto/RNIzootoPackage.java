@@ -1,4 +1,4 @@
-package com.izooto;
+package com.rnizooto;
 
 import java.util.Arrays;
 import java.util.Collections;

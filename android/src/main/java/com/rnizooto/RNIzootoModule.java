@@ -1,4 +1,4 @@
-package com.izooto;
+package com.rnizooto;
 
 import android.util.Log;
 
@@ -11,11 +11,16 @@ import com.facebook.react.bridge.ReadableArray;
 import com.facebook.react.bridge.ReadableMap;
 import com.facebook.react.modules.core.DeviceEventManagerModule;
 import com.google.gson.Gson;
+import com.izooto.NotificationHelperListener;
+import com.izooto.NotificationWebViewListener;
+import com.izooto.Payload;
+import com.izooto.TokenReceivedListener;
+import com.izooto.iZooto;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class RNIzootoModule extends ReactContextBaseJavaModule implements TokenReceivedListener,NotificationHelperListener,NotificationWebViewListener {
+public class RNIzootoModule extends ReactContextBaseJavaModule implements TokenReceivedListener, NotificationHelperListener, NotificationWebViewListener {
 
     private ReactApplicationContext mReactApplicationContext;
     private ReactContext mReactContext;
