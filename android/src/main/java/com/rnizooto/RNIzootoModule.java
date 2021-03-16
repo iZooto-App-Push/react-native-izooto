@@ -26,7 +26,7 @@ public class RNIzootoModule extends ReactContextBaseJavaModule implements TokenR
     private ReactContext mReactContext;
     private String notificationOpened, notificationToken, notificationWebView;
     private Payload notificationPayload;
-    private boolean isInit=false;
+    private boolean isInit;
     public RNIzootoModule(ReactApplicationContext reactContext) {
         super(reactContext);
         this.mReactApplicationContext = reactContext;

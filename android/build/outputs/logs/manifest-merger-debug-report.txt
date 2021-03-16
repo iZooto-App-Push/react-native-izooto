@@ -1,37 +1,37 @@
 -- Merging decision tree log ---
 manifest
-ADDED from /Users/amit/Desktop/reactnative/iZootoPlugin/reactLibrary/react-native-izooto/android/src/main/AndroidManifest.xml:1:1-4:12
-INJECTED from /Users/amit/Desktop/reactnative/iZootoPlugin/reactLibrary/react-native-izooto/android/src/main/AndroidManifest.xml:1:1-4:12
-INJECTED from /Users/amit/Desktop/reactnative/iZootoPlugin/reactLibrary/react-native-izooto/android/src/main/AndroidManifest.xml:1:1-4:12
-INJECTED from /Users/amit/Desktop/reactnative/iZootoPlugin/reactLibrary/react-native-izooto/android/src/main/AndroidManifest.xml:1:1-4:12
-INJECTED from /Users/amit/Desktop/reactnative/iZootoPlugin/reactLibrary/react-native-izooto/android/src/main/AndroidManifest.xml:1:1-4:12
-INJECTED from /Users/amit/Desktop/reactnative/iZootoPlugin/reactLibrary/react-native-izooto/android/src/main/AndroidManifest.xml:1:1-4:12
-INJECTED from /Users/amit/Desktop/reactnative/iZootoPlugin/reactLibrary/react-native-izooto/android/src/main/AndroidManifest.xml:1:1-4:12
+ADDED from /Users/amit/Desktop/reactnative/iZootoPlugin/latestSDK/react-native-izooto/android/src/main/AndroidManifest.xml:1:1-4:12
+INJECTED from /Users/amit/Desktop/reactnative/iZootoPlugin/latestSDK/react-native-izooto/android/src/main/AndroidManifest.xml:1:1-4:12
+INJECTED from /Users/amit/Desktop/reactnative/iZootoPlugin/latestSDK/react-native-izooto/android/src/main/AndroidManifest.xml:1:1-4:12
+INJECTED from /Users/amit/Desktop/reactnative/iZootoPlugin/latestSDK/react-native-izooto/android/src/main/AndroidManifest.xml:1:1-4:12
+INJECTED from /Users/amit/Desktop/reactnative/iZootoPlugin/latestSDK/react-native-izooto/android/src/main/AndroidManifest.xml:1:1-4:12
+INJECTED from /Users/amit/Desktop/reactnative/iZootoPlugin/latestSDK/react-native-izooto/android/src/main/AndroidManifest.xml:1:1-4:12
+INJECTED from /Users/amit/Desktop/reactnative/iZootoPlugin/latestSDK/react-native-izooto/android/src/main/AndroidManifest.xml:1:1-4:12
 	package
-		ADDED from /Users/amit/Desktop/reactnative/iZootoPlugin/reactLibrary/react-native-izooto/android/src/main/AndroidManifest.xml:2:11-33
-		INJECTED from /Users/amit/Desktop/reactnative/iZootoPlugin/reactLibrary/react-native-izooto/android/src/main/AndroidManifest.xml
-		INJECTED from /Users/amit/Desktop/reactnative/iZootoPlugin/reactLibrary/react-native-izooto/android/src/main/AndroidManifest.xml
+		ADDED from /Users/amit/Desktop/reactnative/iZootoPlugin/latestSDK/react-native-izooto/android/src/main/AndroidManifest.xml:2:11-33
+		INJECTED from /Users/amit/Desktop/reactnative/iZootoPlugin/latestSDK/react-native-izooto/android/src/main/AndroidManifest.xml
+		INJECTED from /Users/amit/Desktop/reactnative/iZootoPlugin/latestSDK/react-native-izooto/android/src/main/AndroidManifest.xml
 	android:versionName
-		INJECTED from /Users/amit/Desktop/reactnative/iZootoPlugin/reactLibrary/react-native-izooto/android/src/main/AndroidManifest.xml
-		ADDED from /Users/amit/Desktop/reactnative/iZootoPlugin/reactLibrary/react-native-izooto/android/src/main/AndroidManifest.xml:1:1-4:12
-		INJECTED from /Users/amit/Desktop/reactnative/iZootoPlugin/reactLibrary/react-native-izooto/android/src/main/AndroidManifest.xml
+		INJECTED from /Users/amit/Desktop/reactnative/iZootoPlugin/latestSDK/react-native-izooto/android/src/main/AndroidManifest.xml
+		ADDED from /Users/amit/Desktop/reactnative/iZootoPlugin/latestSDK/react-native-izooto/android/src/main/AndroidManifest.xml:1:1-4:12
+		INJECTED from /Users/amit/Desktop/reactnative/iZootoPlugin/latestSDK/react-native-izooto/android/src/main/AndroidManifest.xml
 	android:versionCode
-		INJECTED from /Users/amit/Desktop/reactnative/iZootoPlugin/reactLibrary/react-native-izooto/android/src/main/AndroidManifest.xml
-		ADDED from /Users/amit/Desktop/reactnative/iZootoPlugin/reactLibrary/react-native-izooto/android/src/main/AndroidManifest.xml:1:1-4:12
-		INJECTED from /Users/amit/Desktop/reactnative/iZootoPlugin/reactLibrary/react-native-izooto/android/src/main/AndroidManifest.xml
+		INJECTED from /Users/amit/Desktop/reactnative/iZootoPlugin/latestSDK/react-native-izooto/android/src/main/AndroidManifest.xml
+		ADDED from /Users/amit/Desktop/reactnative/iZootoPlugin/latestSDK/react-native-izooto/android/src/main/AndroidManifest.xml:1:1-4:12
+		INJECTED from /Users/amit/Desktop/reactnative/iZootoPlugin/latestSDK/react-native-izooto/android/src/main/AndroidManifest.xml
 	xmlns:android
-		ADDED from /Users/amit/Desktop/reactnative/iZootoPlugin/reactLibrary/react-native-izooto/android/src/main/AndroidManifest.xml:1:11-69
+		ADDED from /Users/amit/Desktop/reactnative/iZootoPlugin/latestSDK/react-native-izooto/android/src/main/AndroidManifest.xml:1:11-69
 uses-sdk
-INJECTED from /Users/amit/Desktop/reactnative/iZootoPlugin/reactLibrary/react-native-izooto/android/src/main/AndroidManifest.xml reason: use-sdk injection requested
-INJECTED from /Users/amit/Desktop/reactnative/iZootoPlugin/reactLibrary/react-native-izooto/android/src/main/AndroidManifest.xml
-INJECTED from /Users/amit/Desktop/reactnative/iZootoPlugin/reactLibrary/react-native-izooto/android/src/main/AndroidManifest.xml
-INJECTED from /Users/amit/Desktop/reactnative/iZootoPlugin/reactLibrary/react-native-izooto/android/src/main/AndroidManifest.xml
-INJECTED from /Users/amit/Desktop/reactnative/iZootoPlugin/reactLibrary/react-native-izooto/android/src/main/AndroidManifest.xml
+INJECTED from /Users/amit/Desktop/reactnative/iZootoPlugin/latestSDK/react-native-izooto/android/src/main/AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from /Users/amit/Desktop/reactnative/iZootoPlugin/latestSDK/react-native-izooto/android/src/main/AndroidManifest.xml
+INJECTED from /Users/amit/Desktop/reactnative/iZootoPlugin/latestSDK/react-native-izooto/android/src/main/AndroidManifest.xml
+INJECTED from /Users/amit/Desktop/reactnative/iZootoPlugin/latestSDK/react-native-izooto/android/src/main/AndroidManifest.xml
+INJECTED from /Users/amit/Desktop/reactnative/iZootoPlugin/latestSDK/react-native-izooto/android/src/main/AndroidManifest.xml
 	android:targetSdkVersion
-		INJECTED from /Users/amit/Desktop/reactnative/iZootoPlugin/reactLibrary/react-native-izooto/android/src/main/AndroidManifest.xml
-		ADDED from /Users/amit/Desktop/reactnative/iZootoPlugin/reactLibrary/react-native-izooto/android/src/main/AndroidManifest.xml
-		INJECTED from /Users/amit/Desktop/reactnative/iZootoPlugin/reactLibrary/react-native-izooto/android/src/main/AndroidManifest.xml
+		INJECTED from /Users/amit/Desktop/reactnative/iZootoPlugin/latestSDK/react-native-izooto/android/src/main/AndroidManifest.xml
+		ADDED from /Users/amit/Desktop/reactnative/iZootoPlugin/latestSDK/react-native-izooto/android/src/main/AndroidManifest.xml
+		INJECTED from /Users/amit/Desktop/reactnative/iZootoPlugin/latestSDK/react-native-izooto/android/src/main/AndroidManifest.xml
 	android:minSdkVersion
-		INJECTED from /Users/amit/Desktop/reactnative/iZootoPlugin/reactLibrary/react-native-izooto/android/src/main/AndroidManifest.xml
-		ADDED from /Users/amit/Desktop/reactnative/iZootoPlugin/reactLibrary/react-native-izooto/android/src/main/AndroidManifest.xml
-		INJECTED from /Users/amit/Desktop/reactnative/iZootoPlugin/reactLibrary/react-native-izooto/android/src/main/AndroidManifest.xml
+		INJECTED from /Users/amit/Desktop/reactnative/iZootoPlugin/latestSDK/react-native-izooto/android/src/main/AndroidManifest.xml
+		ADDED from /Users/amit/Desktop/reactnative/iZootoPlugin/latestSDK/react-native-izooto/android/src/main/AndroidManifest.xml
+		INJECTED from /Users/amit/Desktop/reactnative/iZootoPlugin/latestSDK/react-native-izooto/android/src/main/AndroidManifest.xml
