@@ -9,13 +9,14 @@
  */
 
 import React, { Component } from 'react';
-import { Platform, StyleSheet, Text, View } from 'react-native';
+import { Platform, StyleSheet,Linking, Text, View } from 'react-native';
 import iZooto from 'react-native-izooto';
 
 
 export default class App extends React.Component {
     componentDidMount() {
       iZooto.initialize();
+     // Linking.addEventListener(iZooto.onNotificationOpenedListener)
       iZooto.onNotificationOpenedListener(data =>{
         console.log("DeepLink Data Received",data);
       });

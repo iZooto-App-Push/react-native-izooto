@@ -1,5 +1,6 @@
 package com.rnizooto;
 
+import android.content.Context;
 import android.util.Log;
 
 import com.facebook.react.bridge.ReactApplicationContext;
@@ -29,7 +30,10 @@ public class RNIzootoModule extends ReactContextBaseJavaModule implements TokenR
     private boolean isInit;
     public RNIzootoModule(ReactApplicationContext reactContext) {
         super(reactContext);
-        this.mReactApplicationContext = reactContext;
+        mReactApplicationContext = reactContext;
+        mReactContext = reactContext;
+
+
     }
     @Override
     public String getName() {
@@ -38,6 +42,7 @@ public class RNIzootoModule extends ReactContextBaseJavaModule implements TokenR
 
     @ReactMethod
     public void initAndroid() {
+        iZooto.isHybrid = true;
         if(!isInit) {
             isInit=true;
             try {
@@ -51,7 +56,6 @@ public class RNIzootoModule extends ReactContextBaseJavaModule implements TokenR
                 Log.e("Exception",""+ex.toString());
             }
         }
-
     }
     @ReactMethod
     public void setSubscription(boolean enable) {
@@ -90,12 +94,14 @@ public class RNIzootoModule extends ReactContextBaseJavaModule implements TokenR
         this.onNotificationReceived(notificationPayload);
     }
     @ReactMethod
-    public void onNotificationOpenedListener() {
+        public void onNotificationOpenedListener() {
         this.onNotificationOpened(notificationOpened);
-    }
+        iZooto.notificationClick(this);
+        }
     @ReactMethod
     public void onWebViewListener() {
         this.onWebView(notificationWebView);
+        iZooto.notificationWebView(this);
     }
     @ReactMethod
     public void onTokenReceivedListener() {
