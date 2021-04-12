@@ -32,6 +32,7 @@ public class RNIzootoModule extends ReactContextBaseJavaModule implements TokenR
         super(reactContext);
         mReactApplicationContext = reactContext;
         mReactContext = reactContext;
+        
 
 
     }
@@ -95,12 +96,10 @@ public class RNIzootoModule extends ReactContextBaseJavaModule implements TokenR
     }
     @ReactMethod
         public void onNotificationOpenedListener() {
-        this.onNotificationOpened(notificationOpened);
         iZooto.notificationClick(this);
         }
     @ReactMethod
     public void onWebViewListener() {
-        this.onWebView(notificationWebView);
         iZooto.notificationWebView(this);
     }
     @ReactMethod
