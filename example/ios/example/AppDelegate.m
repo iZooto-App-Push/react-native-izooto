@@ -12,6 +12,10 @@
 #import <SKIOSNetworkPlugin/SKIOSNetworkAdapter.h>
 #import <FlipperKitReactPlugin/FlipperKitReactPlugin.h>
 
+
+@import UserNotifications;
+
+
 static void InitializeFlipper(UIApplication *application) {
   FlipperClient *client = [FlipperClient sharedClient];
   SKDescriptorMapper *layoutDescriptorMapper = [[SKDescriptorMapper alloc] initWithDefaults];
@@ -22,6 +26,11 @@ static void InitializeFlipper(UIApplication *application) {
   [client start];
 }
 #endif
+
+
+
+
+
 
 @implementation AppDelegate
 
@@ -37,13 +46,53 @@ static void InitializeFlipper(UIApplication *application) {
                                             initialProperties:nil];
 
   rootView.backgroundColor = [[UIColor alloc] initWithRed:1.0f green:1.0f blue:1.0f alpha:1];
+  
 
   self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
   UIViewController *rootViewController = [UIViewController new];
   rootViewController.view = rootView;
   self.window.rootViewController = rootViewController;
   [self.window makeKeyAndVisible];
+  
+  
+  // iZooto initalise
+  
+  dispatch_async(dispatch_get_main_queue(), ^{
+     //define settings
+     NSMutableDictionary *izootoInitSetting = [[NSMutableDictionary alloc]init];
+     [izootoInitSetting setObject:@YES forKey:@"auto_prompt"];
+     [izootoInitSetting setObject:@NO forKey:@"nativeWebview"];
+     [izootoInitSetting setObject:@NO forKey:@"provisionalAuthorization"];
+    NSLog(@"iZooto  initialisation with SDK");
+     // initalise the iZooto SDK
+     [iZooto initialisationWithIzooto_id:@"11f896fa4cab1d4e159c2f26a257be41b388ecf2" application:application iZootoInitSettings:izootoInitSetting];
+         iZooto.notificationReceivedDelegate = self;
+        iZooto.landingURLDelegate = self;
+        iZooto.notificationOpenDelegate = self;
+   });
+  
+  
+  
   return YES;
+}
+-(void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
+  [iZooto getTokenWithDeviceToken:deviceToken];
+
+}
+
+-(void)userNotificationCenter:(UNUserNotificationCenter *)center willPresentNotification:(UNNotification *)notification withCompletionHandler:(void (^)(UNNotificationPresentationOptions options))completionHandler{
+  NSLog(@"Received");
+  [iZooto handleForeGroundNotificationWithNotification:notification displayNotification:@"NONE" completionHandler:completionHandler];
+}
+
+-(void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
+}
+
+-(void)userNotificationCenter:(UNUserNotificationCenter *)center
+didReceiveNotificationResponse:(UNNotificationResponse *)response
+     withCompletionHandler:(void (^)(void))completionHandler {
+       [iZooto notificationHandlerWithResponse:response];
+       completionHandler();
 }
 
 - (NSURL *)sourceURLForBridge:(RCTBridge *)bridge
@@ -55,4 +104,20 @@ static void InitializeFlipper(UIApplication *application) {
 #endif
 }
 
+- (void)onHandleLandingURLWithUrl:(NSString * _Nonnull)url {
+  NSLog(@"URL");
+}
+
+- (void)onNotificationOpenWithAction:(NSDictionary<NSString *,id> * _Nonnull)action {
+  NSLog(@"action");
+
+}
+
+- (void)onNotificationReceivedWithPayload:(Payload * _Nonnull)payload {
+  NSLog(@"Payload");
+}
+
+
+
 @end
+

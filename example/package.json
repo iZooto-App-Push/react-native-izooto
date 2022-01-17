@@ -12,7 +12,7 @@
   "dependencies": {
     "react": "16.13.1",
     "react-native": "0.63.4",
-    "react-native-izooto": "link:../"
+    "react-native-izooto": "git+https://github.com/izooto-mobile-sdk/react-native-izooto.git"
   },
   "devDependencies": {
     "@babel/core": "^7.13.8",
