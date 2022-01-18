@@ -54,6 +54,8 @@ RCT_EXPORT_METHOD(getPayload:(RCTResponseSenderBlock)callback){
  @catch(NSException *exception){
    callback(@[exception.reason, [NSNull null]]);
  }
+  
+ 
 }
 
 

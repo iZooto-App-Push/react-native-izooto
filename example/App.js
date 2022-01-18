@@ -1,4 +1,6 @@
-import React from 'react';
+import * as React from 'react';
+import {useState, useEffect} from 'react';
+
 import {
   View,
   StyleSheet,
@@ -6,15 +8,34 @@ import {
   NativeEventEmitter,
   NativeModules
   } from 'react-native';
-  var iosPlugin = NativeModules.iZootoiOSPlugin;
+  import PushNotificationIOS from '@react-native-community/push-notification-ios';
+
+  //var iosPlugin = NativeModules.iZootoiOSPlugin;
+  //var data = NativeModules.iZootoiOSModule;
+  //import iZooto from 'react-native-izooto';
 
 export default class App extends React.Component{ 
   constructor(props){
   super(props) 
- console.log("Kya cool hai hum");
- iosPlugin.getToken((err ,name) => {
-  console.log("amit", name);
-});
+  //iZooto.in
+  //NativeModules.iZootoiOSModule.iZootoinitalise("1234567");
+  
+  //PushNotificationIOS.addEventListener('register', onRegistered);
+  
+  PushNotificationIOS.addEventListener('register', onRegistered);
+  
+    
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+ 
+
+
+  const onRegistered = (deviceToken) => {
+    {
+      console.log(deviceToken);
+      console("amit");
+  
+    };};
+
 NativeModules.iZootoiOSPlugin.getDeepLinkData((err ,name) => {
   console.log("deeplink1", name);
 });

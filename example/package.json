@@ -1,6 +1,6 @@
 {
   "name": "example",
-  "version": "0.0.1",
+  "version": "1.4.0",
   "private": true,
   "scripts": {
     "android": "react-native run-android",
@@ -10,9 +10,10 @@
     "lint": "eslint ."
   },
   "dependencies": {
+    "@react-native-community/push-notification-ios": "^1.10.1",
     "react": "16.13.1",
     "react-native": "0.63.4",
-    "react-native-izooto": "git+https://github.com/izooto-mobile-sdk/react-native-izooto.git"
+    "react-native-izooto": "git+https://github.com/izooto-mobile-sdk/react-native-izooto.git#develop"
   },
   "devDependencies": {
     "@babel/core": "^7.13.8",

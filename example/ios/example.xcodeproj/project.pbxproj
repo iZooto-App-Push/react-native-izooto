@@ -56,6 +56,8 @@
 		28344B19279576D900A75A6E /* example-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "example-Bridging-Header.h"; sourceTree = "<group>"; };
 		28344B2227958CC600A75A6E /* Device.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Device.m; sourceTree = "<group>"; };
 		28344B2427958CD600A75A6E /* Device.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Device.h; sourceTree = "<group>"; };
+		284A7AE02796963D00D6EFD9 /* iZootoiOSModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iZootoiOSModule.swift; sourceTree = "<group>"; };
+		284A7AE1279696C300D6EFD9 /* iZootoiOSModule.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = iZootoiOSModule.m; sourceTree = "<group>"; };
 		286CD0F8279539BD00489429 /* example.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = example.entitlements; path = example/example.entitlements; sourceTree = "<group>"; };
 		2D02E47B1E0B4A5D006451C7 /* example-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "example-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D02E4901E0B4A5D006451C7 /* example-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "example-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -141,6 +143,8 @@
 				28344B19279576D900A75A6E /* example-Bridging-Header.h */,
 				28344B2227958CC600A75A6E /* Device.m */,
 				28344B2427958CD600A75A6E /* Device.h */,
+				284A7AE02796963D00D6EFD9 /* iZootoiOSModule.swift */,
+				284A7AE1279696C300D6EFD9 /* iZootoiOSModule.m */,
 			);
 			name = example;
 			sourceTree = "<group>";

@@ -7,7 +7,7 @@ target 'example' do
   config = use_native_modules!
 
   use_react_native!(:path => config["reactNativePath"])
- pod 'iZootoiOSSDK'
+ #pod 'iZootoiOSSDK'
 
   target 'exampleTests' do
     inherit! :complete

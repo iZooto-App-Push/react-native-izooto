@@ -1,6 +1,8 @@
 'use strict';
 
 import { NativeModules ,Platform} from 'react-native';
+import { EmitterSubscription } from 'react-native';
+
 import EventManager from  './EventManager';
 import {
     NOTIFICATION_RECEIVED,
@@ -9,12 +11,45 @@ import {
     NOTIFICATION_WEBVIEW,
 } from './events';
 const  RNIzootoModule = NativeModules.iZooto;
+const {RNIZooto} = NativeModules;
 const eventManager = new EventManager(RNIzootoModule);
+
+   
+if(RNIZooto==null)
+{
+  throw new Error("iZooto Push module not initialised");
+}
 
 export default class iZooto {
     /* I N I T I A L I Z A T I O N */
 
+        
     
+    static eventEmitteriZootoiOSPush = new NativeEventEmitter(RNIZooto);
+
+     static async trackEvent(type, attributes = {}) {
+        return RNIZooto.trackEvent(type, attributes);
+    }
+
+    static async addProperty(str, property) {
+      if (!Array.isArray(property)) {
+          property = [property];
+      }
+      return RNIZooto.addProperty(str, property);
+  }
+  static async getPushToken() {
+    return RNIZooto.getPushToken();
+}
+
+    
+         
+
+      
+         
+
+    
+
+
     static initialize() {
         RNIzootoModule.initAndroid();
     }
@@ -100,3 +135,4 @@ export default class iZooto {
         eventManager.setEventHandler(NOTIFICATION_WEBVIEW, handler);
     }
 }
+iZooto.setupEvents();
