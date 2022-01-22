@@ -9,36 +9,65 @@
  */
 
 import React, { Component } from 'react';
-import { Platform, StyleSheet,Linking, Text, View } from 'react-native';
-import iZooto from 'react-native-izooto';
+import { Platform, StyleSheet,Linking, Text, View,  Alert,
+} from 'react-native';
+import iZooto from '../src';
 
 
 export default class App extends React.Component {
+  
+
+ 
+
     componentDidMount() {
-      iZooto.initialize();
+      
+
+      if (Platform.OS === 'ios') {
+        iZooto.initiOSAppID("623638eaa956234fdb6b3f0f1990bd049a14312e");
+        iZooto.addEventListener('register', (token) => {
+          console.log("iZootoDevice Token", token)
+      })
+      iZooto.addEventListener('notification',(notification)=>
+      {
+        console.log("Notification Data",notification);
+      })
+      
+      
+      
+      }
+      else
+      {
+        console.log("No value here");
+      }
+      //iZooto.initialize();
+     // iZooto.initializeiOS();
      // Linking.addEventListener(iZooto.onNotificationOpenedListener)
-      iZooto.onNotificationOpenedListener(data =>{
-        console.log("DeepLink Data Received",data);
-      });
+      // iZooto.onNotificationOpenedListener(data =>{
+      //   console.log("DeepLink Data Received",data);
+      // });
   
-      iZooto.onNotificationReceivedListener(payload => {
-        console.log("Notification Payload",payload); 
-      });
+      // iZooto.onNotificationReceivedListener(payload => {
+      //   console.log("Notification Payload",payload); 
+      // });
   
-      iZooto.onWebViewListener(landingUrl =>{
-        console.log("Landing URL",landingUrl); 
-      });
-      iZooto.onTokenReceivedListener(token =>{
-        console.log("Token Received",token);
-      });
-
-    }
-
+      // iZooto.onWebViewListener(landingUrl =>{
+      //   console.log("Landing URL",landingUrl); 
+      // });
+      // iZooto.onTokenReceivedListener(token =>{
+      //   console.log("Token Received",token);
+      // });
+      
+   }
+    
+    
+    
+   
     render() {
         return (
             <View>
                
-                <Text> React Native Library for iZooto   Push Notifications Service </Text>
+                <Text> React Native Library for iZooto  
+                   Push Notifications Service </Text>
 
             </View>
         );

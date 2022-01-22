@@ -45,6 +45,10 @@ RCT_EXPORT_MODULE()
                                               selector:@selector(handleRemoteNotificationRegistrationError:)
                                                   name:kRemoteNotificationRegistrationFailed
                                              object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                              selector:@selector(onHandleLandingURLWithUrl:)
+                                                  name:kRemoteNotificationWebViewData
+                                             object:nil];
     
 }
 
@@ -57,7 +61,9 @@ RCT_EXPORT_MODULE()
 {
   return @[@"remoteNotificationReceived",
            @"remoteNotificationsRegistered",
-           @"remoteNotificationRegistrationError"];
+           @"remoteNotificationRegistrationError",
+           @"onHandleLandingURLWithUrl"
+  ];
 }
 
 + (void)didRegisterUserNotificationSettings:(__unused UIUserNotificationSettings *)notificationSettings
@@ -77,7 +83,8 @@ RCT_EXPORT_MODULE()
                                                     userInfo:@{@"deviceToken" : [hexString copy]}];
     
     [iZooto getTokenWithDeviceToken:deviceToken];
-    NSLog(@"Token",deviceToken);
+   NSLog(@"DEVICE Token ",deviceToken);
+  
 
 }
 
@@ -95,7 +102,48 @@ RCT_EXPORT_MODULE()
   [[NSNotificationCenter defaultCenter] postNotificationName:RCTRemoteNotificationReceived
                                                       object:self
                                                     userInfo:userInfo];
-    NSLog(@"Notification Data",notification);
+    NSLog(@"Notification Amit Data",notification);
+}
++ (void)didReceiveNotificationResponse:(UNNotificationResponse *)response
+API_AVAILABLE(ios(10.0)) {
+    
+    UNNotification* notification = response.notification;
+       NSMutableDictionary *formattedResponse = [[RCTConvert RCTFormatUNNotification:notification] mutableCopy];
+       UNNotificationContent *content = notification.request.content;
+         
+       NSMutableDictionary *userInfo = [content.userInfo mutableCopy];
+       userInfo[@"userInteraction"] = [NSNumber numberWithInt:1];
+       userInfo[@"actionIdentifier"] = response.actionIdentifier;
+       
+       formattedResponse[@"badge"] = RCTNullIfNil(content.badge);
+       formattedResponse[@"sound"] = RCTNullIfNil(content.sound);
+       formattedResponse[@"userInfo"] = RCTNullIfNil(RCTJSONClean(userInfo));
+       formattedResponse[@"actionIdentifier"] = RCTNullIfNil(response.actionIdentifier);
+         
+       NSString* userText = [response isKindOfClass:[UNTextInputNotificationResponse class]] ? ((UNTextInputNotificationResponse *)response).userText : nil;
+       if (userText) {
+         formattedResponse[@"userText"] = RCTNullIfNil(userText);
+       }
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:RCTRemoteNotificationReceived
+                                                          object:self
+                                                        userInfo:formattedResponse];
+    
+    
+    
+    
+//    [[NSNotificationCenter defaultCenter] postNotificationName:RCTRemoteNotificationReceived
+//                                                      object:self
+//                                                    userInfo:[RCTConvert RCTFormatUNNotificationResponse:response]];
+    
+    NSLog(@"Called","Demo");
+
+    //NSDictionary *userInfo = @{@"notification": response};
+    //[[NSNotificationCenter defaultCenter] postNotificationName:RCTRemoteNotificationReceived
+                                                     //   object:self
+                                                     // userInfo:userInfo];
+    //[iZooto notificationHandlerWithResponse:response];
+    
 }
 
 + (void)didReceiveRemoteNotification:(NSDictionary *)notification
@@ -105,7 +153,7 @@ RCT_EXPORT_MODULE()
   [[NSNotificationCenter defaultCenter] postNotificationName:RCTRemoteNotificationReceived
                                                       object:self
                                                     userInfo:userInfo];
-    NSLog(@"Notification Data",notification);
+    NSLog(@"Notification Amit 2 Data",notification);
 
 }
 - (void)handleRemoteNotificationReceived:(NSNotification *)notification
@@ -122,7 +170,7 @@ RCT_EXPORT_MODULE()
     }
     self.remoteNotificationCallbacks[notificationId] = completionHandler;
   }
-    NSLog(@"Notification Data",notification);
+    NSLog(@"Notification  AMit 3 Data",notification);
 
   [self sendEventWithName:@"remoteNotificationReceived" body:remoteNotification];
 }
@@ -133,7 +181,20 @@ RCT_EXPORT_MODULE()
 
   [self sendEventWithName:@"remoteNotificationsRegistered" body:notification.userInfo];
 }
+-(void) handleDeepLinkData:(NSString *) deepLinkData
+{
+    [self sendEventWithName:@"deeplinkData" body:deepLinkData];
+}
+-(void) onHandleLandingURLWithUrl:(NSString *) url
 
+{
+    NSLog(@"PayloadData","PayloadData");
+    [[NSNotificationCenter defaultCenter] postNotificationName:kRemoteNotificationWebViewData
+                                                        object:self
+                                                      userInfo:@{@"error": url}];
+    
+    [self sendEventWithName:@"onHandleLandingURLWithUrl" body:url];
+}
 
 - (void)handleRemoteNotificationRegistrationError:(NSNotification *)notification
 {
@@ -155,6 +216,16 @@ RCT_EXPORT_METHOD(setApplicationIconBadgeNumber:(NSInteger)number)
 {
   RCTSharedApplication().applicationIconBadgeNumber = number;
 }
+RCT_EXPORT_METHOD(initiOSAppID :(NSString *) izooto_app_id)
+{
+    NSMutableDictionary *izootoInitSetting = [[NSMutableDictionary alloc]init];
+          [izootoInitSetting setObject:@YES forKey:@"auto_prompt"];
+          [izootoInitSetting setObject:@YES forKey:@"nativeWebview"];
+          [izootoInitSetting setObject:@NO forKey:@"provisionalAuthorization"];
+    [iZooto initialisationWithIzooto_id:izooto_app_id application:UIApplication.sharedApplication iZootoInitSettings:izootoInitSetting];
+}
+
+
 RCT_EXPORT_METHOD(addUserProperties:(NSDictionary*)propertiesData)
 {
     

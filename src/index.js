@@ -1,102 +1,286 @@
 'use strict';
 
-import { NativeModules ,Platform} from 'react-native';
+import { NativeModules,Platform,NativeEventEmitter} from 'react-native';
 import EventManager from  './EventManager';
+
+import invariant from 'invariant';
+import type 
+{
+    NotificationAlert,
+    NotificationCategory,
+    NotificationRequest,
+    NotificationAction,
+   
+}from './types'
 import {
     NOTIFICATION_RECEIVED,
     NOTIFICATION_OPENED,
     NOTIFICATION_TOKEN,
     NOTIFICATION_WEBVIEW,
 } from './events';
+// Android
 const  RNIzootoModule = NativeModules.iZooto;
-const eventManager = new EventManager(RNIzootoModule);
+//const eventManager = new EventManager(RNIzootoModule);
 
-export default class iZooto {
-    /* I N I T I A L I Z A T I O N */
+//ios 
+const RNIzooto = NativeModules.RNIzooto;
+const PushNotificationEmitter = new NativeEventEmitter(RNIzooto);
+const _notifHandlers = new Map();
+const DEVICE_NOTIF_EVENT = 'remoteNotificationReceived';
+const NOTIF_REGISTER_EVENT = 'remoteNotificationsRegistered';
+const NOTIF_REGISTRATION_ERROR_EVENT = 'remoteNotificationRegistrationError';
+export type {
+    NotificationAlert,
+    NotificationRequest,
+    NotificationCategory,
+    NotificationAction,
+  };
+  
+  export type ContentAvailable = 1 | null | void;
+  
+  export type FetchResult = {
+    NewData: string,
+    NoData: string,
+    ResultFailed: string,
+  };
+  export type AuthorizationStatus = {
+    UNAuthorizationStatusNotDetermined: 0,
+    UNAuthorizationStatusDenied: 1,
+    UNAuthorizationStatusAuthorized: 2,
+    UNAuthorizationStatusProvisional: 3,
+  };
 
+  export type PushNotificationEventName = $Keys<{
     
-    static initialize() {
-        RNIzootoModule.initAndroid();
-    }
-    /**
-     * @param {boolean} isSetFirebaseAnalytics
-     */
-    static setFirebaseAnalyticsFire(isSetFirebaseAnalytics){
-        RNIzootoModule.setFirebaseAnalytics(isSetFirebaseAnalytics);
-    }
+    notification: string,
+    
+    deepLink: string,
+   
+    register: string,
+    
+    registrationError: string,
+  }>;
+export default class iZooto {
+// for iOS 
 
-    /**
-     * @param {boolean} isSetSubscribed
-     */
-    static setSubscription(isSetSubscribed){
-        RNIzootoModule.setSubscription(isSetSubscribed);
-        // this.eventListener = eventEmitter.addListener('iZooto_notification_token', (event) => {
-        //     console.log(event.eventProperty) // "someValue"
-        //  });
-    }
+_data: Object;
+    _alert: string | NotificationAlert;
+    _title: string;
+    _subtitle: string;
+    _sound: string;
+    _category: string;
+    _contentAvailable: ContentAvailable;
+    _badgeCount: number;
+    _notificationId: string;
+    _actionIdentifier: ?string;
+    _userText: ?string;
+    _isRemote: boolean;
+    _remoteNotificationCompleteCallbackCalled: boolean;
+    _threadID: string;
+    _fireDate: string | Date;
 
-    /**
-     * @param {string} eventName
-     */
-    // Expected format is Map<String, Object>, make sure all values are Objects and keys are Strings
-    static addEvent(eventName,triggers){
-        let keys = Object.keys(triggers);
+    static FetchResult: FetchResult = {
+        NewData: 'UIBackgroundFetchResultNewData',
+        NoData: 'UIBackgroundFetchResultNoData',
+        ResultFailed: 'UIBackgroundFetchResultFailed',
+      };
 
-        if (keys.length === 0) {
-            console.error(`iZooto: addTriggers: argument must be an object of the form { key : 'value' }`);
+      static addEventListener(type: PushNotificationEventName, handler: Function) {
+        invariant(
+          type === 'notification' ||
+            type === 'register' ||
+            type === 'registrationError' ,
+          'iZootoPush Notificaiton  only supports `notification`, `register`, `registrationError` ,events',
+        );
+        let listener;
+        if (type === 'notification') {
+          listener = PushNotificationEmitter.addListener(
+            DEVICE_NOTIF_EVENT,
+            (notifData) => {
+              handler(new RNIzooto(notifData));
+            },
+          );
+        } else if (type === 'register') {
+          listener = PushNotificationEmitter.addListener(
+            NOTIF_REGISTER_EVENT,
+            (registrationInfo) => {
+              //handler("devicetoken abcdddddddddddddd");
+              handler(registrationInfo.deviceToken);
+            },
+          );
+        } else if (type === 'registrationError') {
+          listener = PushNotificationEmitter.addListener(
+            NOTIF_REGISTRATION_ERROR_EVENT,
+            (errorInfo) => {
+              console.log(errorInfo);
+              handler(errorInfo);
+            },
+          );
         }
-        RNIzootoModule.addEvent(eventName,triggers);
-    }
+        _notifHandlers.set(type, listener);
+      }
+      static removeEventListener(type: PushNotificationEventName) {
+        invariant(
+          type === 'notification' ||
+            type === 'register' ||
+            type === 'registrationError',
+          'iZooto Push Notificaiton  only supports `notification`, `register`, `registrationError`, events',
+        );
+        const listener = _notifHandlers.get(type);
+        if (!listener) {
+          return;
+        }
+        listener.remove();
+        _notifHandlers.delete(type);
+      }
+      static addEvent(eventName,eventData)
+      {
+        if(Platform.OS==='ios')
+        {
+        console.log(eventName);
+        invariant(
+          RNIzooto,
+          'PushNotificationManager is not available.',
+        );        
+        RNIzooto.addEvents(eventName,eventData);
+        }
+        if(Platform.OS==='android')
+        {
+          let keys = Object.keys(triggers);
 
-    static addUserProperty(triggers){
-        let keys = Object.keys(triggers);
+          if (keys.length === 0) {
+              console.error(`iZooto: addTriggers: argument must be an object of the form { key : 'value' }`);
+          }
+          RNIzootoModule.addEvent(eventName,triggers);
+        }     
+      
+      }
+      static addUserProperty(propertiesData){
+        console.log(propertiesData);
+        if(Platform.OS==='ios')
+        {
+        invariant(
+          RNIzooto,
+          'PushNotificationManager is not available.',
+        );        
+        RNIzooto.addUserProperties(propertiesData)
+        }
+        if(Platform.OS==='android')
+        {
+          let keys = Object.keys(propertiesData);
 
         if (keys.length === 0) {
             console.error(`iZooto: addTriggers: argument must be an object of the form { key : 'value' }`);
         }
         RNIzootoModule.addUserProperty(triggers);
-    }
 
-    static addTag(topicName) {
-
-        if (!Array.isArray(topicName)) {
-            console.error("iZooto: topicName: argument must be of array type");
         }
-
-        RNIzootoModule.addTag(topicName)
-    }
-
-    static removeTag(topicName) {
-
-        if (!Array.isArray(topicName)) {
-            console.error("iZooto: topicName: argument must be of array type");
+      }
+      static setSubscription(isSetSubscribed){
+       
+        if(Platform.OS==='ios')
+        {
+         console.log(isSetSubscribed);
+         invariant(
+                RNIzooto,
+                'iZooto iOS Notification is not available.',
+              );
+          if (isSetSubscribed )   
+         RNIzooto.setSubscription(1);
+         else
+         RNIzooto.setSubscription(0);
+       }
+       if(Platform.OS==='android')
+       {
+         RNIzootoModule.setSubscription(isSetSubscribed);
+ 
+       }
+       }
+       static initialize() {
+        if(Platform.OS==='android')
+        {
+        RNIzootoModule.initAndroid();
         }
-
-        RNIzootoModule.removeTag(topicName)
+        else{
+          console.log("Plateform Error");
+        }
     }
+    static initiOSAppID(izooto_app_id)
+    {
+      if(izooto_app_id!=null)
+      {
+      if(Platform.OS==='ios')
+        {
+          console.log(izooto_app_id);
+          RNIzooto.initiOSAppID(izooto_app_id);
 
+        }
+        else
+        {
+          console.log("Plateform Error");
+
+        }
+    }
+    else{
+      console.log("iZooto app id is not null ");
+    }
+  }
+  static setFirebaseAnalyticsFire(isSetFirebaseAnalytics){
+    if(Platform.OS==='android'){
+     RNIzootoModule.setFirebaseAnalytics(isSetFirebaseAnalytics);
+    }
+    else
+    {
+      console.log("Under developement Analytics feature in iOS")
+    }
+ }
+ static addTag(topicName) {
+    if(Platform.OS==='android')
+    {
+    if (!Array.isArray(topicName)) {
+                console.error("iZooto: topicName: argument must be of array type");
+            }
     
-    static onTokenReceivedListener(handler){
-        RNIzootoModule.onTokenReceivedListener();
-        eventManager.setEventHandler(NOTIFICATION_TOKEN, handler);
-    }
+            RNIzootoModule.addTag(topicName)
+        }
+      }
     
-    static onNotificationOpenedListener(handler){
-        // if (!checkIfInitialized(RNOneSignal)) return;
-        // isValidCallback(handler);
-
-        RNIzootoModule.onNotificationOpenedListener();
-        eventManager.setEventHandler(NOTIFICATION_OPENED, handler);
-    }
-
-    static onNotificationReceivedListener(handler){
-        RNIzootoModule.onNotificationReceivedListener();
-        eventManager.setEventHandler(NOTIFICATION_RECEIVED, handler);
-
-    }
+        static removeTag(topicName) {
+          if(Platform.OS==='android')
+          {
+            if (!Array.isArray(topicName)) {
+                console.error("iZooto: topicName: argument must be of array type");
+            }
+            RNIzootoModule.removeTag(topicName)
+          }
+        }
+        // static onTokenReceivedListener(handler){
+        //     if(Platform.OS==='android'){
+        //     RNIzootoModule.onTokenReceivedListener();
+        //     eventManager.setEventHandler(NOTIFICATION_TOKEN, handler);
+        //     }
+        // }
+        // static onNotificationOpenedListener(handler){
+        //     if(Platform.OS === 'android')
+        //     {
+        //     RNIzootoModule.onNotificationOpenedListener();
+        //     eventManager.setEventHandler(NOTIFICATION_OPENED, handler);
+        //     }
+        // }
     
-    static onWebViewListener(handler){
-        RNIzootoModule.onWebViewListener();
-        eventManager.setEventHandler(NOTIFICATION_WEBVIEW, handler);
-    }
+        // static onNotificationReceivedListener(handler){
+        //     if(Platform.OS=== 'android'){
+        //     RNIzootoModule.onNotificationReceivedListener();
+        //     eventManager.setEventHandler(NOTIFICATION_RECEIVED, handler);
+        //     }
+        // }
+        
+        // static onWebViewListener(handler){
+        //     if(Platform.OS === 'android')
+        //     {
+        //     RNIzootoModule.onWebViewListener();
+        //     eventManager.setEventHandler(NOTIFICATION_WEBVIEW, handler);
+        //     }
+        // }
+    
 }
