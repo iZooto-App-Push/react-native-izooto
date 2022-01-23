@@ -48,7 +48,23 @@ export default class App extends React.Component {
       }
       else
       {
-        console.log("No value here");
+        iZooto.initialize();
+        iZooto.setDefaultTemplate(1)
+        Linking.addEventListener(iZooto.onNotificationOpenedListener)
+      iZooto.onNotificationOpenedListener(data =>{
+        console.log("DeepLink Data Received",data);
+      });      
+      iZooto.onNotificationReceivedListener(payload => {
+        console.log("Notification Payload",payload); 
+      });
+  
+      iZooto.onWebViewListener(landingUrl =>{
+        console.log("Landing URL",landingUrl); 
+      });
+      iZooto.onTokenReceivedListener(token =>{
+        console.log("Token Received",token);
+      });
+        
       }
       //iZooto.initialize();
      // iZooto.initializeiOS();

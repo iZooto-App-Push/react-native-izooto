@@ -1,0 +1,8 @@
+com/rnizooto/BuildConfig.java
+ com.rnizooto.BuildConfig
+com/rnizooto/iZootoConstants.java
+ com.rnizooto.iZootoConstants
+com/rnizooto/RNIzootoModule.java
+ com.rnizooto.RNIzootoModule
+com/rnizooto/RNIzootoPackage.java
+ com.rnizooto.RNIzootoPackage

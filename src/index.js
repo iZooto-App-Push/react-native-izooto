@@ -12,8 +12,7 @@ import {
 } from './events';
 // Android
 const  RNIzootoModule = NativeModules.iZooto;
-//const eventManager = new EventManager(RNIzootoModule);
-//const eventManager = new NativeEventEmitter(RNIzootoModule);
+const eventManager = new EventManager(RNIzootoModule);
 
 //ios 
 const RNIzooto = NativeModules.RNIzooto;
@@ -165,13 +164,9 @@ export default class iZooto {
        }
        }
        static initialize() {
-        if(Platform.OS==='android')
-        {
+         console.log("start");
         RNIzootoModule.initAndroid();
-        }
-        else{
-          console.log("Plateform Error");
-        }
+        
     }
     static initiOSAppID(izooto_app_id)
     {
@@ -222,36 +217,59 @@ export default class iZooto {
             RNIzootoModule.removeTag(topicName)
           }
         }
-      //   if(Plateform.OS==='android')
-      //   {
-      //   static onTokenReceivedListener(handler){
-      //       if(Platform.OS==='android'){
-      //       RNIzootoModule.onTokenReceivedListener();
-      //       eventManager.setEventHandler(NOTIFICATION_TOKEN, handler);
-      //       }
-      //   }
-      //   static onNotificationOpenedListener(handler){
-      //       if(Platform.OS === 'android')
-      //       {
-      //       RNIzootoModule.onNotificationOpenedListener();
-      //       eventManager.setEventHandler(NOTIFICATION_OPENED, handler);
-      //       }
-      //   }
+     
+        static onTokenReceivedListener(handler){
+            if(Platform.OS==='android'){
+            RNIzootoModule.onTokenReceivedListener();
+            eventManager.setEventHandler(NOTIFICATION_TOKEN, handler);
+            }
+        }
+        static onNotificationOpenedListener(handler){
+            if(Platform.OS === 'android')
+            {
+            RNIzootoModule.onNotificationOpenedListener();
+            eventManager.setEventHandler(NOTIFICATION_OPENED, handler);
+            }
+        }
     
-      //   static onNotificationReceivedListener(handler){
-      //       if(Platform.OS=== 'android'){
-      //       RNIzootoModule.onNotificationReceivedListener();
-      //       eventManager.setEventHandler(NOTIFICATION_RECEIVED, handler);
-      //       }
-      //   }
+        static onNotificationReceivedListener(handler){
+            if(Platform.OS=== 'android'){
+            RNIzootoModule.onNotificationReceivedListener();
+            eventManager.setEventHandler(NOTIFICATION_RECEIVED, handler);
+            }
+        }
         
-      //   static onWebViewListener(handler){
-      //       if(Platform.OS === 'android')
-      //       {
-      //       RNIzootoModule.onWebViewListener();
-      //       eventManager.setEventHandler(NOTIFICATION_WEBVIEW, handler);
-      //       }
-      //   }
-      // }
+        static onWebViewListener(handler){
+            if(Platform.OS === 'android')
+            {
+            RNIzootoModule.onWebViewListener();
+            eventManager.setEventHandler(NOTIFICATION_WEBVIEW, handler);
+            }
+        }
+      
+
+    static setDefaultTemplate(templateID) {
+        RNIzootoModule.setDefaultTemplate(templateID);
+    }
+
+    static setDefaultNotificationBanner(setBanner) {
+        RNIzootoModule.setDefaultNotificationBanner(setBanner);
+    }
+
+    static setNotificationSound(soundName) {
+        RNIzootoModule.setNotificationSound(soundName);
+    }
+    
+    static iZootoHandleNotification(data) {
+        RNIzootoModule.iZootoHandleNotification(data)
+    }
+
+    static setInAppNotificationBehaviour(displayOption) {
+        RNIzootoModule.setInAppNotificationBehaviour(displayOption)
+    }
+
+    static setIcon(icon1) {
+        RNIzootoModule.setIcon(icon1);  
+    }
     
 }

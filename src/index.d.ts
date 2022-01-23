@@ -1,6 +1,10 @@
-// declare module 'react-native-izooto'
-//  {
-  export type PushNotificationEventName =
+ declare module 'react-native-izooto'
+  {
+    export type PushTemplate = 0 | 1 ;
+
+    export type OSInAppDisplayOption = 0 | 1 | 2;
+  
+    export type PushNotificationEventName =
     | 'deepLinkData'
     | 'register'
     | 'landingURL'
@@ -38,21 +42,12 @@
     removeEventListener(type: PushNotificationEventName): void;
     // for Android only 
 
-    initialize():void;
-    addTag(keys: string[]);
-    removeTag(keys: string[]);
-
-    //onTokenReceivedListener(handle?: (token : String) =>void) : void;
-
-    //onNotificationOpenedListener(handle?: (data : String) => void) :void;
-
-    //onNotificationReceivedListener(handle?: (payload :String) => void): void;
-     
-    //onWebViewListener(handle?: (landingUrl : String) => void) : void;
+   
 
     
         
       }
      const iZooto: iZooto;
      export default iZooto;
-//}
+}
+ 
