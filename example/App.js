@@ -24,6 +24,7 @@ export default class App extends React.Component {
 
       if (Platform.OS === 'ios') {
         iZooto.initiOSAppID("623638eaa956234fdb6b3f0f1990bd049a14312e");
+        
         iZooto.addEventListener('register', (token) => {
           console.log("iZootoDevice Token", token)
       })

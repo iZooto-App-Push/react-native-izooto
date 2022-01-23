@@ -4,14 +4,6 @@ import { NativeModules,Platform,NativeEventEmitter} from 'react-native';
 import EventManager from  './EventManager';
 
 import invariant from 'invariant';
-// import type 
-// {
-//     NotificationAlert,
-//     NotificationCategory,
-//     NotificationRequest,
-//     NotificationAction,
-   
-// }from './types'
 import {
     NOTIFICATION_RECEIVED,
     NOTIFICATION_OPENED,
@@ -21,6 +13,7 @@ import {
 // Android
 const  RNIzootoModule = NativeModules.iZooto;
 //const eventManager = new EventManager(RNIzootoModule);
+//const eventManager = new NativeEventEmitter(RNIzootoModule);
 
 //ios 
 const RNIzooto = NativeModules.RNIzooto;
@@ -31,28 +24,7 @@ const NOTIF_REGISTER_EVENT = 'remoteNotificationsRegistered';
 const NOTIF_REGISTRATION_ERROR_EVENT = 'remoteNotificationRegistrationError';
 const NOTIF_REMOTE_WEB_URL= 'remoteNotificationLandingURL';
 const NOTIF_REMOTE_RECEIVED_PAYLOAD='remoteNotificationPayload';
-// export type {
-//     NotificationAlert,
-//     NotificationRequest,
-//     NotificationCategory,
-//     NotificationAction,
-//   };
-  
-//   export type ContentAvailable = 1 | null | void;
-  
-  // export type FetchResult = {
-  //   NewData: string,
-  //   NoData: string,
-  //   ResultFailed: string,
-  // };
-  // export type AuthorizationStatus = {
-  //   UNAuthorizationStatusNotDetermined: 0,
-  //   UNAuthorizationStatusDenied: 1,
-  //   UNAuthorizationStatusAuthorized: 2,
-  //   UNAuthorizationStatusProvisional: 3,
-  // };
-
-  export type PushNotificationEventName = $Keys<{
+export type PushNotificationEventName = $Keys<{
     
     deepLinkData: string,
     landingURL:String,
@@ -61,31 +33,7 @@ const NOTIF_REMOTE_RECEIVED_PAYLOAD='remoteNotificationPayload';
     registrationError: string,
   }>;
 export default class iZooto {
-// for iOS 
-
-// _data: Object;
-//     _alert: string | NotificationAlert;
-//     _title: string;
-//     _subtitle: string;
-//     _sound: string;
-//     _category: string;
-//     _contentAvailable: ContentAvailable;
-//     _badgeCount: number;
-//     _notificationId: string;
-//     _actionIdentifier: ?string;
-//     _userText: ?string;
-//     _isRemote: boolean;
-//     _remoteNotificationCompleteCallbackCalled: boolean;
-//     _threadID: string;
-//     _fireDate: string | Date;
-
-//     static FetchResult: FetchResult = {
-//         NewData: 'UIBackgroundFetchResultNewData',
-//         NoData: 'UIBackgroundFetchResultNoData',
-//         ResultFailed: 'UIBackgroundFetchResultFailed',
-//       };
-
-      static addEventListener(type: PushNotificationEventName, handler: Function) {
+ static addEventListener(type: PushNotificationEventName, handler: Function) {
         invariant(
           type === 'deepLinkData' ||
             type === 'register' ||
@@ -274,33 +222,36 @@ export default class iZooto {
             RNIzootoModule.removeTag(topicName)
           }
         }
-        // static onTokenReceivedListener(handler){
-        //     if(Platform.OS==='android'){
-        //     RNIzootoModule.onTokenReceivedListener();
-        //     eventManager.setEventHandler(NOTIFICATION_TOKEN, handler);
-        //     }
-        // }
-        // static onNotificationOpenedListener(handler){
-        //     if(Platform.OS === 'android')
-        //     {
-        //     RNIzootoModule.onNotificationOpenedListener();
-        //     eventManager.setEventHandler(NOTIFICATION_OPENED, handler);
-        //     }
-        // }
+      //   if(Plateform.OS==='android')
+      //   {
+      //   static onTokenReceivedListener(handler){
+      //       if(Platform.OS==='android'){
+      //       RNIzootoModule.onTokenReceivedListener();
+      //       eventManager.setEventHandler(NOTIFICATION_TOKEN, handler);
+      //       }
+      //   }
+      //   static onNotificationOpenedListener(handler){
+      //       if(Platform.OS === 'android')
+      //       {
+      //       RNIzootoModule.onNotificationOpenedListener();
+      //       eventManager.setEventHandler(NOTIFICATION_OPENED, handler);
+      //       }
+      //   }
     
-        // static onNotificationReceivedListener(handler){
-        //     if(Platform.OS=== 'android'){
-        //     RNIzootoModule.onNotificationReceivedListener();
-        //     eventManager.setEventHandler(NOTIFICATION_RECEIVED, handler);
-        //     }
-        // }
+      //   static onNotificationReceivedListener(handler){
+      //       if(Platform.OS=== 'android'){
+      //       RNIzootoModule.onNotificationReceivedListener();
+      //       eventManager.setEventHandler(NOTIFICATION_RECEIVED, handler);
+      //       }
+      //   }
         
-        // static onWebViewListener(handler){
-        //     if(Platform.OS === 'android')
-        //     {
-        //     RNIzootoModule.onWebViewListener();
-        //     eventManager.setEventHandler(NOTIFICATION_WEBVIEW, handler);
-        //     }
-        // }
+      //   static onWebViewListener(handler){
+      //       if(Platform.OS === 'android')
+      //       {
+      //       RNIzootoModule.onWebViewListener();
+      //       eventManager.setEventHandler(NOTIFICATION_WEBVIEW, handler);
+      //       }
+      //   }
+      // }
     
 }

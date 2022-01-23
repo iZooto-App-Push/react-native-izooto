@@ -81,14 +81,16 @@ static void InitializeFlipper(UIApplication *application) {
   return YES;
 }
 
+/* Received the device token  when app is registered sucessfully  */
 
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
     [RNIzooto didRegisterForRemoteNotificationsWithDeviceToken:deviceToken];
   
 }
 
- 
+/* Received the paylaod when app is foreground */
 -(void)userNotificationCenter:(UNUserNotificationCenter *)center willPresentNotification:(UNNotification *)notification withCompletionHandler:(void (^)(UNNotificationPresentationOptions options))completionHandler{
+ 
   [RNIzooto willPresentNotificaiton:notification.request.content.userInfo];
   [iZooto handleForeGroundNotificationWithNotification:notification displayNotification:@"NONE" completionHandler:completionHandler];
 
@@ -100,7 +102,7 @@ static void InitializeFlipper(UIApplication *application) {
   [RNIzooto didReceiveRemoteNotification:userInfo
                                fetchCompletionHandler:completionHandler];
 }
-
+/* Handle the notification tap */
 - (void)userNotificationCenter:(UNUserNotificationCenter *)center
     didReceiveNotificationResponse:(UNNotificationResponse *)response
              withCompletionHandler:(void (^)(void))completionHandler {
@@ -123,12 +125,9 @@ static void InitializeFlipper(UIApplication *application) {
 - (void)onHandleLandingURLWithUrl:(NSString * _Nonnull)url {
   [RNIzooto onHandleLandingURLWithUrl:url];
 }
-
+/* handle the deeplink Data*/
 - (void)onNotificationOpenWithAction:(NSDictionary<NSString *,id> * _Nonnull)action {
   [RNIzooto onNotificationOpenWithAction:action];
 
 }
-
-
-
 @end
