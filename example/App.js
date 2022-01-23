@@ -27,10 +27,20 @@ export default class App extends React.Component {
         iZooto.addEventListener('register', (token) => {
           console.log("iZootoDevice Token", token)
       })
-      iZooto.addEventListener('notification',(notification)=>
+      iZooto.addEventListener('deepLinkData',(notification)=>
       {
         console.log("Notification Data",notification);
       })
+      iZooto.addEventListener('landingURL',(notification)=>{
+        console.log("Notification WebViewData",notification);
+
+      })
+      iZooto.addEventListener('receivePayload',(notification)=>
+      {
+        console.log("Notification Payload",notification);
+      })
+
+      iZooto.addUserProperty();
       
       
       
@@ -57,6 +67,10 @@ export default class App extends React.Component {
       //   console.log("Token Received",token);
       // });
       
+   }
+   componentWillUnmount()
+   {
+     iZooto.removeEventListener('deepLinkData')
    }
     
     

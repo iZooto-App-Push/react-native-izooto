@@ -12,12 +12,14 @@ extern NSString *const RNCRemoteNotificationReceived;
 typedef void (^RNCRemoteNotificationCallback)(UIBackgroundFetchResult result);
 
 #if !TARGET_OS_TV
-+ (void)didRegisterUserNotificationSettings:(UIUserNotificationSettings *)notificationSettings;
+
 + (void)didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken;
 + (void)didReceiveRemoteNotification:(NSDictionary *)notification;
 + (void)didReceiveRemoteNotification:(NSDictionary *)notification fetchCompletionHandler:(RNCRemoteNotificationCallback)completionHandler;
 + (void)didReceiveNotificationResponse:(UNNotificationResponse *)response API_AVAILABLE(ios(10.0));
 +(void)onHandleLandingURLWithUrl:(NSString *) url;
++(void)onNotificationOpenWithAction:(NSDictionary *)actionData;
++(void) willPresentNotificaiton:(NSDictionary *)notifcation;
 #endif
 
 @end

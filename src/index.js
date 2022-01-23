@@ -4,14 +4,14 @@ import { NativeModules,Platform,NativeEventEmitter} from 'react-native';
 import EventManager from  './EventManager';
 
 import invariant from 'invariant';
-import type 
-{
-    NotificationAlert,
-    NotificationCategory,
-    NotificationRequest,
-    NotificationAction,
+// import type 
+// {
+//     NotificationAlert,
+//     NotificationCategory,
+//     NotificationRequest,
+//     NotificationAction,
    
-}from './types'
+// }from './types'
 import {
     NOTIFICATION_RECEIVED,
     NOTIFICATION_OPENED,
@@ -29,82 +29,83 @@ const _notifHandlers = new Map();
 const DEVICE_NOTIF_EVENT = 'remoteNotificationReceived';
 const NOTIF_REGISTER_EVENT = 'remoteNotificationsRegistered';
 const NOTIF_REGISTRATION_ERROR_EVENT = 'remoteNotificationRegistrationError';
-export type {
-    NotificationAlert,
-    NotificationRequest,
-    NotificationCategory,
-    NotificationAction,
-  };
+const NOTIF_REMOTE_WEB_URL= 'remoteNotificationLandingURL';
+const NOTIF_REMOTE_RECEIVED_PAYLOAD='remoteNotificationPayload';
+// export type {
+//     NotificationAlert,
+//     NotificationRequest,
+//     NotificationCategory,
+//     NotificationAction,
+//   };
   
-  export type ContentAvailable = 1 | null | void;
+//   export type ContentAvailable = 1 | null | void;
   
-  export type FetchResult = {
-    NewData: string,
-    NoData: string,
-    ResultFailed: string,
-  };
-  export type AuthorizationStatus = {
-    UNAuthorizationStatusNotDetermined: 0,
-    UNAuthorizationStatusDenied: 1,
-    UNAuthorizationStatusAuthorized: 2,
-    UNAuthorizationStatusProvisional: 3,
-  };
+  // export type FetchResult = {
+  //   NewData: string,
+  //   NoData: string,
+  //   ResultFailed: string,
+  // };
+  // export type AuthorizationStatus = {
+  //   UNAuthorizationStatusNotDetermined: 0,
+  //   UNAuthorizationStatusDenied: 1,
+  //   UNAuthorizationStatusAuthorized: 2,
+  //   UNAuthorizationStatusProvisional: 3,
+  // };
 
   export type PushNotificationEventName = $Keys<{
     
-    notification: string,
-    
-    deepLink: string,
-   
-    register: string,
-    
+    deepLinkData: string,
+    landingURL:String,
+    receivePayload:String,
+    register: string, 
     registrationError: string,
   }>;
 export default class iZooto {
 // for iOS 
 
-_data: Object;
-    _alert: string | NotificationAlert;
-    _title: string;
-    _subtitle: string;
-    _sound: string;
-    _category: string;
-    _contentAvailable: ContentAvailable;
-    _badgeCount: number;
-    _notificationId: string;
-    _actionIdentifier: ?string;
-    _userText: ?string;
-    _isRemote: boolean;
-    _remoteNotificationCompleteCallbackCalled: boolean;
-    _threadID: string;
-    _fireDate: string | Date;
+// _data: Object;
+//     _alert: string | NotificationAlert;
+//     _title: string;
+//     _subtitle: string;
+//     _sound: string;
+//     _category: string;
+//     _contentAvailable: ContentAvailable;
+//     _badgeCount: number;
+//     _notificationId: string;
+//     _actionIdentifier: ?string;
+//     _userText: ?string;
+//     _isRemote: boolean;
+//     _remoteNotificationCompleteCallbackCalled: boolean;
+//     _threadID: string;
+//     _fireDate: string | Date;
 
-    static FetchResult: FetchResult = {
-        NewData: 'UIBackgroundFetchResultNewData',
-        NoData: 'UIBackgroundFetchResultNoData',
-        ResultFailed: 'UIBackgroundFetchResultFailed',
-      };
+//     static FetchResult: FetchResult = {
+//         NewData: 'UIBackgroundFetchResultNewData',
+//         NoData: 'UIBackgroundFetchResultNoData',
+//         ResultFailed: 'UIBackgroundFetchResultFailed',
+//       };
 
       static addEventListener(type: PushNotificationEventName, handler: Function) {
         invariant(
-          type === 'notification' ||
+          type === 'deepLinkData' ||
             type === 'register' ||
+            type ==='landingURL'||
+            type ==='receivePayload'||
             type === 'registrationError' ,
           'iZootoPush Notificaiton  only supports `notification`, `register`, `registrationError` ,events',
         );
         let listener;
-        if (type === 'notification') {
+        if (type === 'deepLinkData') {
           listener = PushNotificationEmitter.addListener(
             DEVICE_NOTIF_EVENT,
             (notifData) => {
-              handler(new RNIzooto(notifData));
+              handler(notifData);
             },
           );
         } else if (type === 'register') {
           listener = PushNotificationEmitter.addListener(
             NOTIF_REGISTER_EVENT,
             (registrationInfo) => {
-              //handler("devicetoken abcdddddddddddddd");
               handler(registrationInfo.deviceToken);
             },
           );
@@ -116,13 +117,31 @@ _data: Object;
               handler(errorInfo);
             },
           );
+        } else if (type === 'landingURL') {
+          listener = PushNotificationEmitter.addListener(
+            NOTIF_REMOTE_WEB_URL,
+            (notifData) => {
+              handler(notifData);
+            },
+          );
         }
+        else if (type === 'receivePayload') {
+          listener = PushNotificationEmitter.addListener(
+            NOTIF_REMOTE_RECEIVED_PAYLOAD,
+            (notifData) => {
+              handler(notifData);
+            },
+          );
+        }
+
         _notifHandlers.set(type, listener);
       }
       static removeEventListener(type: PushNotificationEventName) {
         invariant(
-          type === 'notification' ||
+          type === 'deepLinkData' ||
             type === 'register' ||
+            type ==='landingURL'||
+            type ==='receivePayload'||
             type === 'registrationError',
           'iZooto Push Notificaiton  only supports `notification`, `register`, `registrationError`, events',
         );
@@ -133,6 +152,7 @@ _data: Object;
         listener.remove();
         _notifHandlers.delete(type);
       }
+
       static addEvent(eventName,eventData)
       {
         if(Platform.OS==='ios')
@@ -140,7 +160,7 @@ _data: Object;
         console.log(eventName);
         invariant(
           RNIzooto,
-          'PushNotificationManager is not available.',
+          'Zooto Push Notificaitonis not available.',
         );        
         RNIzooto.addEvents(eventName,eventData);
         }

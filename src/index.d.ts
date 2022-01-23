@@ -1,154 +1,158 @@
 // declare module 'react-native-izooto'
 //  {
-  export interface FetchResult {
-    NewData: 'UIBackgroundFetchResultNewData';
-    NoData: 'UIBackgroundFetchResultNoData';
-    ResultFailed: 'UIBackgroundFetchResultFailed';
-  }
+  // export interface FetchResult {
+  //   NewData: 'UIBackgroundFetchResultNewData';
+  //   NoData: 'UIBackgroundFetchResultNoData';
+  //   ResultFailed: 'UIBackgroundFetchResultFailed';
+  // }
   
-  export interface AuthorizationStatus {
-    UNAuthorizationStatusNotDetermined: 0;
-    UNAuthorizationStatusDenied: 1;
-    UNAuthorizationStatusAuthorized: 2;
-    UNAuthorizationStatusProvisional: 3;
-  }
+  // export interface AuthorizationStatus {
+  //   UNAuthorizationStatusNotDetermined: 0;
+  //   UNAuthorizationStatusDenied: 1;
+  //   UNAuthorizationStatusAuthorized: 2;
+  //   UNAuthorizationStatusProvisional: 3;
+  // }
   
-  export type NotificationAlert = {
-    title?: string;
-    subtitle?: string;
-    body?: string;
-  };
+  // export type NotificationAlert = {
+  //   title?: string;
+  //   subtitle?: string;
+  //   body?: string;
+  // };
   
-  export type NotificationCategory = {
-    id: string;
-    actions: NotificationAction[];
-  };
-  export type NotificationAction = {
+  // export type NotificationCategory = {
+  //   id: string;
+  //   actions: NotificationAction[];
+  // };
+  // export type NotificationAction = {
  
-    id: string;
+  //   id: string;
     
-    title: string;
+  //   title: string;
     
-    options?: {
-      foreground?: boolean;
-      destructive?: boolean;
-      authenticationRequired?: boolean;
-    };
+  //   options?: {
+  //     foreground?: boolean;
+  //     destructive?: boolean;
+  //     authenticationRequired?: boolean;
+  //   };
     
-    textInput?: {
+  //   textInput?: {
      
-      buttonTitle?: string;
+  //     buttonTitle?: string;
       
-      placeholder?: string;
-    };
-  };
-  export interface PushNotification {
+  //     placeholder?: string;
+  //   };
+  // };
+  // export interface PushNotification {
   
-    getMessage(): string | NotificationAlert;
+  //   getMessage(): string | NotificationAlert;
   
-    getSound(): string;
+  //   getSound(): string;
   
-    getCategory(): string;
+  //   getCategory(): string;
   
     
-    getAlert(): string | NotificationAlert;
+  //   getAlert(): string | NotificationAlert;
   
-    getTitle(): string;
+  //   getTitle(): string;
   
-    getContentAvailable(): number;
+  //   getContentAvailable(): number;
   
-    getBadgeCount(): number;
+  //   getBadgeCount(): number;
   
-    getData(): Record<string, any>;
+  //   getData(): Record<string, any>;
   
-    getActionIdentifier(): string | undefined;
+  //   getActionIdentifier(): string | undefined;
   
-    getUserText(): string | undefined;
+  //   getUserText(): string | undefined;
   
-    finish(result: string): void;
-  }
-  export type NotificationRequest = {
+  //   finish(result: string): void;
+  // }
+  // export type NotificationRequest = {
   
-    id: string;
+  //   id: string;
     
-    title?: string;
+  //   title?: string;
     
-    subtitle?: string;
+  //   subtitle?: string;
     
-    body?: string;
+  //   body?: string;
     
-    badge?: number;
+  //   badge?: number;
     
-    sound?: string;
+  //   sound?: string;
     
-    category?: string;
+  //   category?: string;
     
-    threadId?: string;
+  //   threadId?: string;
    
-    fireDate?: Date;
+  //   fireDate?: Date;
     
-    repeats?: boolean;
+  //   repeats?: boolean;
     
-    repeatsComponent?: {
-      year?: boolean;
-      month?: boolean;
-      day?: boolean;
-      dayOfWeek?: boolean;
-      hour?: boolean;
-      minute?: boolean;
-      second?: boolean;
-    };
+  //   repeatsComponent?: {
+  //     year?: boolean;
+  //     month?: boolean;
+  //     day?: boolean;
+  //     dayOfWeek?: boolean;
+  //     hour?: boolean;
+  //     minute?: boolean;
+  //     second?: boolean;
+  //   };
    
-    isSilent?: boolean;
+  //   isSilent?: boolean;
     
-    isCritical?: boolean;
+  //   isCritical?: boolean;
     
-    criticalSoundVolume?: number;
+  //   criticalSoundVolume?: number;
     
-    userInfo?: Record<string, any>;
-  };
-  export interface PresentLocalNotificationDetails {
-    alertAction?: string;
-    alertBody: string;
-    alertTitle?: string;
-    applicationIconBadgeNumber?: number;
-    category?: string;
-    soundName?: string;
-    isSilent?: boolean;
-    userInfo?: Record<string, any>;
-  }
-  export interface PushNotificationPermissions {
-    alert?: boolean;
-    badge?: boolean;
-    sound?: boolean;
-    critical?: boolean;
-    lockScreen?: boolean;
-    notificationCenter?: boolean;
-    authorizationStatus?: AuthorizationStatus[keyof AuthorizationStatus];
-  }
+  //   userInfo?: Record<string, any>;
+  // };
+  // export interface PresentLocalNotificationDetails {
+  //   alertAction?: string;
+  //   alertBody: string;
+  //   alertTitle?: string;
+  //   applicationIconBadgeNumber?: number;
+  //   category?: string;
+  //   soundName?: string;
+  //   isSilent?: boolean;
+  //   userInfo?: Record<string, any>;
+  // }
+  // export interface PushNotificationPermissions {
+  //   alert?: boolean;
+  //   badge?: boolean;
+  //   sound?: boolean;
+  //   critical?: boolean;
+  //   lockScreen?: boolean;
+  //   notificationCenter?: boolean;
+  //   authorizationStatus?: AuthorizationStatus[keyof AuthorizationStatus];
+  // }
   
   export type PushNotificationEventName =
-    | 'notification'
+    | 'deepLinkData'
     | 'register'
+    | 'landingURL'
+    | 'receivePayload'
     | 'registrationError';
   
   export interface iZooto {
 
     // for ios 
-     FetchResult: FetchResult;
-    AuthorizationStatus: AuthorizationStatus;
-    addNotificationRequest(request: NotificationRequest): void;
-    setApplicationIconBadgeNumber(number: number): void;
+    initiOSAppID(izooto_app_id:string):void;
     setSubscription(isSubscribe:boolean): void;
     addUserProperty(propertiesData:Map<string,any>):void;
     addEvent(eventName:string,eventData:Map<string,any>):void;
-    getApplicationIconBadgeNumber(callback: (badge: number) => void): void;
-    cancelLocalNotifications(userInfo: Record<string, any>): void;
-    initiOSAppID(izooto_app_id:string):void;
     setFirebaseAnalyticsFire(isSetFirebaseAnalytics:boolean):void;
     addEventListener(
-      type: 'notification',
-      handler: (notification: PushNotification) => void,
+      type: 'deepLinkData',
+      handler: (notification: string) => void,
+    ): void;
+    addEventListener(
+      type: 'landingURL',
+      handler: (notification: string) => void,
+    ): void;
+    addEventListener(
+      type: 'receivePayload',
+      handler: (notification: string) => void,
     ): void;
     addEventListener(
       type: 'register',
@@ -159,8 +163,6 @@
       handler: (error: {message: string; code: number; details: any}) => void,
     ): void;
     removeEventListener(type: PushNotificationEventName): void;
-    getInitialNotification(): Promise<PushNotification | null>;
-    setNotificationCategories(categories: NotificationCategory[]): void;
     // for Android only 
 
     initialize():void;

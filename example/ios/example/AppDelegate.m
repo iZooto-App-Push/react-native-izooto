@@ -51,6 +51,17 @@ static void InitializeFlipper(UIApplication *application) {
   self.window.rootViewController = rootViewController;
   [self.window makeKeyAndVisible];
   
+  if(launchOptions!= nil)
+  {
+    NSLog(@"DeepLink",@"DeepLink");
+  }
+  
+  UNUserNotificationCenter *center =
+       [UNUserNotificationCenter currentNotificationCenter];
+   center.delegate = self;
+  
+  
+  
   
 //   NSMutableDictionary *izootoInitSetting = [[NSMutableDictionary alloc]init];
 //         [izootoInitSetting setObject:@YES forKey:@"auto_prompt"];
@@ -59,12 +70,11 @@ static void InitializeFlipper(UIApplication *application) {
 //   [iZooto initialisationWithIzooto_id:@"11f896fa4cab1d4e159c2f26a257be41b388ecf2" application:application iZootoInitSettings:izootoInitSetting];
   // [iZooto notificationOpenDelegate] = self;
   // iZooto.notificationReceivedDelegate = self;
-   iZooto.landingURLDelegate = self;
+  // iZooto.landingURLDelegate = self;
+  iZooto.notificationOpenDelegate=self;
   // iZooto.notificationOpenDelegate = self;
    //[UNUserNotificationCenter currentNotificationCenter].delegate = self;
-   UNUserNotificationCenter *center =
-        [UNUserNotificationCenter currentNotificationCenter];
-    center.delegate = self;
+  
   
   
   
@@ -73,21 +83,13 @@ static void InitializeFlipper(UIApplication *application) {
 
 
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
-   // [iZooto getTokenWithDeviceToken:deviceToken];
     [RNIzooto didRegisterForRemoteNotificationsWithDeviceToken:deviceToken];
   
-  NSString *token = [[deviceToken description] stringByTrimmingCharactersInSet: [NSCharacterSet characterSetWithCharactersInString:@"<>"]];
-      token = [token stringByReplacingOccurrencesOfString:@" " withString:@""];
-      NSLog(@"content---%@", token);
-  //[RNIzooto handleReceivedPayloadData:@"AmitGupta"];
-  
-  
-  
 }
+
  
 -(void)userNotificationCenter:(UNUserNotificationCenter *)center willPresentNotification:(UNNotification *)notification withCompletionHandler:(void (^)(UNNotificationPresentationOptions options))completionHandler{
-    NSLog(@"Response",notification);
-
+  [RNIzooto willPresentNotificaiton:notification.request.content.userInfo];
   [iZooto handleForeGroundNotificationWithNotification:notification displayNotification:@"NONE" completionHandler:completionHandler];
 
 }
@@ -95,19 +97,14 @@ static void InitializeFlipper(UIApplication *application) {
     didReceiveRemoteNotification:(NSDictionary *)userInfo
           fetchCompletionHandler:
               (void (^)(UIBackgroundFetchResult))completionHandler {
- // [RNIzooto didReceiveRemoteNotification:userInfo
-                           //     fetchCompletionHandler:completionHandler];
+  [RNIzooto didReceiveRemoteNotification:userInfo
+                               fetchCompletionHandler:completionHandler];
 }
 
 - (void)userNotificationCenter:(UNUserNotificationCenter *)center
-didReceiveNotificationResponse:(UNNotificationResponse *)response
-     withCompletionHandler:(void (^)(void))completionHandler
-{
+    didReceiveNotificationResponse:(UNNotificationResponse *)response
+             withCompletionHandler:(void (^)(void))completionHandler {
   [RNIzooto didReceiveNotificationResponse:response];
-  NSLog(@"Clicked",response);
- // [iZooto notificationHandlerWithResponse:response];
-
-  
 
   completionHandler();
 }
@@ -124,19 +121,14 @@ didReceiveNotificationResponse:(UNNotificationResponse *)response
 
 
 - (void)onHandleLandingURLWithUrl:(NSString * _Nonnull)url {
-  NSLog(@"URL",url);
   [RNIzooto onHandleLandingURLWithUrl:url];
 }
 
 - (void)onNotificationOpenWithAction:(NSDictionary<NSString *,id> * _Nonnull)action {
-  NSLog(@"Action",action);
+  [RNIzooto onNotificationOpenWithAction:action];
 
 }
 
-- (void)onNotificationReceivedWithPayload:(Payload * _Nonnull)payload {
-  NSLog(@"Payload","Payload");
-
-}
 
 
 @end
