@@ -163,7 +163,7 @@ export default class iZooto {
  
        }
        }
-       static initialize() {
+       static initAndroid() {
          console.log("start");
         RNIzootoModule.initAndroid();
         

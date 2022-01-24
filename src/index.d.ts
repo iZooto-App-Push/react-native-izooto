@@ -1,5 +1,5 @@
- declare module 'react-native-izooto'
-  {
+//  declare module 'react-native-izooto'
+//   {
     export type PushTemplate = 0 | 1 ;
 
     export type OSInAppDisplayOption = 0 | 1 | 2;
@@ -42,12 +42,42 @@
     removeEventListener(type: PushNotificationEventName): void;
     // for Android only 
 
-   
+    initAndroid(): void;
 
+    setFirebaseAnalytics(isSetFirebaseAnalytics: boolean): void;
+
+    setSubscription(isSetSubscribed: boolean): void;
+
+    addEvent(eventName: String,triggers: object): void;
+
+    addUserProperty(triggers: object): void;
     
+    addTag(keys: string[]);
+
         
+    removeTag(keys: string[]);
+
+    onTokenReceivedListener(handle?: (token : String) =>void) : void;
+
+    onNotificationOpenedListener(handle?: (data : String) => void) :void;
+
+    onNotificationReceivedListener(handle?: (payload :String) => void): void;
+     
+    onWebViewListener(handle?: (landingUrl : String) => void) : void;
+
+    setDefaultTemplate(templateID: PushTemplate): void;
+
+    setDefaultNotificationBanner(setBanner: String): void;
+
+    setNotificationSound(soundName: String): void;
+
+
+    setInAppNotificationBehaviour(displayOption: OSInAppDisplayOption): void;
+        
+    setIcon(icon1: String): void;
+
       }
      const iZooto: iZooto;
      export default iZooto;
-}
+//}
  
