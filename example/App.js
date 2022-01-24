@@ -13,16 +13,9 @@ import { Platform, StyleSheet,Linking, Text, View,  Alert,
 } from 'react-native';
 import iZooto from '../src';
 
-
 export default class App extends React.Component {
-  
-
- 
-
-    componentDidMount() {
-      
-
-      if (Platform.OS === 'ios') {
+     componentDidMount() {
+       if (Platform.OS === 'ios') {
         iZooto.initiOSAppID("623638eaa956234fdb6b3f0f1990bd049a14312e");
         
         iZooto.addEventListener('register', (token) => {
@@ -41,14 +34,13 @@ export default class App extends React.Component {
         console.log("Notification Payload",notification);
       })
 
-      iZooto.addUserProperty();
       
       
       
       }
       else
       {
-        iZooto.initialize();
+        iZooto.initAndroid();
         iZooto.setDefaultTemplate(1)
         Linking.addEventListener(iZooto.onNotificationOpenedListener)
       iZooto.onNotificationOpenedListener(data =>{
@@ -65,25 +57,7 @@ export default class App extends React.Component {
         console.log("Token Received",token);
       });
         
-      }
-      //iZooto.initialize();
-     // iZooto.initializeiOS();
-     // Linking.addEventListener(iZooto.onNotificationOpenedListener)
-      // iZooto.onNotificationOpenedListener(data =>{
-      //   console.log("DeepLink Data Received",data);
-      // });
-  
-      // iZooto.onNotificationReceivedListener(payload => {
-      //   console.log("Notification Payload",payload); 
-      // });
-  
-      // iZooto.onWebViewListener(landingUrl =>{
-      //   console.log("Landing URL",landingUrl); 
-      // });
-      // iZooto.onTokenReceivedListener(token =>{
-      //   console.log("Token Received",token);
-      // });
-      
+      } 
    }
    componentWillUnmount()
    {

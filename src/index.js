@@ -11,8 +11,11 @@ import {
     NOTIFICATION_WEBVIEW,
 } from './events';
 // Android
+if(Platform.OS==='android')
+{
 const  RNIzootoModule = NativeModules.iZooto;
 const eventManager = new EventManager(RNIzootoModule);
+}
 
 //ios 
 const RNIzooto = NativeModules.RNIzooto;
