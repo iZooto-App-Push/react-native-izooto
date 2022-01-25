@@ -51,10 +51,7 @@ static void InitializeFlipper(UIApplication *application) {
   self.window.rootViewController = rootViewController;
   [self.window makeKeyAndVisible];
   
-  if(launchOptions!= nil)
-  {
-    NSLog(@"DeepLink",@"DeepLink");
-  }
+  
   
   UNUserNotificationCenter *center =
        [UNUserNotificationCenter currentNotificationCenter];

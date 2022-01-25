@@ -163,18 +163,48 @@ RCT_EXPORT_MODULE()
   [self sendEventWithName:@"remoteNotificationRegistrationError" body:errorDetails];
 }
 
-RCT_EXPORT_METHOD(addUserProperties:(NSDictionary*)propertiesData)
+RCT_EXPORT_METHOD(addUserProperties:(NSString*)propertiesData)
 {
-    
-    if(propertiesData!=nil){
-    [iZooto addUserPropertiesWithData:propertiesData];
+    NSLog(@"%@", propertiesData);
+
+    if(propertiesData!= @""){
+       
+        NSData *jsonData = [propertiesData dataUsingEncoding:NSUTF8StringEncoding];
+        NSError *error;
+        NSMutableDictionary *data = [NSJSONSerialization JSONObjectWithData:jsonData
+                                                           options:NSJSONReadingAllowFragments
+                                                             error:&error];
+
+        if (error) {
+            NSLog(@"Got an error: %@", error);
+        } else {
+            NSLog(@"%@", data);
+            [iZooto addUserPropertiesWithData:data];
+
+        }
+
+        
+        
     }
    
 }
-RCT_EXPORT_METHOD(addEvents:(NSString*)eventName data:(NSDictionary*)eventData)
+RCT_EXPORT_METHOD(addEvents:(NSString*)eventName data:(NSString*)eventData)
 {
-    if(eventName!=nil && eventData!=nil){
-    [iZooto addEventWithEventName:eventName data:eventData];
+    if(eventName!=@"" && eventData!= @""){
+       
+        NSData *jsonData = [eventData dataUsingEncoding:NSUTF8StringEncoding];
+        NSError *error;
+        NSMutableDictionary *data = [NSJSONSerialization JSONObjectWithData:jsonData
+                                                           options:NSJSONReadingAllowFragments
+                                                             error:&error];
+
+        if (error) {
+            NSLog(@"Got an error: %@", error);
+        } else {
+            NSLog(@"%@", data);
+            [iZooto addEventWithEventName:eventName data:data];
+        }
+        
     }
     
     
