@@ -107,7 +107,6 @@ export default class iZooto {
       {
         if(Platform.OS==='ios')
         {
-        console.log(eventName);
         invariant(
           RNIzooto,
           'Zooto Push Notificaitonis not available.',

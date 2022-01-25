@@ -34,12 +34,12 @@ export default class App extends React.Component {
         console.log("Notification Payload",notification);
       })
 
-      const obj = {name: "Amit"};
+      //const obj = {name: "oadd"};
       
-      const myJSON = JSON.stringify(obj);
-      iZooto.addUserProperty(myJSON);
-      iZooto.addEvent('AAAAP',myJSON);
-      iZooto.setSubscription(true);
+      //const myJSON = JSON.stringify(obj);
+      //iZooto.addUserProperty(myJSON);
+      //iZooto.addEvent('AAAAP',myJSON);
+     // iZooto.setSubscription(true);
       
       
       }
