@@ -121,12 +121,11 @@ export default class iZooto {
           if (keys.length === 0) {
               console.error(`iZooto: addTriggers: argument must be an object of the form { key : 'value' }`);
           }
-          RNIzootoModule.addEvent(eventName,triggers);
+          RNIzootoModule.addEvent(eventName,eventData);
         }     
       
       }
       static addUserProperty(propertiesData){
-        console.log(propertiesData);
         if(Platform.OS==='ios')
         {
         invariant(
@@ -142,7 +141,7 @@ export default class iZooto {
         if (keys.length === 0) {
             console.error(`iZooto: addTriggers: argument must be an object of the form { key : 'value' }`);
         }
-        RNIzootoModule.addUserProperty(triggers);
+        RNIzootoModule.addUserProperty(propertiesData);
 
         }
       }
@@ -167,7 +166,6 @@ export default class iZooto {
        }
        }
        static initAndroid() {
-         console.log("start");
         RNIzootoModule.initAndroid();
         
     }
@@ -191,7 +189,7 @@ export default class iZooto {
       console.log("iZooto app id is not null ");
     }
   }
-  static setFirebaseAnalyticsFire(isSetFirebaseAnalytics){
+  static setFirebaseAnalytics(isSetFirebaseAnalytics){
     if(Platform.OS==='android'){
      RNIzootoModule.setFirebaseAnalytics(isSetFirebaseAnalytics);
     }
@@ -234,14 +232,12 @@ export default class iZooto {
             eventManager.setEventHandler(NOTIFICATION_OPENED, handler);
             }
         }
-    
         static onNotificationReceivedListener(handler){
             if(Platform.OS=== 'android'){
             RNIzootoModule.onNotificationReceivedListener();
             eventManager.setEventHandler(NOTIFICATION_RECEIVED, handler);
             }
         }
-        
         static onWebViewListener(handler){
             if(Platform.OS === 'android')
             {
@@ -249,8 +245,6 @@ export default class iZooto {
             eventManager.setEventHandler(NOTIFICATION_WEBVIEW, handler);
             }
         }
-      
-
     static setDefaultTemplate(templateID) {
         RNIzootoModule.setDefaultTemplate(templateID);
     }

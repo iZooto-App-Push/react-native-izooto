@@ -53,7 +53,6 @@ public class RNIzootoModule extends ReactContextBaseJavaModule implements TokenR
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @ReactMethod
     public void initAndroid() {
-        Log.e("start","Amit");
         iZooto.isHybrid = true;
         if(!isInit) {
             isInit=true;
