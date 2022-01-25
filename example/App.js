@@ -42,13 +42,10 @@ export default class App extends React.Component {
       //iZooto.addUserProperty(myJSON);
       //iZooto.addEvent('AAAAP',myJSON);
      // iZooto.setSubscription(true);
-      
       }
       else
       {
         iZooto.initAndroid();
-        iZooto.setDefaultTemplate(1)
-        Linking.addEventListener(iZooto.onNotificationOpenedListener)
       iZooto.onNotificationOpenedListener(data =>{
         console.log("DeepLink Data Received",data);
       });      
