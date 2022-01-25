@@ -12,6 +12,8 @@ import React, { Component } from 'react';
 import { Platform, StyleSheet,Linking, Text, View,  Alert,
 } from 'react-native';
 import iZooto from '../src';
+import { OSInAppDisplayOption } from '../src/OSInAppDisplayOption';
+import { PushTemplate } from '../src/PushTemplate';
 
 export default class App extends React.Component {
      componentDidMount() {
@@ -41,7 +43,6 @@ export default class App extends React.Component {
       //iZooto.addEvent('AAAAP',myJSON);
      // iZooto.setSubscription(true);
       
-      
       }
       else
       {
@@ -61,8 +62,14 @@ export default class App extends React.Component {
       iZooto.onTokenReceivedListener(token =>{
         console.log("Token Received",token);
       });
-        
+      
       } 
+      iZooto.setDefaultTemplate(PushTemplate.TEXT_OVERLAY);
+      iZooto.setDefaultNotificationBanner("image_name");
+      iZooto.setNotificationSound("sound_name_here");
+      iZooto.setInAppNotificationBehaviour(OSInAppDisplayOption.Notification);
+      iZooto.setIcon("icon_name");
+      
    }
    componentWillUnmount()
    {

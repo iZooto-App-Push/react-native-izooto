@@ -18,7 +18,7 @@
     setSubscription(isSubscribe:boolean): void;
     addUserProperty(propertiesData:Map<string,any>):void;
     addEvent(eventName:string,eventData:Map<string,any>):void;
-    setFirebaseAnalyticsFire(isSetFirebaseAnalytics:boolean):void;
+    
     addEventListener(
       type: 'deepLinkData',
       handler: (notification: string) => void,
@@ -54,7 +54,6 @@
     
     addTag(keys: string[]);
 
-        
     removeTag(keys: string[]);
 
     onTokenReceivedListener(handle?: (token : String) =>void) : void;
@@ -70,7 +69,6 @@
     setDefaultNotificationBanner(setBanner: String): void;
 
     setNotificationSound(soundName: String): void;
-
 
     setInAppNotificationBehaviour(displayOption: OSInAppDisplayOption): void;
         
