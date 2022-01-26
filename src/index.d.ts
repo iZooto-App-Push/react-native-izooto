@@ -5,10 +5,10 @@
     export type OSInAppDisplayOption = 0 | 1 | 2;
   
     export type PushNotificationEventName =
-    | 'deepLinkData'
-    | 'register'
-    | 'landingURL'
-    | 'receivePayload'
+    | 'onNotificationOpened'
+    | 'onTokenReceived'
+    | 'onWebView'
+    | 'onNotificationReceived'
     | 'registrationError';
   
   export interface iZooto {
@@ -20,19 +20,19 @@
     addEvent(eventName:string,eventData:Map<string,any>):void;
     
     addEventListener(
-      type: 'deepLinkData',
+      type: 'onNotificationOpened',
       handler: (notification: string) => void,
     ): void;
     addEventListener(
-      type: 'landingURL',
+      type: 'onWebView',
       handler: (notification: string) => void,
     ): void;
     addEventListener(
-      type: 'receivePayload',
+      type: 'onNotificationReceived',
       handler: (notification: string) => void,
     ): void;
     addEventListener(
-      type: 'register',
+      type: 'onTokenReceived',
       handler: (deviceToken: string) => void,
     ): void;
     addEventListener(

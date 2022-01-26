@@ -18,35 +18,33 @@ import { PushTemplate } from '../src/PushTemplate';
 export default class App extends React.Component {
      componentDidMount() {
        if (Platform.OS === 'ios') {
-        iZooto.initiOSAppID("623638eaa956234fdb6b3f0f1990bd049a14312e");
+        iZooto.initiOSAppID("11f896fa4cab1d4e159c2f26a257be41b388ecf2");
         
-        iZooto.addEventListener('register', (token) => {
-          console.log("iZootoDevice Token", token)
-      })
-      iZooto.addEventListener('deepLinkData',(notification)=>
+        iZooto.addEventListener('onTokenReceived', (token) => {
+          console.log("iZooto Device Token", token)
+      });
+      iZooto.addEventListener('onNotificationOpened',(openData)=>
       {
-        console.log("Notification Data",notification);
-      })
-      iZooto.addEventListener('landingURL',(notification)=>{
-        console.log("Notification WebViewData",notification);
+        console.log("Notification Deep Link Data",openData);
+      });
+      iZooto.addEventListener('onWebView',(urlData)=>{
+        console.log("Notification WebView URL Data",urlData);
 
-      })
-      iZooto.addEventListener('receivePayload',(notification)=>
+      });
+      iZooto.addEventListener('onNotificationReceived',(data)=>
       {
-        console.log("Notification Payload",notification);
-      })
-
-      //const obj = {name: "oadd"};
-      
-      //const myJSON = JSON.stringify(obj);
-      //iZooto.addUserProperty(myJSON);
-      //iZooto.addEvent('AAAAP',myJSON);
-     // iZooto.setSubscription(true);
+        console.log("Notification Payload Data ",data);
+      });
+      const obj = {name: "oadd"};
+      const myJSON = JSON.stringify(obj);
+      iZooto.addUserProperty(myJSON);
+      iZooto.addEvent('AAAAP',myJSON);
+     iZooto.setSubscription(true);
       }
       else
       {
         iZooto.initAndroid();
-      iZooto.onNotificationOpenedListener(data =>{
+        iZooto.onNotificationOpenedListener(data =>{
         console.log("DeepLink Data Received",data);
       });      
       iZooto.onNotificationReceivedListener(payload => {
@@ -68,15 +66,15 @@ export default class App extends React.Component {
       iZooto.setIcon("icon_name");
       
    }
-   componentWillUnmount()
-   {
-     iZooto.removeEventListener('deepLinkData')
-   }
-    
-    
-    
-   
-    render() {
+  //  componentWillUnmount()
+  //  {
+  //    iZooto.removeEventListener('onNotificationOpened');
+  //    iZooto.removeEventListener('onWebView');
+  //    iZooto.removeEventListener('onNotificationReceived');
+  //    iZooto.removeEventListener('onTokenReceived');
+
+  //  }
+render() {
         return (
             <View>
                

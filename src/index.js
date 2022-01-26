@@ -10,10 +10,10 @@ import {
     NOTIFICATION_WEBVIEW,
 } from './events';
 export type PushNotificationEventName = $Keys<{ 
-  deepLinkData: string,
-  landingURL:String,
-  receivePayload:String,
-  register: string, 
+  onNotificationOpened: string,
+  onWebView:String,
+  onNotificationReceived:String,
+  onTokenReceived: string, 
   registrationError: string,
 }>;
 const DEVICE_NOTIF_EVENT = 'remoteNotificationReceived';
@@ -35,24 +35,25 @@ else{
 }
 export default class iZooto {
 
- static addEventListener(type: PushNotificationEventName, handler: Function) {
+ /* Add  Listener in iOS */  
+    static addEventListener(type: PushNotificationEventName, handler: Function) {
         invariant(
-          type === 'deepLinkData' ||
-            type === 'register' ||
-            type ==='landingURL'||
-            type ==='receivePayload'||
+          type === 'onNotificationOpened' ||
+            type === 'onTokenReceived' ||
+            type ==='onWebView'||
+            type ==='onNotificationReceived'||
             type === 'registrationError' ,
-          'iZootoPush Notificaiton  only supports `notification`, `register`, `registrationError` ,events',
+          'iZootoPush Notificaiton  only supports ` onNotificationOpened`, `onNotificationReceived`,`onTokenReceived`, `onWebView` ,Events',
         );
         let listener;
-        if (type === 'deepLinkData') {
+        if (type === 'onNotificationOpened') {
           listener = PushNotificationEmitter.addListener(
             DEVICE_NOTIF_EVENT,
             (notifData) => {
               handler(notifData);
             },
           );
-        } else if (type === 'register') {
+        } else if (type === 'onTokenReceived') {
           listener = PushNotificationEmitter.addListener(
             NOTIF_REGISTER_EVENT,
             (registrationInfo) => {
@@ -63,11 +64,10 @@ export default class iZooto {
           listener = PushNotificationEmitter.addListener(
             NOTIF_REGISTRATION_ERROR_EVENT,
             (errorInfo) => {
-              console.log(errorInfo);
               handler(errorInfo);
             },
           );
-        } else if (type === 'landingURL') {
+        } else if (type === 'onWebView') {
           listener = PushNotificationEmitter.addListener(
             NOTIF_REMOTE_WEB_URL,
             (notifData) => {
@@ -75,7 +75,7 @@ export default class iZooto {
             },
           );
         }
-        else if (type === 'receivePayload') {
+        else if (type === 'onNotificationReceived') {
           listener = PushNotificationEmitter.addListener(
             NOTIF_REMOTE_RECEIVED_PAYLOAD,
             (notifData) => {
@@ -88,13 +88,13 @@ export default class iZooto {
       }
       static removeEventListener(type: PushNotificationEventName) {
         invariant(
-          type === 'deepLinkData' ||
-            type === 'register' ||
-            type ==='landingURL'||
-            type ==='receivePayload'||
-            type === 'registrationError',
-          'iZooto Push Notificaiton  only supports `notification`, `register`, `registrationError`, events',
-        );
+          type === 'onNotificationOpened' ||
+            type === 'onTokenReceived' ||
+            type ==='onWebView'||
+            type ==='onNotificationReceived'||
+            type === 'registrationError' ,
+            'iZootoPush Notificaiton  only supports ` onNotificationOpened`, `onNotificationReceived`,`onTokenReceived`, `onWebView` ,Events',
+            );
         const listener = _notifHandlers.get(type);
         if (!listener) {
           return;
@@ -120,7 +120,6 @@ export default class iZooto {
      {
      if(Platform.OS==='ios')
        {
-         console.log(izooto_app_id);
          RNIzooto.initiOSAppID(izooto_app_id);
 
        }
