@@ -22,24 +22,24 @@ export default class App extends React.Component {
         
         iZooto.addEventListener('onTokenReceived', (token) => {
           console.log("iZooto Device Token", token)
-      });
-      iZooto.addEventListener('onNotificationOpened',(openData)=>
-      {
+           });
+       iZooto.addEventListener('onNotificationOpened',(openData)=>
+        {
         console.log("Notification Deep Link Data",openData);
-      });
+         });
       iZooto.addEventListener('onWebView',(urlData)=>{
         console.log("Notification WebView URL Data",urlData);
 
-      });
+        });
       iZooto.addEventListener('onNotificationReceived',(data)=>
-      {
+        {
         console.log("Notification Payload Data ",data);
-      });
-      const obj = {name: "oadd"};
-      const myJSON = JSON.stringify(obj);
-      iZooto.addUserProperty(myJSON);
-      iZooto.addEvent('AAAAP',myJSON);
-     iZooto.setSubscription(true);
+       });
+    //   const obj = {name: "oadd"};
+    //   const myJSON = JSON.stringify(obj);
+    //   iZooto.addUserProperty(myJSON);
+    //   iZooto.addEvent('AAAAP',myJSON);
+    //  iZooto.setSubscription(true);
       }
       else
       {
