@@ -19,7 +19,7 @@ PODS:
     - DoubleConversion
     - glog
   - glog (0.3.5)
-  - iZootoiOSSDK (1.1.10)
+  - iZootoiOSSDK (2.0.4)
   - RCTRequired (0.63.4)
   - RCTTypeSafety (0.63.4):
     - FBLazyVector (= 0.63.4)
@@ -186,7 +186,7 @@ PODS:
     - React-cxxreact (= 0.63.4)
     - React-jsi (= 0.63.4)
   - React-jsinspector (0.63.4)
-  - react-native-izooto (1.1.2):
+  - react-native-izooto (2.0.8):
     - iZootoiOSSDK
     - React-Core
   - React-RCTActionSheet (0.63.4):
@@ -350,7 +350,7 @@ SPEC CHECKSUMS:
   FBReactNativeSpec: f2c97f2529dd79c083355182cc158c9f98f4bd6e
   Folly: b73c3869541e86821df3c387eb0af5f65addfab4
   glog: 40a13f7840415b9a77023fbcae0f1e6f43192af3
-  iZootoiOSSDK: 5ca6a340902cd75b6fc86eb4be589ecd33a47238
+  iZootoiOSSDK: d025df52ddbcc86b64912259baa8c9209d6c00a5
   RCTRequired: 082f10cd3f905d6c124597fd1c14f6f2655ff65e
   RCTTypeSafety: 8c9c544ecbf20337d069e4ae7fd9a377aadf504b
   React: b0a957a2c44da4113b0c4c9853d8387f8e64e615
@@ -361,7 +361,7 @@ SPEC CHECKSUMS:
   React-jsi: a0418934cf48f25b485631deb27c64dc40fb4c31
   React-jsiexecutor: 93bd528844ad21dc07aab1c67cb10abae6df6949
   React-jsinspector: 58aef7155bc9a9683f5b60b35eccea8722a4f53a
-  react-native-izooto: fea36582a78b843ba8b3b222b043e12ada40a6b4
+  react-native-izooto: 55ea1677d2d9ab477e225e3205cd57ceae20c3c0
   React-RCTActionSheet: 89a0ca9f4a06c1f93c26067af074ccdce0f40336
   React-RCTAnimation: 1bde3ecc0c104c55df246eda516e0deb03c4e49b
   React-RCTBlob: a97d378b527740cc667e03ebfa183a75231ab0f0
@@ -376,4 +376,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 1ba4edffa088b7584f49ecd2ea7a6dd17b977c6c
 
-COCOAPODS: 1.11.2
+COCOAPODS: 1.11.3

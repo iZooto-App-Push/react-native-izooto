@@ -64,6 +64,7 @@ public class RNIzootoModule extends ReactContextBaseJavaModule implements TokenR
                         .setNotificationReceiveHybridListener(this)
                         .unsubscribeWhenNotificationsAreDisabled(true)
                         .build();
+                iZooto.setPluginVersion("rv_2.0.9");
             }
             catch (IllegalStateException ex)
             {
@@ -71,7 +72,6 @@ public class RNIzootoModule extends ReactContextBaseJavaModule implements TokenR
             }
         }
     }
-    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @ReactMethod
     public void setSubscription(boolean enable) {
         iZooto.setSubscription(enable);
@@ -82,7 +82,6 @@ public class RNIzootoModule extends ReactContextBaseJavaModule implements TokenR
         iZooto.setFirebaseAnalytics(isSet);
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @ReactMethod
     public void addEvent(String eventName, ReadableMap triggers) {
         iZooto.addEvent(eventName,triggers.toHashMap());
