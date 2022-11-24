@@ -3,7 +3,7 @@
 #import <UserNotifications/UserNotifications.h>
 @import iZootoiOSSDK;
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate, RCTBridgeDelegate,UNUserNotificationCenterDelegate,iZootoNotificationReceiveDelegate>
+@interface AppDelegate : UIResponder <UIApplicationDelegate, RCTBridgeDelegate,UNUserNotificationCenterDelegate,iZootoNotificationReceiveDelegate,iZootoLandingURLDelegate,iZootoNotificationOpenDelegate>
 
 @property (nonatomic, strong) UIWindow *window;
 @property(nonatomic, weak)id <iZootoLandingURLDelegate> landingURLDelegate;

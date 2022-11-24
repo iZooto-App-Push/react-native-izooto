@@ -20,6 +20,8 @@ typedef void (^RNCRemoteNotificationCallback)(UIBackgroundFetchResult result);
 +(void)onHandleLandingURLWithUrl:(NSString *) url;
 +(void)onNotificationOpenWithAction:(NSDictionary *)actionData;
 +(void) willPresentNotificaiton:(NSDictionary *)notifcation;
++(void) willKillNotificationData:(NSDictionary *)killNotificationData;
+
 #endif
 
 @end

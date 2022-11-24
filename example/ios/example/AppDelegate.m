@@ -50,34 +50,33 @@ static void InitializeFlipper(UIApplication *application) {
   rootViewController.view = rootView;
   self.window.rootViewController = rootViewController;
   [self.window makeKeyAndVisible];
-  
-  
-  
   UNUserNotificationCenter *center =
        [UNUserNotificationCenter currentNotificationCenter];
    center.delegate = self;
-  
-  
-  
-  
-//   NSMutableDictionary *izootoInitSetting = [[NSMutableDictionary alloc]init];
-//         [izootoInitSetting setObject:@YES forKey:@"auto_prompt"];
-//         [izootoInitSetting setObject:@NO forKey:@"nativeWebview"];
-//         [izootoInitSetting setObject:@NO forKey:@"provisionalAuthorization"];
-//   [iZooto initialisationWithIzooto_id:@"11f896fa4cab1d4e159c2f26a257be41b388ecf2" application:application iZootoInitSettings:izootoInitSetting];
-  // [iZooto notificationOpenDelegate] = self;
+ 
+  if (launchOptions != nil)
+  {
+    NSLog(@"Now Data");
+  NSDictionary* userInfo = [launchOptions objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey];
+  if (userInfo != nil)
+  {
+  [self performSelector:@selector(HandleKilledStateNotification:) withObject: userInfo afterDelay:1];
+  }
+  }
+     iZooto.landingURLDelegate = self;
+   iZooto.notificationOpenDelegate=self;
   // iZooto.notificationReceivedDelegate = self;
-  // iZooto.landingURLDelegate = self;
-  iZooto.notificationOpenDelegate=self;
-  // iZooto.notificationOpenDelegate = self;
-   //[UNUserNotificationCenter currentNotificationCenter].delegate = self;
+  
   
   
   
   
   return YES;
 }
-
+/* Call the method when notification tap in killed state */
+-(void) HandleKilledStateNotification: (NSDictionary*) userInfo {
+  [RNIzooto willKillNotificationData:userInfo];
+}
 /* Received the device token  when app is registered sucessfully  */
 
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
@@ -120,11 +119,20 @@ static void InitializeFlipper(UIApplication *application) {
 
 
 - (void)onHandleLandingURLWithUrl:(NSString * _Nonnull)url {
+  NSLog(@"DeepLinkData1");
+
   [RNIzooto onHandleLandingURLWithUrl:url];
 }
 /* handle the deeplink Data*/
 - (void)onNotificationOpenWithAction:(NSDictionary<NSString *,id> * _Nonnull)action {
+  NSLog(@"DeepLinkData");
   [RNIzooto onNotificationOpenWithAction:action];
 
 }
+
+
+- (void)onNotificationReceivedWithPayload:(Payload * _Nonnull)payload {
+  NSLog(@"Payload");
+}
+
 @end

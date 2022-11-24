@@ -298,21 +298,5 @@ export default class iZooto {
         RNIzootoModule.setNotificationSound(soundName);
       }
     }
-
-    /*  To Add Notificaiton Behaviour */
-
-    static setInAppNotificationBehaviour(displayOption) {
-      if(Platform.OS ==='android'){
-        RNIzootoModule.setInAppNotificationBehaviour(displayOption)
-      }
-    }
-
-    /*  To Add Notificaiton Default Small Icon */
-
-    static setIcon(icon1) {
-      if(Platform.OS==='android'){
-        RNIzootoModule.setIcon(icon1);
-      }  
-    }
-    
+ 
 }

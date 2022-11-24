@@ -84,7 +84,6 @@ RCT_EXPORT_MODULE()
                                                       object:self
                                                     userInfo:@{@"deviceToken" : [hexString copy]}];
     
-    //[iZooto setPluginVersionWithPluginVersion:@"rv_2.0.9"];
     [iZooto getTokenWithDeviceToken:deviceToken];
 
 }
@@ -229,7 +228,7 @@ RCT_EXPORT_METHOD(initiOSAppID:(NSString *)izooto_app_id)
              [izootoInitSetting setObject:@YES forKey:@"nativeWebview"];
              [izootoInitSetting setObject:@NO forKey:@"provisionalAuthorization"];
        [iZooto initialisationWithIzooto_id:izooto_app_id application:UIApplication.sharedApplication iZootoInitSettings:izootoInitSetting];
-    [iZooto setPluginVersionWithPluginVersion:@"rv_2.0.9"];
+       [iZooto setPluginVersionWithPluginVersion:@"rv_2.1.0"];
 
 }
 
@@ -250,17 +249,92 @@ API_AVAILABLE(ios(10.0)) {
                                                           object:self
                                                       userInfo:@{@"notification": dict}];
 }
+
++(void)willKillNotificationData :(NSDictionary *) killNotificationData
+{
+      
+    if((![killNotificationData  isEqual: @""]) && (killNotificationData != NULL))
+      {
+          NSDictionary * aps = [killNotificationData objectForKey:@"aps"];
+          NSString * landingURL = [aps objectForKey:@"ln"];
+          NSDictionary * additionalData = [aps objectForKey:@"ap"];
+          NSString * inApp = [aps objectForKey:@"ia"];
+          
+          if (((additionalData == NULL) || ([additionalData  isEqual: @""])) && (![landingURL  isEqual: @""]) && ([inApp  isEqual: @"1"])){
+              
+              NSDictionary *dict = @{ @"URL" : landingURL};
+              [[NSNotificationCenter defaultCenter] postNotificationName:kRemoteNotificationWebViewData
+                                                                  object:self
+                                                                userInfo:@{@"notification": dict}];
+          }
+          
+          NSString * act1name = [aps objectForKey:@"b1"];
+          if (act1name == NULL) {
+              act1name = @"";
+          }
+          NSString * act1link = [aps objectForKey:@"l1"];
+          if (act1link == NULL) {
+              act1link = @"";
+          }
+          NSString * act2name = [aps objectForKey:@"b2"];
+          if (act2name == NULL) {
+              act2name = @"";
+          }
+          NSString * act2link = [aps objectForKey:@"l2"];
+          if (act2link == NULL) {
+              act2link = @"";
+          }
+          NSString * act1id = [aps objectForKey:@"d1"];
+          if (act1id == NULL) {
+              act1id = @"";
+          }
+          NSString * act2id = [aps objectForKey:@"d2"];
+          if (act2id == NULL) {
+              act2id = @"";
+          }
+          
+          NSMutableDictionary *actionData = [[NSMutableDictionary alloc]init];
+          
+          [actionData setObject:act1id forKey:@"button1ID"];
+          [actionData setObject:act1name forKey:@"button1Title"];
+          [actionData setObject:act1link forKey:@"button1URL"];
+          
+          if (additionalData != NULL){
+              [actionData setObject:additionalData forKey:@"additionalData"];
+          }
+          [actionData setObject:landingURL forKey:@"landingURL"];
+          [actionData setObject:act2id forKey:@"button2ID"];
+          
+          [actionData setObject:act2name forKey:@"button2Title"];
+          [actionData setObject:act2link forKey:@"button2URL"];
+          [actionData setObject:@"0" forKey:@"actionType"];
+          
+          if ((additionalData != NULL) && (![additionalData  isEqual: @""])){
+              [[NSNotificationCenter defaultCenter] postNotificationName:RCTRemoteNotificationReceived
+                                                                  object:nil
+                                                                userInfo:@{@"notification": actionData}];
+          }
+      }
+      else{
+          NSLog(@"Notification Data is not found");
+      }
+}
+
+
+
 -(void) handleLandingURLData:(NSNotification *)notification
 {
-    NSMutableDictionary *remoteNotification = [NSMutableDictionary dictionaryWithDictionary:notification.userInfo[@"notification"]];
-    [self sendEventWithName:@"remoteNotificationReceived" body:remoteNotification];
 
+    NSMutableDictionary *remoteNotification = [NSMutableDictionary dictionaryWithDictionary:notification.userInfo[@"notification"]];
+    [self sendEventWithName:@"remoteNotificationLandingURL" body:remoteNotification];
 }
 +(void) onNotificationOpenWithAction:(NSDictionary *) actionData
 {
-    [[NSNotificationCenter defaultCenter] postNotificationName:RCTRemoteNotificationReceived
-                                                          object:self
-                                                      userInfo:@{@"notification": actionData}];
+   
+        [[NSNotificationCenter defaultCenter] postNotificationName:RCTRemoteNotificationReceived
+                                                            object:self
+                                                          userInfo:@{@"notification": actionData}];
+    
 }
 RCT_EXPORT_METHOD(checkPermissions:(RCTResponseSenderBlock)callback)
 {

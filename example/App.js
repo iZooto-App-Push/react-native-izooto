@@ -4,13 +4,11 @@ import React, { Component } from 'react';
 import { Platform, StyleSheet,Linking, Text, View,  Alert,
 } from 'react-native';
 import iZooto from '../src';
-import { OSInAppDisplayOption } from '../src/OSInAppDisplayOption';
 import { PushTemplate } from '../src/PushTemplate';
 
 export default class App extends React.Component {
      componentDidMount() {
       
-
        if (Platform.OS === 'ios') {
         iZooto.initiOSAppID("11f896fa4cab1d4e159c2f26a257be41b388ecf2");
         
@@ -19,15 +17,17 @@ export default class App extends React.Component {
            });
        iZooto.addEventListener('onNotificationOpened',(openData)=>
         {
-        console.log("Notification Deep Link Data",openData);
+          alert("DeepLink");
+           console.log("Notification Deep Link Data",openData);
          });
       iZooto.addEventListener('onWebView',(urlData)=>{
+        alert("Webview");
         console.log("Notification WebView URL Data",urlData);
 
         });
       iZooto.addEventListener('onNotificationReceived',(data)=>
         {
-        console.log("Notification Payload Data ",data);
+       // console.log("Notification Payload Data ",data);
        });
     //   const obj = {name: "oadd"};
     //   const myJSON = JSON.stringify(obj);
@@ -53,26 +53,17 @@ export default class App extends React.Component {
       });
       
       } 
-      iZooto.setDefaultTemplate(PushTemplate.TEXT_OVERLAY);
+      iZooto.setDefaultTemplate(PushTemplate.DEFAULT);
       iZooto.setDefaultNotificationBanner("image_name");
       iZooto.setNotificationSound("sound_name_here");
-      iZooto.setInAppNotificationBehaviour(OSInAppDisplayOption.Notification);
-      iZooto.setIcon("icon_name");
       
    }
-  //  componentWillUnmount()
-  //  {
-  //    iZooto.removeEventListener('onNotificationOpened');
-  //    iZooto.removeEventListener('onWebView');
-  //    iZooto.removeEventListener('onNotificationReceived');
-  //    iZooto.removeEventListener('onTokenReceived');
 
-  //  }
 render() {
         return (
-            <View>
+            <View style={{flex:1,justifyContent: "center",alignItems: "center"}}>
                
-                <Text> React Native Library for iZooto  
+                <Text > React Native Library for iZooto  
                    Push Notifications Service </Text>
 
             </View>
