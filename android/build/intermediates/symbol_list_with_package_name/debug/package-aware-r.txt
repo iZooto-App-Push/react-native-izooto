@@ -138,6 +138,11 @@ attr autoSizePresetSizes
 attr autoSizeStepGranularity
 attr autoSizeTextType
 attr autoTransition
+attr autofillInlineSuggestionChip
+attr autofillInlineSuggestionEndIconStyle
+attr autofillInlineSuggestionStartIconStyle
+attr autofillInlineSuggestionSubtitle
+attr autofillInlineSuggestionTitle
 attr background
 attr backgroundColor
 attr backgroundImage
@@ -560,6 +565,7 @@ attr indicatorInset
 attr indicatorSize
 attr initialActivityCount
 attr insetForeground
+attr isAutofillInlineSuggestionTheme
 attr isLightTheme
 attr isMaterial3Theme
 attr isMaterialTheme
@@ -1145,7 +1151,6 @@ color abc_decor_view_status_guard
 color abc_decor_view_status_guard_light
 color abc_hint_foreground_material_dark
 color abc_hint_foreground_material_light
-color abc_input_method_navigation_guard
 color abc_primary_text_disable_only_material_dark
 color abc_primary_text_disable_only_material_light
 color abc_primary_text_material_dark
@@ -1843,6 +1848,7 @@ dimen abc_text_size_title_material
 dimen abc_text_size_title_material_toolbar
 dimen action_bar_size
 dimen appcompat_dialog_background_inset
+dimen autofill_inline_suggestion_icon_size
 dimen cardview_compat_inset_shadow
 dimen cardview_default_elevation
 dimen cardview_default_radius
@@ -2455,6 +2461,7 @@ drawable abc_textfield_search_activated_mtrl_alpha
 drawable abc_textfield_search_default_mtrl_alpha
 drawable abc_textfield_search_material
 drawable abc_vector_test
+drawable autofill_inline_suggestion_chip_background
 drawable avd_hide_password
 drawable avd_show_password
 drawable black_bg_image
@@ -2579,6 +2586,8 @@ id TOP_START
 id accelerate
 id accessibility_action_clickable_span
 id accessibility_actions
+id accessibility_collection
+id accessibility_collection_item
 id accessibility_custom_action_0
 id accessibility_custom_action_1
 id accessibility_custom_action_10
@@ -2613,6 +2622,7 @@ id accessibility_custom_action_8
 id accessibility_custom_action_9
 id accessibility_hint
 id accessibility_label
+id accessibility_links
 id accessibility_role
 id accessibility_state
 id accessibility_value
@@ -2651,12 +2661,15 @@ id auto
 id autoComplete
 id autoCompleteToEnd
 id autoCompleteToStart
+id autofill_inline_suggestion_end_icon
+id autofill_inline_suggestion_start_icon
+id autofill_inline_suggestion_subtitle
+id autofill_inline_suggestion_title
 id barrier
 id baseline
 id blocking
 id bottom
 id bounce
-id brandingLayout
 id buttonPanel
 id cancel_action
 id cancel_button
@@ -2752,7 +2765,6 @@ id honorRequest
 id icon
 id icon_group
 id icon_only
-id idNestedSV_alert
 id ignore
 id ignoreRequest
 id image
@@ -2767,17 +2779,14 @@ id item4
 id item_touch_helper_previous_elevation
 id iv_banner
 id iv_banner_ig
-id iv_bell
 id iv_large_icon
 id iv_share_icon
-id iv_toolbar_back_button
-id iv_toolbar_back_button_alert
-id izBannerImageFrame
 id iz_tv_layout
 id jumpToEnd
 id jumpToStart
 id l1
 id labeled
+id labelled_by
 id layout
 id left
 id leftToRight
@@ -2789,9 +2798,6 @@ id linear_layout_collapse
 id linear_layout_large_icon
 id listMode
 id list_item
-id ll_no_data_found
-id ll_no_data_found_alert
-id ll_powered_by
 id ll_share_notification
 id masked
 id material_clock_display
@@ -2856,17 +2862,11 @@ id navigation_bar_item_labels_group
 id navigation_bar_item_large_label_view
 id navigation_bar_item_small_label_view
 id navigation_header_container
-id news_hub_share_icon
-id news_hub_time
-id nh_toolbar
-id nh_toolbar_alert
 id none
 id normal
 id notification_background
 id notification_main_column
 id notification_main_column_container
-id nt_banner_image
-id nt_title
 id off
 id on
 id outline
@@ -2882,9 +2882,9 @@ id path
 id pathRelative
 id percent
 id pin
+id pointer_events
 id position
 id postLayout
-id progress_bar_alert
 id progress_circular
 id progress_horizontal
 id radio
@@ -2949,8 +2949,6 @@ id startHorizontal
 id startToEnd
 id startVertical
 id staticLayout
-id staticListData
-id staticListData_alert
 id staticPostLayout
 id status_bar_latest_event_content
 id stop
@@ -3004,19 +3002,13 @@ id triangle
 id tv_btn1
 id tv_btn2
 id tv_display_time
-id tv_izooto
-id tv_izooto_alert
 id tv_message
 id tv_message_with_banner
 id tv_message_with_banner_with_button
 id tv_notification_title
-id tv_powered_by
-id tv_powered_by_alert
 id tv_share_icon
 id tv_title
 id tv_title_with_banner_with_button
-id tv_toolbar
-id tv_toolbar_alert
 id unchecked
 id uniform
 id unlabeled
@@ -3025,6 +3017,7 @@ id view_offset_helper
 id view_tag_instance_handle
 id view_tag_native_id
 id view_tree_lifecycle_owner
+id view_tree_on_back_pressed_dispatcher_owner
 id view_tree_saved_state_registry_owner
 id view_tree_view_model_store_owner
 id visible
@@ -3131,9 +3124,8 @@ layout abc_search_view
 layout abc_select_dialog_material
 layout abc_tooltip
 layout activity_endisable_service
-layout activity_newshub
 layout activity_webview
-layout alert_news_hub_design
+layout autofill_inline_suggestion
 layout custom_dialog
 layout design_bottom_navigation_item
 layout design_bottom_sheet_dialog
@@ -3203,7 +3195,6 @@ layout mtrl_picker_header_title_text
 layout mtrl_picker_header_toggle
 layout mtrl_picker_text_input_date
 layout mtrl_picker_text_input_date_range
-layout news_hub_items
 layout notification_action
 layout notification_action_tombstone
 layout notification_media_action
@@ -3250,7 +3241,7 @@ menu menu_main
 mipmap iz_launcher
 mipmap iz_launcher_round
 plurals mtrl_badge_content_description
-raw keep
+raw firebase_common_keep
 string abc_action_bar_home_description
 string abc_action_bar_up_description
 string abc_action_menu_overflow_description
@@ -3259,18 +3250,6 @@ string abc_activity_chooser_view_see_all
 string abc_activitychooserview_choose_application
 string abc_capital_off
 string abc_capital_on
-string abc_font_family_body_1_material
-string abc_font_family_body_2_material
-string abc_font_family_button_material
-string abc_font_family_caption_material
-string abc_font_family_display_1_material
-string abc_font_family_display_2_material
-string abc_font_family_display_3_material
-string abc_font_family_display_4_material
-string abc_font_family_headline_material
-string abc_font_family_menu_material
-string abc_font_family_subhead_material
-string abc_font_family_title_material
 string abc_menu_alt_shortcut_label
 string abc_menu_ctrl_shortcut_label
 string abc_menu_delete_shortcut_label
@@ -3294,7 +3273,6 @@ string alert_description
 string appbar_scrolling_view_behavior
 string bottom_sheet_behavior
 string bottomsheet_action_expand_halfway
-string button_description
 string catalyst_change_bundle_location
 string catalyst_copy_button
 string catalyst_debug
@@ -3302,9 +3280,9 @@ string catalyst_debug_chrome
 string catalyst_debug_chrome_stop
 string catalyst_debug_connecting
 string catalyst_debug_error
-string catalyst_debug_nuclide
-string catalyst_debug_nuclide_error
+string catalyst_debug_open
 string catalyst_debug_stop
+string catalyst_devtools_open
 string catalyst_dismiss_button
 string catalyst_heap_capture
 string catalyst_hot_reloading
@@ -3312,7 +3290,9 @@ string catalyst_hot_reloading_auto_disable
 string catalyst_hot_reloading_auto_enable
 string catalyst_hot_reloading_stop
 string catalyst_inspector
+string catalyst_inspector_stop
 string catalyst_loading_from_url
+string catalyst_open_flipper_error
 string catalyst_perf_monitor
 string catalyst_perf_monitor_stop
 string catalyst_reload
@@ -3463,7 +3443,6 @@ string push_cat_head
 string radiogroup_description
 string rn_tab_description
 string scrollbar_description
-string search_description
 string search_menu_title
 string something_wrong_fcm_sender_id
 string spinbutton_description
@@ -3473,6 +3452,7 @@ string state_expanded_description
 string state_mixed_description
 string state_off_description
 string state_on_description
+string state_unselected_description
 string status_bar_notification_info_overflow
 string summary_description
 string tablist_description
@@ -3760,8 +3740,6 @@ style CalendarDatePickerStyle
 style CardView
 style CardView_Dark
 style CardView_Light
-style ClockTimePickerDialog
-style ClockTimePickerStyle
 style DialogAnimationFade
 style DialogAnimationSlide
 style EmptyTheme
@@ -3868,8 +3846,6 @@ style ShapeAppearance_MaterialComponents_Test
 style ShapeAppearance_MaterialComponents_Tooltip
 style SpinnerDatePickerDialog
 style SpinnerDatePickerStyle
-style SpinnerTimePickerDialog
-style SpinnerTimePickerStyle
 style TestStyleWithLineHeight
 style TestStyleWithLineHeightAppearance
 style TestStyleWithThemeLineHeightAttribute
@@ -4129,6 +4105,7 @@ style Theme_AppCompat_Light_Dialog_Alert
 style Theme_AppCompat_Light_Dialog_MinWidth
 style Theme_AppCompat_Light_NoActionBar
 style Theme_AppCompat_NoActionBar
+style Theme_AutofillInlineSuggestion
 style Theme_Catalyst
 style Theme_Catalyst_LogBox
 style Theme_Catalyst_RedBox
@@ -4289,6 +4266,12 @@ style Widget_AppCompat_TextView
 style Widget_AppCompat_TextView_SpinnerItem
 style Widget_AppCompat_Toolbar
 style Widget_AppCompat_Toolbar_Button_Navigation
+style Widget_Autofill
+style Widget_Autofill_InlineSuggestionChip
+style Widget_Autofill_InlineSuggestionEndIconStyle
+style Widget_Autofill_InlineSuggestionStartIconStyle
+style Widget_Autofill_InlineSuggestionSubtitle
+style Widget_Autofill_InlineSuggestionTitle
 style Widget_Compat_NotificationActionContainer
 style Widget_Compat_NotificationActionText
 style Widget_Design_AppBarLayout
@@ -4584,6 +4567,7 @@ styleable AppCompatSeekBar android_thumb tickMark tickMarkTint tickMarkTintMode
 styleable AppCompatTextHelper android_drawableBottom android_drawableEnd android_drawableLeft android_drawableRight android_drawableStart android_drawableTop android_textAppearance
 styleable AppCompatTextView android_textAppearance autoSizeMaxTextSize autoSizeMinTextSize autoSizePresetSizes autoSizeStepGranularity autoSizeTextType drawableBottomCompat drawableEndCompat drawableLeftCompat drawableRightCompat drawableStartCompat drawableTint drawableTintMode drawableTopCompat emojiCompatEnabled firstBaselineToTopHeight fontFamily fontVariationSettings lastBaselineToBottomHeight lineHeight textAllCaps textLocale
 styleable AppCompatTheme actionBarDivider actionBarItemBackground actionBarPopupTheme actionBarSize actionBarSplitStyle actionBarStyle actionBarTabBarStyle actionBarTabStyle actionBarTabTextStyle actionBarTheme actionBarWidgetTheme actionButtonStyle actionDropDownStyle actionMenuTextAppearance actionMenuTextColor actionModeBackground actionModeCloseButtonStyle actionModeCloseContentDescription actionModeCloseDrawable actionModeCopyDrawable actionModeCutDrawable actionModeFindDrawable actionModePasteDrawable actionModePopupWindowStyle actionModeSelectAllDrawable actionModeShareDrawable actionModeSplitBackground actionModeStyle actionModeTheme actionModeWebSearchDrawable actionOverflowButtonStyle actionOverflowMenuStyle activityChooserViewStyle alertDialogButtonGroupStyle alertDialogCenterButtons alertDialogStyle alertDialogTheme android_windowAnimationStyle android_windowIsFloating autoCompleteTextViewStyle borderlessButtonStyle buttonBarButtonStyle buttonBarNegativeButtonStyle buttonBarNeutralButtonStyle buttonBarPositiveButtonStyle buttonBarStyle buttonStyle buttonStyleSmall checkboxStyle checkedTextViewStyle colorAccent colorBackgroundFloating colorButtonNormal colorControlActivated colorControlHighlight colorControlNormal colorError colorPrimary colorPrimaryDark colorSwitchThumbNormal controlBackground dialogCornerRadius dialogPreferredPadding dialogTheme dividerHorizontal dividerVertical dropDownListViewStyle dropdownListPreferredItemHeight editTextBackground editTextColor editTextStyle homeAsUpIndicator imageButtonStyle listChoiceBackgroundIndicator listChoiceIndicatorMultipleAnimated listChoiceIndicatorSingleAnimated listDividerAlertDialog listMenuViewStyle listPopupWindowStyle listPreferredItemHeight listPreferredItemHeightLarge listPreferredItemHeightSmall listPreferredItemPaddingEnd listPreferredItemPaddingLeft listPreferredItemPaddingRight listPreferredItemPaddingStart panelBackground panelMenuListTheme panelMenuListWidth popupMenuStyle popupWindowStyle radioButtonStyle ratingBarStyle ratingBarStyleIndicator ratingBarStyleSmall searchViewStyle seekBarStyle selectableItemBackground selectableItemBackgroundBorderless spinnerDropDownItemStyle spinnerStyle switchStyle textAppearanceLargePopupMenu textAppearanceListItem textAppearanceListItemSecondary textAppearanceListItemSmall textAppearancePopupMenuHeader textAppearanceSearchResultSubtitle textAppearanceSearchResultTitle textAppearanceSmallPopupMenu textColorAlertDialogListItem textColorSearchUrl toolbarNavigationButtonStyle toolbarStyle tooltipForegroundColor tooltipFrameBackground viewInflaterClass windowActionBar windowActionBarOverlay windowActionModeOverlay windowFixedHeightMajor windowFixedHeightMinor windowFixedWidthMajor windowFixedWidthMinor windowMinWidthMajor windowMinWidthMinor windowNoTitle
+styleable Autofill_InlineSuggestion autofillInlineSuggestionChip autofillInlineSuggestionEndIconStyle autofillInlineSuggestionStartIconStyle autofillInlineSuggestionSubtitle autofillInlineSuggestionTitle isAutofillInlineSuggestionTheme
 styleable Badge backgroundColor badgeGravity badgeRadius badgeTextColor badgeWidePadding badgeWithTextRadius horizontalOffset horizontalOffsetWithText maxCharacterCount number verticalOffset verticalOffsetWithText
 styleable BaseProgressIndicator android_indeterminate hideAnimationBehavior indicatorColor minHideDelay showAnimationBehavior showDelay trackColor trackCornerRadius trackThickness
 styleable BottomAppBar backgroundTint elevation fabAlignmentMode fabAnimationMode fabCradleMargin fabCradleRoundedCornerRadius fabCradleVerticalOffset hideOnScroll navigationIconTint paddingBottomSystemWindowInsets paddingLeftSystemWindowInsets paddingRightSystemWindowInsets

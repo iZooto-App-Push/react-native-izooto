@@ -41,6 +41,9 @@ android {
         multiDexEnabled true // ADD THIS LINE
 
     }
+    packagingOptions {
+        pickFirst '**/*.so'
+    }
     splits {
         abi {
             reset()

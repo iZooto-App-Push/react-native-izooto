@@ -137,6 +137,11 @@ int attr autoSizePresetSizes 0x0
 int attr autoSizeStepGranularity 0x0
 int attr autoSizeTextType 0x0
 int attr autoTransition 0x0
+int attr autofillInlineSuggestionChip 0x0
+int attr autofillInlineSuggestionEndIconStyle 0x0
+int attr autofillInlineSuggestionStartIconStyle 0x0
+int attr autofillInlineSuggestionSubtitle 0x0
+int attr autofillInlineSuggestionTitle 0x0
 int attr background 0x0
 int attr backgroundColor 0x0
 int attr backgroundImage 0x0
@@ -559,6 +564,7 @@ int attr indicatorInset 0x0
 int attr indicatorSize 0x0
 int attr initialActivityCount 0x0
 int attr insetForeground 0x0
+int attr isAutofillInlineSuggestionTheme 0x0
 int attr isLightTheme 0x0
 int attr isMaterial3Theme 0x0
 int attr isMaterialTheme 0x0
@@ -1144,7 +1150,6 @@ int color abc_decor_view_status_guard 0x0
 int color abc_decor_view_status_guard_light 0x0
 int color abc_hint_foreground_material_dark 0x0
 int color abc_hint_foreground_material_light 0x0
-int color abc_input_method_navigation_guard 0x0
 int color abc_primary_text_disable_only_material_dark 0x0
 int color abc_primary_text_disable_only_material_light 0x0
 int color abc_primary_text_material_dark 0x0
@@ -1842,6 +1847,7 @@ int dimen abc_text_size_title_material 0x0
 int dimen abc_text_size_title_material_toolbar 0x0
 int dimen action_bar_size 0x0
 int dimen appcompat_dialog_background_inset 0x0
+int dimen autofill_inline_suggestion_icon_size 0x0
 int dimen cardview_compat_inset_shadow 0x0
 int dimen cardview_default_elevation 0x0
 int dimen cardview_default_radius 0x0
@@ -2454,6 +2460,7 @@ int drawable abc_textfield_search_activated_mtrl_alpha 0x0
 int drawable abc_textfield_search_default_mtrl_alpha 0x0
 int drawable abc_textfield_search_material 0x0
 int drawable abc_vector_test 0x0
+int drawable autofill_inline_suggestion_chip_background 0x0
 int drawable avd_hide_password 0x0
 int drawable avd_show_password 0x0
 int drawable black_bg_image 0x0
@@ -2578,6 +2585,8 @@ int id TOP_START 0x0
 int id accelerate 0x0
 int id accessibility_action_clickable_span 0x0
 int id accessibility_actions 0x0
+int id accessibility_collection 0x0
+int id accessibility_collection_item 0x0
 int id accessibility_custom_action_0 0x0
 int id accessibility_custom_action_1 0x0
 int id accessibility_custom_action_10 0x0
@@ -2612,6 +2621,7 @@ int id accessibility_custom_action_8 0x0
 int id accessibility_custom_action_9 0x0
 int id accessibility_hint 0x0
 int id accessibility_label 0x0
+int id accessibility_links 0x0
 int id accessibility_role 0x0
 int id accessibility_state 0x0
 int id accessibility_value 0x0
@@ -2650,12 +2660,15 @@ int id auto 0x0
 int id autoComplete 0x0
 int id autoCompleteToEnd 0x0
 int id autoCompleteToStart 0x0
+int id autofill_inline_suggestion_end_icon 0x0
+int id autofill_inline_suggestion_start_icon 0x0
+int id autofill_inline_suggestion_subtitle 0x0
+int id autofill_inline_suggestion_title 0x0
 int id barrier 0x0
 int id baseline 0x0
 int id blocking 0x0
 int id bottom 0x0
 int id bounce 0x0
-int id brandingLayout 0x0
 int id buttonPanel 0x0
 int id cancel_action 0x0
 int id cancel_button 0x0
@@ -2751,7 +2764,6 @@ int id honorRequest 0x0
 int id icon 0x0
 int id icon_group 0x0
 int id icon_only 0x0
-int id idNestedSV_alert 0x0
 int id ignore 0x0
 int id ignoreRequest 0x0
 int id image 0x0
@@ -2766,17 +2778,14 @@ int id item4 0x0
 int id item_touch_helper_previous_elevation 0x0
 int id iv_banner 0x0
 int id iv_banner_ig 0x0
-int id iv_bell 0x0
 int id iv_large_icon 0x0
 int id iv_share_icon 0x0
-int id iv_toolbar_back_button 0x0
-int id iv_toolbar_back_button_alert 0x0
-int id izBannerImageFrame 0x0
 int id iz_tv_layout 0x0
 int id jumpToEnd 0x0
 int id jumpToStart 0x0
 int id l1 0x0
 int id labeled 0x0
+int id labelled_by 0x0
 int id layout 0x0
 int id left 0x0
 int id leftToRight 0x0
@@ -2788,9 +2797,6 @@ int id linear_layout_collapse 0x0
 int id linear_layout_large_icon 0x0
 int id listMode 0x0
 int id list_item 0x0
-int id ll_no_data_found 0x0
-int id ll_no_data_found_alert 0x0
-int id ll_powered_by 0x0
 int id ll_share_notification 0x0
 int id masked 0x0
 int id material_clock_display 0x0
@@ -2855,17 +2861,11 @@ int id navigation_bar_item_labels_group 0x0
 int id navigation_bar_item_large_label_view 0x0
 int id navigation_bar_item_small_label_view 0x0
 int id navigation_header_container 0x0
-int id news_hub_share_icon 0x0
-int id news_hub_time 0x0
-int id nh_toolbar 0x0
-int id nh_toolbar_alert 0x0
 int id none 0x0
 int id normal 0x0
 int id notification_background 0x0
 int id notification_main_column 0x0
 int id notification_main_column_container 0x0
-int id nt_banner_image 0x0
-int id nt_title 0x0
 int id off 0x0
 int id on 0x0
 int id outline 0x0
@@ -2881,9 +2881,9 @@ int id path 0x0
 int id pathRelative 0x0
 int id percent 0x0
 int id pin 0x0
+int id pointer_events 0x0
 int id position 0x0
 int id postLayout 0x0
-int id progress_bar_alert 0x0
 int id progress_circular 0x0
 int id progress_horizontal 0x0
 int id radio 0x0
@@ -2948,8 +2948,6 @@ int id startHorizontal 0x0
 int id startToEnd 0x0
 int id startVertical 0x0
 int id staticLayout 0x0
-int id staticListData 0x0
-int id staticListData_alert 0x0
 int id staticPostLayout 0x0
 int id status_bar_latest_event_content 0x0
 int id stop 0x0
@@ -3003,19 +3001,13 @@ int id triangle 0x0
 int id tv_btn1 0x0
 int id tv_btn2 0x0
 int id tv_display_time 0x0
-int id tv_izooto 0x0
-int id tv_izooto_alert 0x0
 int id tv_message 0x0
 int id tv_message_with_banner 0x0
 int id tv_message_with_banner_with_button 0x0
 int id tv_notification_title 0x0
-int id tv_powered_by 0x0
-int id tv_powered_by_alert 0x0
 int id tv_share_icon 0x0
 int id tv_title 0x0
 int id tv_title_with_banner_with_button 0x0
-int id tv_toolbar 0x0
-int id tv_toolbar_alert 0x0
 int id unchecked 0x0
 int id uniform 0x0
 int id unlabeled 0x0
@@ -3024,6 +3016,7 @@ int id view_offset_helper 0x0
 int id view_tag_instance_handle 0x0
 int id view_tag_native_id 0x0
 int id view_tree_lifecycle_owner 0x0
+int id view_tree_on_back_pressed_dispatcher_owner 0x0
 int id view_tree_saved_state_registry_owner 0x0
 int id view_tree_view_model_store_owner 0x0
 int id visible 0x0
@@ -3130,9 +3123,8 @@ int layout abc_search_view 0x0
 int layout abc_select_dialog_material 0x0
 int layout abc_tooltip 0x0
 int layout activity_endisable_service 0x0
-int layout activity_newshub 0x0
 int layout activity_webview 0x0
-int layout alert_news_hub_design 0x0
+int layout autofill_inline_suggestion 0x0
 int layout custom_dialog 0x0
 int layout design_bottom_navigation_item 0x0
 int layout design_bottom_sheet_dialog 0x0
@@ -3202,7 +3194,6 @@ int layout mtrl_picker_header_title_text 0x0
 int layout mtrl_picker_header_toggle 0x0
 int layout mtrl_picker_text_input_date 0x0
 int layout mtrl_picker_text_input_date_range 0x0
-int layout news_hub_items 0x0
 int layout notification_action 0x0
 int layout notification_action_tombstone 0x0
 int layout notification_media_action 0x0
@@ -3249,7 +3240,7 @@ int menu menu_main 0x0
 int mipmap iz_launcher 0x0
 int mipmap iz_launcher_round 0x0
 int plurals mtrl_badge_content_description 0x0
-int raw keep 0x0
+int raw firebase_common_keep 0x0
 int string abc_action_bar_home_description 0x0
 int string abc_action_bar_up_description 0x0
 int string abc_action_menu_overflow_description 0x0
@@ -3258,18 +3249,6 @@ int string abc_activity_chooser_view_see_all 0x0
 int string abc_activitychooserview_choose_application 0x0
 int string abc_capital_off 0x0
 int string abc_capital_on 0x0
-int string abc_font_family_body_1_material 0x0
-int string abc_font_family_body_2_material 0x0
-int string abc_font_family_button_material 0x0
-int string abc_font_family_caption_material 0x0
-int string abc_font_family_display_1_material 0x0
-int string abc_font_family_display_2_material 0x0
-int string abc_font_family_display_3_material 0x0
-int string abc_font_family_display_4_material 0x0
-int string abc_font_family_headline_material 0x0
-int string abc_font_family_menu_material 0x0
-int string abc_font_family_subhead_material 0x0
-int string abc_font_family_title_material 0x0
 int string abc_menu_alt_shortcut_label 0x0
 int string abc_menu_ctrl_shortcut_label 0x0
 int string abc_menu_delete_shortcut_label 0x0
@@ -3293,7 +3272,6 @@ int string alert_description 0x0
 int string appbar_scrolling_view_behavior 0x0
 int string bottom_sheet_behavior 0x0
 int string bottomsheet_action_expand_halfway 0x0
-int string button_description 0x0
 int string catalyst_change_bundle_location 0x0
 int string catalyst_copy_button 0x0
 int string catalyst_debug 0x0
@@ -3301,9 +3279,9 @@ int string catalyst_debug_chrome 0x0
 int string catalyst_debug_chrome_stop 0x0
 int string catalyst_debug_connecting 0x0
 int string catalyst_debug_error 0x0
-int string catalyst_debug_nuclide 0x0
-int string catalyst_debug_nuclide_error 0x0
+int string catalyst_debug_open 0x0
 int string catalyst_debug_stop 0x0
+int string catalyst_devtools_open 0x0
 int string catalyst_dismiss_button 0x0
 int string catalyst_heap_capture 0x0
 int string catalyst_hot_reloading 0x0
@@ -3311,7 +3289,9 @@ int string catalyst_hot_reloading_auto_disable 0x0
 int string catalyst_hot_reloading_auto_enable 0x0
 int string catalyst_hot_reloading_stop 0x0
 int string catalyst_inspector 0x0
+int string catalyst_inspector_stop 0x0
 int string catalyst_loading_from_url 0x0
+int string catalyst_open_flipper_error 0x0
 int string catalyst_perf_monitor 0x0
 int string catalyst_perf_monitor_stop 0x0
 int string catalyst_reload 0x0
@@ -3462,7 +3442,6 @@ int string push_cat_head 0x0
 int string radiogroup_description 0x0
 int string rn_tab_description 0x0
 int string scrollbar_description 0x0
-int string search_description 0x0
 int string search_menu_title 0x0
 int string something_wrong_fcm_sender_id 0x0
 int string spinbutton_description 0x0
@@ -3472,6 +3451,7 @@ int string state_expanded_description 0x0
 int string state_mixed_description 0x0
 int string state_off_description 0x0
 int string state_on_description 0x0
+int string state_unselected_description 0x0
 int string status_bar_notification_info_overflow 0x0
 int string summary_description 0x0
 int string tablist_description 0x0
@@ -3759,8 +3739,6 @@ int style CalendarDatePickerStyle 0x0
 int style CardView 0x0
 int style CardView_Dark 0x0
 int style CardView_Light 0x0
-int style ClockTimePickerDialog 0x0
-int style ClockTimePickerStyle 0x0
 int style DialogAnimationFade 0x0
 int style DialogAnimationSlide 0x0
 int style EmptyTheme 0x0
@@ -3867,8 +3845,6 @@ int style ShapeAppearance_MaterialComponents_Test 0x0
 int style ShapeAppearance_MaterialComponents_Tooltip 0x0
 int style SpinnerDatePickerDialog 0x0
 int style SpinnerDatePickerStyle 0x0
-int style SpinnerTimePickerDialog 0x0
-int style SpinnerTimePickerStyle 0x0
 int style TestStyleWithLineHeight 0x0
 int style TestStyleWithLineHeightAppearance 0x0
 int style TestStyleWithThemeLineHeightAttribute 0x0
@@ -4128,6 +4104,7 @@ int style Theme_AppCompat_Light_Dialog_Alert 0x0
 int style Theme_AppCompat_Light_Dialog_MinWidth 0x0
 int style Theme_AppCompat_Light_NoActionBar 0x0
 int style Theme_AppCompat_NoActionBar 0x0
+int style Theme_AutofillInlineSuggestion 0x0
 int style Theme_Catalyst 0x0
 int style Theme_Catalyst_LogBox 0x0
 int style Theme_Catalyst_RedBox 0x0
@@ -4288,6 +4265,12 @@ int style Widget_AppCompat_TextView 0x0
 int style Widget_AppCompat_TextView_SpinnerItem 0x0
 int style Widget_AppCompat_Toolbar 0x0
 int style Widget_AppCompat_Toolbar_Button_Navigation 0x0
+int style Widget_Autofill 0x0
+int style Widget_Autofill_InlineSuggestionChip 0x0
+int style Widget_Autofill_InlineSuggestionEndIconStyle 0x0
+int style Widget_Autofill_InlineSuggestionStartIconStyle 0x0
+int style Widget_Autofill_InlineSuggestionSubtitle 0x0
+int style Widget_Autofill_InlineSuggestionTitle 0x0
 int style Widget_Compat_NotificationActionContainer 0x0
 int style Widget_Compat_NotificationActionText 0x0
 int style Widget_Design_AppBarLayout 0x0
@@ -4821,6 +4804,13 @@ int styleable AppCompatTheme_windowFixedWidthMinor 123
 int styleable AppCompatTheme_windowMinWidthMajor 124
 int styleable AppCompatTheme_windowMinWidthMinor 125
 int styleable AppCompatTheme_windowNoTitle 126
+int[] styleable Autofill_InlineSuggestion { 0x0, 0x0, 0x0, 0x0, 0x0, 0x0 }
+int styleable Autofill_InlineSuggestion_autofillInlineSuggestionChip 0
+int styleable Autofill_InlineSuggestion_autofillInlineSuggestionEndIconStyle 1
+int styleable Autofill_InlineSuggestion_autofillInlineSuggestionStartIconStyle 2
+int styleable Autofill_InlineSuggestion_autofillInlineSuggestionSubtitle 3
+int styleable Autofill_InlineSuggestion_autofillInlineSuggestionTitle 4
+int styleable Autofill_InlineSuggestion_isAutofillInlineSuggestionTheme 5
 int[] styleable Badge { 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0 }
 int styleable Badge_backgroundColor 0
 int styleable Badge_badgeGravity 1
