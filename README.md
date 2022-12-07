@@ -14,6 +14,10 @@ Please refer to iZooto's [React Native SDK Setup](https://help.izooto.com/docs/r
 
 Please see iZooto's [React Native SDK References](https://help.izooto.com/docs/react-native-sdk-reference) page for a list of all the available callbacks and methods.
 
+#### Change Log
+
+Please refer to this repository’s [release tags](https://github.com/iZooto-App-Push/react-native-izooto/releases) for a complete change log of every released version.
+
 #### Support
 
 Please visit [izooto.com](https://www.izooto.com) or write to [support@izooto.com](mailto:support@izooto.com) for any kind of issues.
