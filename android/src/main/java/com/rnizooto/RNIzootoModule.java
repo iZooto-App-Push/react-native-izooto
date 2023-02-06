@@ -233,6 +233,21 @@ public class RNIzootoModule extends ReactContextBaseJavaModule implements TokenR
         }
 
     }
+    // user permission prompt
+    @ReactMethod
+    public void promptUserForPushNotificationPermission() {
+        try {
+            if (Build.VERSION.SDK_INT >= 33) {
+                iZooto.promptForPushNotifications();
+            }else {
+                Log.v("promptUser..."," API level is lower than 33");
+            }
+        }
+        catch (Exception ex){
+            Log.v("promptUser...",ex.toString());
+
+        }
+    }
 
     private List<String> getArrayList(ReadableArray tagKey){
         List<String> list = new ArrayList<>();

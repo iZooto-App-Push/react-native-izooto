@@ -39,6 +39,8 @@ int anim fragment_fade_exit 0x0
 int anim fragment_fast_out_extra_slow_in 0x0
 int anim fragment_open_enter 0x0
 int anim fragment_open_exit 0x0
+int anim izooto_notification_permission_fade_in 0x0
+int anim izooto_notification_permission_fade_out 0x0
 int anim mtrl_bottom_sheet_slide_in 0x0
 int anim mtrl_bottom_sheet_slide_out 0x0
 int anim mtrl_card_lowers_interpolator 0x0
@@ -3016,7 +3018,6 @@ int id view_offset_helper 0x0
 int id view_tag_instance_handle 0x0
 int id view_tag_native_id 0x0
 int id view_tree_lifecycle_owner 0x0
-int id view_tree_on_back_pressed_dispatcher_owner 0x0
 int id view_tree_saved_state_registry_owner 0x0
 int id view_tree_view_model_store_owner 0x0
 int id visible 0x0
@@ -3340,8 +3341,6 @@ int string hms_bindfaildlg_title 0x0
 int string hms_confirm 0x0
 int string hms_is_spoof 0x0
 int string hms_push_channel 0x0
-int string hms_push_google 0x0
-int string hms_push_vmall 0x0
 int string hms_spoof_hints 0x0
 int string icon_content_description 0x0
 int string image_description 0x0

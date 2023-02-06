@@ -68,6 +68,7 @@ export interface iZooto {
   setDefaultNotificationBanner(setBanner: String): void;
 
   setNotificationSound(soundName: String): void;
+  promptUserForPushNotificationPermission(): void;
     }
    const iZooto: iZooto;
    export default iZooto;

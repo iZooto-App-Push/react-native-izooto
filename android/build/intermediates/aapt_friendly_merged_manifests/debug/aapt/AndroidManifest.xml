@@ -6,6 +6,8 @@
 
     <uses-sdk
         android:minSdkVersion="21"
-        android:targetSdkVersion="31" />
+        android:targetSdkVersion="33" />
+
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
 
 </manifest>

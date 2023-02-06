@@ -112,6 +112,12 @@ export default class iZooto {
         }  
        }
 
+  static promptUserForPushNotificationPermission() {
+        if(Platform.OS==='android'){
+          RNIzootoModule.promptUserForPushNotificationPermission();
+        }
+      }
+
  /*  iOS initialization   */
  
    static initiOSAppID(izooto_app_id)
