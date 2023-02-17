@@ -38,7 +38,9 @@ export default class App extends React.Component {
       else
       {
         iZooto.initAndroid();
-        iZooto.promptUserForPushNotificationPermission();
+
+        // permission peompt for push notification android 13
+        iZooto.promptForPushNotifications();
         iZooto.onNotificationOpenedListener(data =>{
         console.log("DeepLink Data Received",data);
       });      

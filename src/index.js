@@ -112,9 +112,9 @@ export default class iZooto {
         }  
        }
 
-  static promptUserForPushNotificationPermission() {
+  static promptForPushNotifications() {
         if(Platform.OS==='android'){
-          RNIzootoModule.promptUserForPushNotificationPermission();
+          RNIzootoModule.promptForPushNotifications();
         }
       }
 

@@ -235,7 +235,7 @@ public class RNIzootoModule extends ReactContextBaseJavaModule implements TokenR
     }
     // user permission prompt
     @ReactMethod
-    public void promptUserForPushNotificationPermission() {
+    public void promptForPushNotifications() {
         try {
             if (Build.VERSION.SDK_INT >= 33) {
                 iZooto.promptForPushNotifications();
