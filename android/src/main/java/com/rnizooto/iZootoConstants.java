@@ -6,7 +6,8 @@ public interface iZootoConstants {
      String LANDING_URL="iZooto_Notification_Landing_URL";
      String RECEIVE_TOKEN="iZooto_Notification_Token";
      String iZooto_Plugin_Name = "iZooto";
-     String Plugin_VERSION="rv_2.1.5";
+     String Plugin_VERSION="rv_2.1.6";
+
 
 
 }

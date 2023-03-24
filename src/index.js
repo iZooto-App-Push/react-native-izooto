@@ -205,7 +205,26 @@ export default class iZooto {
        }
        }
 
-  
+  /*  setNotificationChannelName */
+
+static setNotificationChannelName(channelName) {
+  if(Platform.OS==='android'){
+    RNIzootoModule.setNotificationChannelName(channelName);
+  }
+}
+/*  setNotificationChannelName */
+
+static navigateToSettings() {
+  if(Platform.OS==='android'){
+    RNIzootoModule.navigateToSettings();
+  }
+  if(Platform.OS === 'ios')
+  {
+    console.log("called");
+    RNIzooto.navigateToSettings();
+
+  }
+}
 
 /*  To Send  FirebaseAnalytics Events   */
 

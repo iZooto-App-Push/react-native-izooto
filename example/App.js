@@ -1,7 +1,7 @@
 
 
 import React, { Component } from 'react';
-import { Platform, StyleSheet,Linking, Text, View,  Alert,
+import { Platform, StyleSheet,Linking, Button,Text, View,  Alert,
 } from 'react-native';
 import iZooto from '../src';
 import { PushTemplate } from '../src/PushTemplate';
@@ -38,6 +38,7 @@ export default class App extends React.Component {
       else
       {
         iZooto.initAndroid();
+        iZooto.setNotificationChannelName("Push Notification Data") // channel name 
 
         // permission peompt for push notification android 13
         iZooto.promptForPushNotifications();
@@ -64,12 +65,15 @@ export default class App extends React.Component {
 
 render() {
         return (
-            <View style={{flex:1,justifyContent: "center",alignItems: "center"}}>
-               
-                <Text > React Native Library for iZooto  
-                   Push Notifications Service </Text>
-
-            </View>
+          <View style={{flex:1,justifyContent: "center",alignItems: "center"}}>
+          <Text > React Native Library for iZooto
+             Push Notifications Service </Text>
+             <Button title='Clicks to Navigate Setting'
+             onPress={()=>
+             iZooto.navigateToSettings()
+            }
+             >Navigate To Setting</Button>
+      </View>
         );
     }
 }

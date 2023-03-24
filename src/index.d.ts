@@ -70,6 +70,10 @@ export interface iZooto {
   setNotificationSound(soundName: String): void;
   
   promptForPushNotifications(): void;
+  
+  setNotificationChannelName(channelName : String): void
+
+  navigateToSettings():void
     
 }
    const iZooto: iZooto;

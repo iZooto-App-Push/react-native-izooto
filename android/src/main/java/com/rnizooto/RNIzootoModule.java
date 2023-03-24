@@ -290,6 +290,28 @@ public class RNIzootoModule extends ReactContextBaseJavaModule implements TokenR
 
         return bIicon;
     }
+    /* Added new method for navigate to notification setting page */
+    @ReactMethod
+    public void navigateToSettings() {
+        try {
+             iZooto.navigateToSettings(mReactApplicationContext.getCurrentActivity());
+        }
+        catch (Exception ex){
+            Log.v("NavigateToSetting...",ex.toString());
+        }
+    }
+    /* Added new method for setUp  to notification channel name */
+    @ReactMethod
+    public void setNotificationChannelName(String channelName) {
+        try {
+            iZooto.setNotificationChannelName(channelName);
+        }
+        catch (Exception ex){
+            Log.v("NotificationChannelName",ex.toString());
+
+        }
+    }
+
 
 
 }

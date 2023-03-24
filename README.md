@@ -28,5 +28,5 @@ For reference, we have uploaded a demo project with the latest SDK in the <code>
 
 #### Supports:
 
-* Tested and validated from Android 5.0 (API level 21) to Android 12 (API level 31).
-* Tested and validated rom iOS 10 to iOS 15+.
+* Tested and validated from Android 5.0 (API level 21) to Android 13 (API level 33).
+* Tested and validated rom iOS 10 to iOS 16+.

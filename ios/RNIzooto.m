@@ -220,6 +220,11 @@ RCT_EXPORT_METHOD(setSubscription:(NSInteger *) isSubscribed)
     }
 
 }
+// added a new method for navigateToSettings
+RCT_EXPORT_METHOD(navigateToSettings)
+{
+    [iZooto checkNotificationEnable];
+}
 
 RCT_EXPORT_METHOD(initiOSAppID:(NSString *)izooto_app_id)
 {
@@ -228,7 +233,7 @@ RCT_EXPORT_METHOD(initiOSAppID:(NSString *)izooto_app_id)
              [izootoInitSetting setObject:@YES forKey:@"nativeWebview"];
              [izootoInitSetting setObject:@NO forKey:@"provisionalAuthorization"];
        [iZooto initialisationWithIzooto_id:izooto_app_id application:UIApplication.sharedApplication iZootoInitSettings:izootoInitSetting];
-       [iZooto setPluginVersionWithPluginVersion:@"rv_2.1.5"];
+       [iZooto setPluginVersionWithPluginVersion:@"rv_2.1.6"];
 
 }
 
