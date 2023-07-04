@@ -20,11 +20,7 @@ export default class App extends React.Component {
           alert("DeepLink");
            console.log("Notification Deep Link Data",openData);
          });
-      iZooto.addEventListener('onWebView',(urlData)=>{
-        alert("Webview");
-        console.log("Notification WebView URL Data",urlData);
-
-        });
+    
       iZooto.addEventListener('onNotificationReceived',(data)=>
         {
        // console.log("Notification Payload Data ",data);

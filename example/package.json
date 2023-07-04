@@ -11,8 +11,8 @@
 
   },
   "dependencies": {
-    "react": "16.13.1",
-    "react-native": "0.63.4",
+    "react": "18.2.0",
+    "react-native": "0.71.4",
     "react-native-izooto": "link:../"
   },
   "devDependencies": {

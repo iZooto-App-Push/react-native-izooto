@@ -3304,6 +3304,7 @@ string catalyst_sample_profiler_disable
 string catalyst_sample_profiler_enable
 string catalyst_settings
 string catalyst_settings_title
+string channel_id_without_sound
 string character_counter_content_description
 string character_counter_overflowed_content_description
 string character_counter_pattern
@@ -3328,6 +3329,7 @@ string common_google_play_services_wear_update_text
 string common_open_on_phone
 string common_signin_button_text
 string common_signin_button_text_long
+string default_channel_id
 string default_notification_channel_id
 string error_icon_content_description
 string exposed_dropdown_menu_content_description

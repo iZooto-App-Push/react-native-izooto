@@ -3303,6 +3303,7 @@ int string catalyst_sample_profiler_disable 0x0
 int string catalyst_sample_profiler_enable 0x0
 int string catalyst_settings 0x0
 int string catalyst_settings_title 0x0
+int string channel_id_without_sound 0x0
 int string character_counter_content_description 0x0
 int string character_counter_overflowed_content_description 0x0
 int string character_counter_pattern 0x0
@@ -3327,6 +3328,7 @@ int string common_google_play_services_wear_update_text 0x0
 int string common_open_on_phone 0x0
 int string common_signin_button_text 0x0
 int string common_signin_button_text_long 0x0
+int string default_channel_id 0x0
 int string default_notification_channel_id 0x0
 int string error_icon_content_description 0x0
 int string exposed_dropdown_menu_content_description 0x0

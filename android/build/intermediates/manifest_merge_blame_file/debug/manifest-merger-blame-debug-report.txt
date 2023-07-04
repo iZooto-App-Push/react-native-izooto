@@ -1,17 +1,15 @@
 1<?xml version="1.0" encoding="utf-8"?>
 2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-3    package="com.rnizooto"
-4    android:versionCode="6"
-5    android:versionName="1.6" >
-6
-7    <uses-sdk
-8        android:minSdkVersion="21"
-8-->/Users/amit_sdk_develoer/Documents/AndroidSDK/ReactSDK/mastercode/react-native-izooto/android/src/main/AndroidManifest.xml
-9        android:targetSdkVersion="33" />
-9-->/Users/amit_sdk_develoer/Documents/AndroidSDK/ReactSDK/mastercode/react-native-izooto/android/src/main/AndroidManifest.xml
+3    package="com.rnizooto" >
+4
+5    <uses-sdk
+6        android:minSdkVersion="21"
+6-->/Users/amit_sdk_develoer/Documents/AndroidSDK/ReactSDK/mastercode/react-native-izooto/example/node_modules/react-native-izooto/android/src/main/AndroidManifest.xml
+7        android:targetSdkVersion="33" />
+7-->/Users/amit_sdk_develoer/Documents/AndroidSDK/ReactSDK/mastercode/react-native-izooto/example/node_modules/react-native-izooto/android/src/main/AndroidManifest.xml
+8
+9    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+9-->/Users/amit_sdk_develoer/Documents/AndroidSDK/ReactSDK/mastercode/react-native-izooto/example/node_modules/react-native-izooto/android/src/main/AndroidManifest.xml:3:1-72
+9-->/Users/amit_sdk_develoer/Documents/AndroidSDK/ReactSDK/mastercode/react-native-izooto/example/node_modules/react-native-izooto/android/src/main/AndroidManifest.xml:3:18-70
 10
-11    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
-11-->/Users/amit_sdk_develoer/Documents/AndroidSDK/ReactSDK/mastercode/react-native-izooto/android/src/main/AndroidManifest.xml:3:1-72
-11-->/Users/amit_sdk_develoer/Documents/AndroidSDK/ReactSDK/mastercode/react-native-izooto/android/src/main/AndroidManifest.xml:3:18-70
-12
-13</manifest>
+11</manifest>

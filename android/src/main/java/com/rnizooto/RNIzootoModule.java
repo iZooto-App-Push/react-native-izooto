@@ -4,7 +4,6 @@ import android.content.Context;
 import android.os.Build;
 import android.util.Log;
 
-import androidx.annotation.RequiresApi;
 
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
@@ -25,7 +24,7 @@ import java.util.List;
 import java.util.Map;
 
 @SuppressWarnings("unchecked")
-public class RNIzootoModule extends ReactContextBaseJavaModule implements TokenReceivedListener,NotificationWebViewListener, NotificationHelperListener, NotificationReceiveHybridListener {
+public class RNIzootoModule extends ReactContextBaseJavaModule implements TokenReceivedListener, NotificationHelperListener, NotificationReceiveHybridListener {
 
     private ReactApplicationContext mReactApplicationContext;
     private String notificationOpened, notificationToken, notificationWebView, notificationPayload;
@@ -40,7 +39,6 @@ public class RNIzootoModule extends ReactContextBaseJavaModule implements TokenR
         return "iZooto";
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @ReactMethod
     public void initAndroid() {
         iZooto.isHybrid = true;
@@ -50,7 +48,7 @@ public class RNIzootoModule extends ReactContextBaseJavaModule implements TokenR
                 iZooto.initialize(mReactApplicationContext)
                         .setTokenReceivedListener(this)
                         .setNotificationReceiveListener(this)
-                        .setLandingURLListener(this)
+                        //.setLandingURLListener(this)
                         .setNotificationReceiveHybridListener(this)
                         .unsubscribeWhenNotificationsAreDisabled(true)
                         .build();
@@ -155,7 +153,7 @@ public class RNIzootoModule extends ReactContextBaseJavaModule implements TokenR
     @ReactMethod
     public void onWebViewListener() {
         try {
-            iZooto.notificationWebView(this);
+           // iZooto.notificationWebView(this);
         }catch (Exception ex){
             Log.v("WebViewListener",ex.toString());
         }
@@ -207,18 +205,18 @@ public class RNIzootoModule extends ReactContextBaseJavaModule implements TokenR
 
     }
 
-    @Override
-    public void onWebView(String landingUrl) {
-        try {
-            notificationWebView = landingUrl;
-            if (landingUrl != null) {
-                sendEvent(iZootoConstants.LANDING_URL, landingUrl);
-            }
-        }catch (Exception ex){
-            Log.v("onWebView",ex.toString());
-        }
-
-    }
+//    @Override
+//    public void onWebView(String landingUrl) {
+//        try {
+//            notificationWebView = landingUrl;
+//            if (landingUrl != null) {
+//                sendEvent(iZootoConstants.LANDING_URL, landingUrl);
+//            }
+//        }catch (Exception ex){
+//            Log.v("onWebView",ex.toString());
+//        }
+//
+//    }
 
     @Override
     public void onTokenReceived(String token) {
