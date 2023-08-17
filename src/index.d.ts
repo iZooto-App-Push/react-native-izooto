@@ -74,6 +74,7 @@ export interface iZooto {
   setNotificationChannelName(channelName : String): void
 
   navigateToSettings():void
+  
     
 }
    const iZooto: iZooto;

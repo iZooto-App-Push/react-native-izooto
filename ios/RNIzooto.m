@@ -225,6 +225,22 @@ RCT_EXPORT_METHOD(navigateToSettings)
 {
     [iZooto navigateToSettings];
 }
+// Get Notification Feed Data
+RCT_EXPORT_METHOD(getNotificationFeed:(BOOL *) isPagination
+                 resolver: (RCTPromiseResolveBlock)result
+                 rejecter:(RCTPromiseRejectBlock)err)
+{
+    
+    [iZooto getNotificationFeedWithIsPagination:isPagination completion:^(NSString *jsonString, NSError *error){
+        if (error) {
+            result(error);
+        } else if (jsonString) {
+            result(jsonString);
+          
+        }
+    }];
+   
+}
 
 RCT_EXPORT_METHOD(initiOSAppID:(NSString *)izooto_app_id)
 {
@@ -233,7 +249,7 @@ RCT_EXPORT_METHOD(initiOSAppID:(NSString *)izooto_app_id)
              [izootoInitSetting setObject:@YES forKey:@"nativeWebview"];
              [izootoInitSetting setObject:@NO forKey:@"provisionalAuthorization"];
        [iZooto initialisationWithIzooto_id:izooto_app_id application:UIApplication.sharedApplication iZootoInitSettings:izootoInitSetting];
-       [iZooto setPluginVersionWithPluginVersion:@"rv_2.2.0"];
+       [iZooto setPluginVersionWithPluginVersion:@"rv_2.2.1"];
 
 }
 
