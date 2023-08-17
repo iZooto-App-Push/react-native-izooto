@@ -220,7 +220,6 @@ static navigateToSettings() {
   }
   if(Platform.OS === 'ios')
   {
-    console.log("called");
     RNIzooto.navigateToSettings();
 
   }
@@ -321,6 +320,24 @@ static navigateToSettings() {
     static setNotificationSound(soundName) {
       if(Platform.OS==='android'){
         RNIzootoModule.setNotificationSound(soundName);
+      }
+    }
+
+
+    /*  To Add Notification Feed  */
+
+    static async getNotificationFeed(isPagination) {
+      if(Platform.OS==='android'){
+        const notificationFeed = await RNIzootoModule.getNotificationFeed(isPagination);
+        if(notificationFeed!= null){
+          return notificationFeed;
+        } else{
+          return "No more data";
+        }
+      }
+      if(Platform.OS==='ios')
+      {
+        return RNIzooto.getNotificationFeed(isPagination)
       }
     }
  

@@ -5,12 +5,14 @@ import android.os.Build;
 import android.util.Log;
 
 
+import com.facebook.react.bridge.Promise;
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
 import com.facebook.react.bridge.ReadableArray;
 import com.facebook.react.bridge.ReadableMap;
 import com.facebook.react.modules.core.DeviceEventManagerModule;
+import com.izooto.AppConstant;
 import com.izooto.NotificationHelperListener;
 import com.izooto.NotificationReceiveHybridListener;
 import com.izooto.NotificationWebViewListener;
@@ -36,7 +38,7 @@ public class RNIzootoModule extends ReactContextBaseJavaModule implements TokenR
     }
     @Override
     public String getName() {
-        return "iZooto";
+        return iZootoConstants.IZ_PLUGIN_NAME;
     }
 
     @ReactMethod
@@ -52,11 +54,11 @@ public class RNIzootoModule extends ReactContextBaseJavaModule implements TokenR
                         .setNotificationReceiveHybridListener(this)
                         .unsubscribeWhenNotificationsAreDisabled(true)
                         .build();
-                iZooto.setPluginVersion(iZootoConstants.Plugin_VERSION);
+                iZooto.setPluginVersion(iZootoConstants.IZ_PLUGIN_VERSION);
             }
-            catch (IllegalStateException ex)
+            catch (Exception ex)
             {
-                Log.e("Exception",""+ex.toString());
+                Log.e(iZootoConstants.IZ_EXCEPTION_NAME,iZootoConstants.IZ_INIT_ANDROID+ex);
             }
         }
     }
@@ -124,8 +126,8 @@ public class RNIzootoModule extends ReactContextBaseJavaModule implements TokenR
     public void iZootoHandleNotification(ReadableMap data){
         try {
             iZooto.iZootoHandleNotification(mReactApplicationContext, (Map) data.toHashMap());
-        } catch (Exception e) {
-            Log.v("HandleNotification",e.toString());
+        } catch (Exception ex) {
+            Log.e(iZootoConstants.IZ_EXCEPTION_NAME,iZootoConstants.IZ_HANDLE_NOTIFICATION+ex);
         }
     }
     @ReactMethod
@@ -136,7 +138,7 @@ public class RNIzootoModule extends ReactContextBaseJavaModule implements TokenR
         }
         catch (Exception ex)
         {
-            Log.v("ReceivedListener",ex.toString());
+            Log.e(iZootoConstants.IZ_EXCEPTION_NAME,iZootoConstants.IZ_RECEIVED_LISTENER+ex);
 
         }
     }
@@ -146,7 +148,7 @@ public class RNIzootoModule extends ReactContextBaseJavaModule implements TokenR
             iZooto.notificationClick(this);
         }
         catch (Exception ex){
-            Log.v("OpenedListener",ex.toString());
+            Log.e(iZootoConstants.IZ_EXCEPTION_NAME,iZootoConstants.IZ_OPEN_LISTENER+ex);
 
         }
     }
@@ -155,7 +157,7 @@ public class RNIzootoModule extends ReactContextBaseJavaModule implements TokenR
         try {
            // iZooto.notificationWebView(this);
         }catch (Exception ex){
-            Log.v("WebViewListener",ex.toString());
+            Log.e(iZootoConstants.IZ_EXCEPTION_NAME,iZootoConstants.IZ_ON_WEB_VIEW_LISTENER+ex);
         }
     }
     @ReactMethod
@@ -164,7 +166,7 @@ public class RNIzootoModule extends ReactContextBaseJavaModule implements TokenR
             this.onTokenReceived(notificationToken);
         }
         catch (Exception ex){
-            Log.v("TokenReceivedListener",ex.toString());
+            Log.e(iZootoConstants.IZ_EXCEPTION_NAME,iZootoConstants.IZ_ON_TOKEN_LISTENER+ex);
 
         }
     }
@@ -174,20 +176,13 @@ public class RNIzootoModule extends ReactContextBaseJavaModule implements TokenR
                     .getJSModule(DeviceEventManagerModule.RCTDeviceEventEmitter.class)
                     .emit(eventName, params);
         }catch (Exception ex){
-            Log.v("sendEvent",ex.toString());
+            Log.e(iZootoConstants.IZ_EXCEPTION_NAME, iZootoConstants.IZ_SEND_EVENT +ex);
+
 
         }
     }
     @Override
     public void onNotificationReceived(Payload payload) {
-//        notificationPayload = payload;
-//        if (payload!=null) {
-//            Gson gson = new Gson();
-//            String jsonPayload = gson.toJson(payload);
-//            sendEvent(iZootoConstants.RECEIVED_NOTIFICATION, jsonPayload);
-//        }
-
-
     }
 
     @Override
@@ -195,10 +190,10 @@ public class RNIzootoModule extends ReactContextBaseJavaModule implements TokenR
         try {
             notificationOpened = data;
             if (data != null) {
-                sendEvent(iZootoConstants.OPEN_NOTIFICATION, data);
+                sendEvent(iZootoConstants.IZ_OPEN_NOTIFICATION, data);
             }
         }catch (Exception ex){
-            Log.v("onNotificationOpened",ex.toString());
+            Log.e(iZootoConstants.IZ_EXCEPTION_NAME,iZootoConstants.IZ_NOTIFICATION_OPENED+ex);
 
         }
 
@@ -210,10 +205,10 @@ public class RNIzootoModule extends ReactContextBaseJavaModule implements TokenR
 //        try {
 //            notificationWebView = landingUrl;
 //            if (landingUrl != null) {
-//                sendEvent(iZootoConstants.LANDING_URL, landingUrl);
+//                sendEvent(iZootoConstants.IZ_LANDING_URL, landingUrl);
 //            }
 //        }catch (Exception ex){
-//            Log.v("onWebView",ex.toString());
+//            Log.e(iZootoConstants.IZ_EXCEPTION_NAME,iZootoConstants.IZ_ON_WEB_VIEW+ex);
 //        }
 //
 //    }
@@ -223,10 +218,10 @@ public class RNIzootoModule extends ReactContextBaseJavaModule implements TokenR
         try {
             notificationToken = token;
             if (token != null) {
-                sendEvent(iZootoConstants.RECEIVE_TOKEN, token);
+                sendEvent(iZootoConstants.IZ_RECEIVE_TOKEN, token);
             }
         }catch (Exception ex){
-            Log.v("onTokenReceived",ex.toString());
+            Log.e(iZootoConstants.IZ_EXCEPTION_NAME,iZootoConstants.IZ_TOKEN_RECEIVED+ex);
 
         }
 
@@ -238,12 +233,11 @@ public class RNIzootoModule extends ReactContextBaseJavaModule implements TokenR
             if (Build.VERSION.SDK_INT >= 33) {
                 iZooto.promptForPushNotifications();
             }else {
-                Log.v("promptUser..."," API level is lower than 33");
+                Log.v(iZootoConstants.IZ_PROMPT_USER,iZootoConstants.IZ_PROMPT_ERROR);
             }
         }
         catch (Exception ex){
-            Log.v("promptUser...",ex.toString());
-
+            Log.e(iZootoConstants.IZ_EXCEPTION_NAME,iZootoConstants.IZ_PROMPT_USER+ex);
         }
     }
 
@@ -265,9 +259,9 @@ public class RNIzootoModule extends ReactContextBaseJavaModule implements TokenR
                 for (int i = jsonArray.length()-1; i>=0; i--) {
                     toReturn.put(jsonArray.getJSONObject(i));
                 }
-                sendEvent(iZootoConstants.RECEIVED_NOTIFICATION, toReturn.toString());
-            } catch (Exception e) {
-                Log.v("onNotificationReceive",e.toString());
+                sendEvent(iZootoConstants.IZ_RECEIVED_NOTIFICATION, toReturn.toString());
+            } catch (Exception ex) {
+                Log.e(iZootoConstants.IZ_EXCEPTION_NAME,iZootoConstants.IZ_ON_NOTIFICATION_RECEIVED+ex);
             }
         }
     }
@@ -295,7 +289,7 @@ public class RNIzootoModule extends ReactContextBaseJavaModule implements TokenR
              iZooto.navigateToSettings(mReactApplicationContext.getCurrentActivity());
         }
         catch (Exception ex){
-            Log.v("NavigateToSetting...",ex.toString());
+            Log.e(iZootoConstants.IZ_EXCEPTION_NAME,iZootoConstants.IZ_NAVIGATE_SETTINGS+ex);
         }
     }
     /* Added new method for setUp  to notification channel name */
@@ -305,11 +299,22 @@ public class RNIzootoModule extends ReactContextBaseJavaModule implements TokenR
             iZooto.setNotificationChannelName(channelName);
         }
         catch (Exception ex){
-            Log.v("NotificationChannelName",ex.toString());
+            Log.e(iZootoConstants.IZ_EXCEPTION_NAME,iZootoConstants.IZ_CHANNEL_NAME+ex);
 
         }
     }
 
+    /* Added new method for returning Notification Data */
 
+    @ReactMethod
+    public void getNotificationFeed(boolean isPagination, Promise promise) {
+        try {
+            promise.resolve(iZooto.getNotificationFeed(isPagination));
+        }
+        catch (Exception ex){
+            Log.v(iZootoConstants.IZ_EXCEPTION_NAME,iZootoConstants.IZ_NOTIFICATION_FEED+ex.toString());
+
+        }
+    }
 
 }

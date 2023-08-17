@@ -7,7 +7,8 @@ import iZooto from '../src';
 import { PushTemplate } from '../src/PushTemplate';
 
 export default class App extends React.Component {
-     componentDidMount() {
+     
+  async componentDidMount() {
       
        if (Platform.OS === 'ios') {
         iZooto.initiOSAppID("11f896fa4cab1d4e159c2f26a257be41b388ecf2");
@@ -39,6 +40,10 @@ export default class App extends React.Component {
       {
         iZooto.initAndroid();
         iZooto.setNotificationChannelName("Push Notification Data") // channel name 
+
+
+        var notificationData =await iZooto.getNotificationFeed(false);
+        console.log(notificationData);
 
         // permission peompt for push notification android 13
         iZooto.promptForPushNotifications();
