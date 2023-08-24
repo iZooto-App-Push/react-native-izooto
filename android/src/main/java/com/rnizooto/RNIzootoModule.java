@@ -17,6 +17,7 @@ import com.izooto.NotificationHelperListener;
 import com.izooto.NotificationReceiveHybridListener;
 import com.izooto.NotificationWebViewListener;
 import com.izooto.Payload;
+import com.izooto.PreferenceUtil;
 import com.izooto.PushTemplate;
 import com.izooto.TokenReceivedListener;
 import com.izooto.iZooto;
@@ -26,9 +27,11 @@ import java.util.List;
 import java.util.Map;
 
 @SuppressWarnings("unchecked")
-public class RNIzootoModule extends ReactContextBaseJavaModule implements TokenReceivedListener, NotificationHelperListener, NotificationReceiveHybridListener {
+public class RNIzootoModule extends ReactContextBaseJavaModule implements TokenReceivedListener, NotificationHelperListener, NotificationReceiveHybridListener,NotificationWebViewListener {
 
     private ReactApplicationContext mReactApplicationContext;
+    private boolean isDefaultWebView;
+
     private String notificationOpened, notificationToken, notificationWebView, notificationPayload;
     private boolean isInit;
 
@@ -40,28 +43,59 @@ public class RNIzootoModule extends ReactContextBaseJavaModule implements TokenR
     public String getName() {
         return iZootoConstants.IZ_PLUGIN_NAME;
     }
-
     @ReactMethod
-    public void initAndroid() {
+    public void initAndroid(boolean defaultWebView) {
         iZooto.isHybrid = true;
         if(!isInit) {
-            isInit=true;
+            isInit = true;
             try {
-                iZooto.initialize(mReactApplicationContext)
-                        .setTokenReceivedListener(this)
-                        .setNotificationReceiveListener(this)
-                        //.setLandingURLListener(this)
-                        .setNotificationReceiveHybridListener(this)
-                        .unsubscribeWhenNotificationsAreDisabled(true)
-                        .build();
+                PreferenceUtil preferenceUtil = PreferenceUtil.getInstance(mReactApplicationContext);
+                preferenceUtil.setBooleanData(AppConstant.DEFAULT_WEB_VIEW,defaultWebView);
+                isDefaultWebView = preferenceUtil.getBoolean(AppConstant.DEFAULT_WEB_VIEW);
+                if (isDefaultWebView) {
+                    iZooto.initialize(mReactApplicationContext)
+                            .setTokenReceivedListener(this)
+                            .setNotificationReceiveListener(this)
+                            .setNotificationReceiveHybridListener(this)
+                            .unsubscribeWhenNotificationsAreDisabled(true)
+                            .build();
+                }else {
+                    iZooto.initialize(mReactApplicationContext)
+                            .setTokenReceivedListener(this)
+                            .setNotificationReceiveListener(this)
+                            .setLandingURLListener(this)
+                            .setNotificationReceiveHybridListener(this)
+                            .unsubscribeWhenNotificationsAreDisabled(true)
+                            .build();
+                }
                 iZooto.setPluginVersion(iZootoConstants.IZ_PLUGIN_VERSION);
             }
-            catch (Exception ex)
-            {
-                Log.e(iZootoConstants.IZ_EXCEPTION_NAME,iZootoConstants.IZ_INIT_ANDROID+ex);
+            catch (IllegalStateException ex){
+                Log.e("Exception",""+ ex);
             }
         }
     }
+//    @ReactMethod
+//    public void initAndroid() {
+//        iZooto.isHybrid = true;
+//        if(!isInit) {
+//            isInit=true;
+//            try {
+//                iZooto.initialize(mReactApplicationContext)
+//                        .setTokenReceivedListener(this)
+//                        .setNotificationReceiveListener(this)
+//                        //.setLandingURLListener(this)
+//                        .setNotificationReceiveHybridListener(this)
+//                        .unsubscribeWhenNotificationsAreDisabled(true)
+//                        .build();
+//                iZooto.setPluginVersion(iZootoConstants.IZ_PLUGIN_VERSION);
+//            }
+//            catch (Exception ex)
+//            {
+//                Log.e(iZootoConstants.IZ_EXCEPTION_NAME,iZootoConstants.IZ_INIT_ANDROID+ex);
+//            }
+//        }
+//    }
     @ReactMethod
     public void setSubscription(boolean enable) {
         iZooto.setSubscription(enable);
@@ -155,9 +189,11 @@ public class RNIzootoModule extends ReactContextBaseJavaModule implements TokenR
     @ReactMethod
     public void onWebViewListener() {
         try {
-           // iZooto.notificationWebView(this);
-        }catch (Exception ex){
-            Log.e(iZootoConstants.IZ_EXCEPTION_NAME,iZootoConstants.IZ_ON_WEB_VIEW_LISTENER+ex);
+            if (!isDefaultWebView) {
+                iZooto.notificationWebView(this);
+            }
+        }catch (Exception e){
+            Log.v(iZootoConstants.IZ_EXCEPTION_NAME,iZootoConstants.IZ_WEB_VIEW_LISTENER+e);
         }
     }
     @ReactMethod
@@ -200,18 +236,18 @@ public class RNIzootoModule extends ReactContextBaseJavaModule implements TokenR
 
     }
 
-//    @Override
-//    public void onWebView(String landingUrl) {
-//        try {
-//            notificationWebView = landingUrl;
-//            if (landingUrl != null) {
-//                sendEvent(iZootoConstants.IZ_LANDING_URL, landingUrl);
-//            }
-//        }catch (Exception ex){
-//            Log.e(iZootoConstants.IZ_EXCEPTION_NAME,iZootoConstants.IZ_ON_WEB_VIEW+ex);
-//        }
-//
-//    }
+    @Override
+    public void onWebView(String landingUrl) {
+        try {
+            notificationWebView = landingUrl;
+            if (landingUrl != null) {
+                sendEvent(iZootoConstants.IZ_LANDING_URL, landingUrl);
+            }
+        }catch (Exception ex){
+            Log.e(iZootoConstants.IZ_EXCEPTION_NAME,iZootoConstants.IZ_ON_WEB_VIEW+ex);
+        }
+
+    }
 
     @Override
     public void onTokenReceived(String token) {

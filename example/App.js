@@ -41,7 +41,7 @@ export default class App extends React.Component {
       }
       else
       {
-        iZooto.initAndroid();
+        iZooto.initAndroid(false);
         iZooto.setNotificationChannelName("Push Notification Data") // channel name 
 
 

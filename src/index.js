@@ -106,12 +106,17 @@ export default class iZooto {
 
 /*  Android initialization   */
 
-       static initAndroid() {
-        if(Platform.OS ==='android'){
-         RNIzootoModule.initAndroid();
-        }  
-       }
+      //  static initAndroid() {
+      //   if(Platform.OS ==='android'){
+      //    RNIzootoModule.initAndroid();
+      //   }  
+      //  }
 
+static initAndroid(isDefaultWebView) {
+  if(Platform.OS ==='android'){
+   RNIzootoModule.initAndroid(isDefaultWebView);
+  }  
+ }
   static promptForPushNotifications() {
         if(Platform.OS==='android'){
           RNIzootoModule.promptForPushNotifications();
