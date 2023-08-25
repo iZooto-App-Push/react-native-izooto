@@ -1,6 +1,6 @@
 {
   "name": "react-native-izooto",
-  "version": "2.2.2",
+  "version": "2.2.3",
   "description": "React Native iZooto SDK",
   "main": "src/index.js",
   "typings": "src/index.d.ts",
