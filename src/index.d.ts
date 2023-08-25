@@ -41,7 +41,7 @@ export interface iZooto {
   removeEventListener(type: PushNotificationEventName): void;
   // for Android only 
 
-  initAndroid(): void;
+  initAndroid(isDefaultWebView : boolean): void;
 
   setFirebaseAnalytics(isSetFirebaseAnalytics: boolean): void;
 
