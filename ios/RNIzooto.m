@@ -249,7 +249,7 @@ RCT_EXPORT_METHOD(initiOSAppID:(NSString *)izooto_app_id)
              [izootoInitSetting setObject:@YES forKey:@"nativeWebview"];
              [izootoInitSetting setObject:@NO forKey:@"provisionalAuthorization"];
        [iZooto initialisationWithIzooto_id:izooto_app_id application:UIApplication.sharedApplication iZootoInitSettings:izootoInitSetting];
-       [iZooto setPluginVersionWithPluginVersion:@"rv_2.3.0"];
+       [iZooto setPluginVersionWithPluginVersion:@"rv_2.3.1"];
 
 }
 
