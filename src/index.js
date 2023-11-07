@@ -1,7 +1,7 @@
 'use strict';
 
 import { NativeModules,Platform,NativeEventEmitter} from 'react-native';
-import EventManager from  './EventManager';
+import EventManager from  './eventmanager';
 import invariant from 'invariant';
 import {
     NOTIFICATION_RECEIVED,
