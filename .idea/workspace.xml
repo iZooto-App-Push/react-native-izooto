@@ -4,32 +4,7 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a0f98848-5994-4a6b-affe-e6a0a8a9aeb2" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/build/.transforms/5c222cff4cf98a0486b9434811431fa5/results.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/build/.transforms/5c222cff4cf98a0486b9434811431fa5/transformed/classes/classes.dex" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/build/.transforms/683368f0929aa608c2dedc51d027b9fe/results.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/build/.transforms/683368f0929aa608c2dedc51d027b9fe/transformed/debug/com/rnizooto/BuildConfig.dex" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/build/.transforms/683368f0929aa608c2dedc51d027b9fe/transformed/debug/com/rnizooto/RNIzootoModule.dex" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/build/.transforms/683368f0929aa608c2dedc51d027b9fe/transformed/debug/com/rnizooto/RNIzootoPackage.dex" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/build/.transforms/683368f0929aa608c2dedc51d027b9fe/transformed/debug/com/rnizooto/iZootoConstants.dex" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/build/.transforms/683368f0929aa608c2dedc51d027b9fe/transformed/desugar_graph.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/build/.transforms/6beb66fcc1b88d3c53ccdd25e10526c0/results.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/build/.transforms/6beb66fcc1b88d3c53ccdd25e10526c0/transformed/classes/classes.dex" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/build/.transforms/8d7beb0a2b74f3f6b5c42c97b1695c8c/results.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/build/.transforms/8d7beb0a2b74f3f6b5c42c97b1695c8c/transformed/classes/classes.dex" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/build/.transforms/9d2273424c43b641f48221d166415ec4/results.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/build/.transforms/9d2273424c43b641f48221d166415ec4/transformed/debug/com/rnizooto/BuildConfig.dex" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/build/.transforms/9d2273424c43b641f48221d166415ec4/transformed/debug/com/rnizooto/RNIzootoModule.dex" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/build/.transforms/9d2273424c43b641f48221d166415ec4/transformed/debug/com/rnizooto/RNIzootoPackage.dex" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/build/.transforms/9d2273424c43b641f48221d166415ec4/transformed/debug/com/rnizooto/iZootoConstants.dex" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/build/.transforms/9d2273424c43b641f48221d166415ec4/transformed/desugar_graph.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/build/.transforms/de634dcb20c93f968d6d0c634deb3d65/results.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/build/.transforms/e2c310b46de887d61f254675e3dd24a6/results.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/build/.transforms/e2c310b46de887d61f254675e3dd24a6/transformed/classes/classes.dex" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/build/.transforms/f9386979df50d717db5d5b40539e69cb/results.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/build/.transforms/f9386979df50d717db5d5b40539e69cb/transformed/classes/classes.dex" beforeDir="false" />
-    </list>
+    <list default="true" id="a0f98848-5994-4a6b-affe-e6a0a8a9aeb2" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
