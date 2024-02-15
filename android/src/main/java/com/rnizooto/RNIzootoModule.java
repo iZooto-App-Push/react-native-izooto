@@ -292,8 +292,8 @@ public class RNIzootoModule extends ReactContextBaseJavaModule implements TokenR
             try {
                 JSONArray jsonArray = new JSONArray(receiveData);
                 JSONArray toReturn = new JSONArray();
-                for (int i = jsonArray.length()-1; i>=0; i--) {
-                    toReturn.put(jsonArray.getJSONObject(i));
+                if(jsonArray.length() > 0){
+                    toReturn.put(jsonArray.getJSONObject(jsonArray.length() -1));
                 }
                 sendEvent(iZootoConstants.IZ_RECEIVED_NOTIFICATION, toReturn.toString());
             } catch (Exception ex) {
