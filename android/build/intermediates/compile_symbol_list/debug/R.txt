@@ -1183,6 +1183,10 @@ int color bright_foreground_inverse_material_dark 0x0
 int color bright_foreground_inverse_material_light 0x0
 int color bright_foreground_material_dark 0x0
 int color bright_foreground_material_light 0x0
+int color browser_actions_bg_grey 0x0
+int color browser_actions_divider_color 0x0
+int color browser_actions_text_color 0x0
+int color browser_actions_title_color 0x0
 int color button_material_dark 0x0
 int color button_material_light 0x0
 int color cardview_dark_background 0x0
@@ -1871,6 +1875,8 @@ int dimen abc_text_size_title_material_toolbar 0x0
 int dimen action_bar_size 0x0
 int dimen appcompat_dialog_background_inset 0x0
 int dimen autofill_inline_suggestion_icon_size 0x0
+int dimen browser_actions_context_menu_max_width 0x0
+int dimen browser_actions_context_menu_min_padding 0x0
 int dimen cardview_compat_inset_shadow 0x0
 int dimen cardview_default_elevation 0x0
 int dimen cardview_default_radius 0x0
@@ -2758,6 +2764,11 @@ int id baseline 0x0
 int id blocking 0x0
 int id bottom 0x0
 int id bounce 0x0
+int id browser_actions_header_text 0x0
+int id browser_actions_menu_item_icon 0x0
+int id browser_actions_menu_item_text 0x0
+int id browser_actions_menu_items 0x0
+int id browser_actions_menu_view 0x0
 int id buttonPanel 0x0
 int id cancel_action 0x0
 int id cancel_button 0x0
@@ -2810,6 +2821,7 @@ int id dragLeft 0x0
 int id dragRight 0x0
 int id dragStart 0x0
 int id dragUp 0x0
+int id drawer_layout 0x0
 int id dropdown_editable 0x0
 int id dropdown_menu 0x0
 int id dropdown_noneditable 0x0
@@ -2971,6 +2983,7 @@ int id navigation_bar_item_labels_group 0x0
 int id navigation_bar_item_large_label_view 0x0
 int id navigation_bar_item_small_label_view 0x0
 int id navigation_header_container 0x0
+int id navigation_view 0x0
 int id newsHub_icon 0x0
 int id newsHub_icon1 0x0
 int id news_hub_share_icon 0x0
@@ -3027,6 +3040,7 @@ int id progress_horizontal 0x0
 int id radio 0x0
 int id react_test_id 0x0
 int id rectangles 0x0
+int id recycler_view 0x0
 int id reverseSawtooth 0x0
 int id right 0x0
 int id rightToLeft 0x0
@@ -3287,6 +3301,8 @@ int layout activity_newshub 0x0
 int layout activity_webview 0x0
 int layout alert_news_hub_design 0x0
 int layout autofill_inline_suggestion 0x0
+int layout browser_actions_context_menu_page 0x0
+int layout browser_actions_context_menu_row 0x0
 int layout custom_dialog 0x0
 int layout design_bottom_navigation_item 0x0
 int layout design_bottom_sheet_dialog 0x0
@@ -3306,6 +3322,7 @@ int layout design_text_input_start_icon 0x0
 int layout dev_loading_view 0x0
 int layout fps_view 0x0
 int layout hwpush_trans_activity 0x0
+int layout izooto_drawer_layout 0x0
 int layout layout_custom_notification 0x0
 int layout layout_custom_notification_expand 0x0
 int layout layout_footer 0x0

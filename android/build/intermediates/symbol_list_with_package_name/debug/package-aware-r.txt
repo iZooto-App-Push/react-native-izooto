@@ -1184,6 +1184,10 @@ color bright_foreground_inverse_material_dark
 color bright_foreground_inverse_material_light
 color bright_foreground_material_dark
 color bright_foreground_material_light
+color browser_actions_bg_grey
+color browser_actions_divider_color
+color browser_actions_text_color
+color browser_actions_title_color
 color button_material_dark
 color button_material_light
 color cardview_dark_background
@@ -1872,6 +1876,8 @@ dimen abc_text_size_title_material_toolbar
 dimen action_bar_size
 dimen appcompat_dialog_background_inset
 dimen autofill_inline_suggestion_icon_size
+dimen browser_actions_context_menu_max_width
+dimen browser_actions_context_menu_min_padding
 dimen cardview_compat_inset_shadow
 dimen cardview_default_elevation
 dimen cardview_default_radius
@@ -2759,6 +2765,11 @@ id baseline
 id blocking
 id bottom
 id bounce
+id browser_actions_header_text
+id browser_actions_menu_item_icon
+id browser_actions_menu_item_text
+id browser_actions_menu_items
+id browser_actions_menu_view
 id buttonPanel
 id cancel_action
 id cancel_button
@@ -2811,6 +2822,7 @@ id dragLeft
 id dragRight
 id dragStart
 id dragUp
+id drawer_layout
 id dropdown_editable
 id dropdown_menu
 id dropdown_noneditable
@@ -2972,6 +2984,7 @@ id navigation_bar_item_labels_group
 id navigation_bar_item_large_label_view
 id navigation_bar_item_small_label_view
 id navigation_header_container
+id navigation_view
 id newsHub_icon
 id newsHub_icon1
 id news_hub_share_icon
@@ -3028,6 +3041,7 @@ id progress_horizontal
 id radio
 id react_test_id
 id rectangles
+id recycler_view
 id reverseSawtooth
 id right
 id rightToLeft
@@ -3288,6 +3302,8 @@ layout activity_newshub
 layout activity_webview
 layout alert_news_hub_design
 layout autofill_inline_suggestion
+layout browser_actions_context_menu_page
+layout browser_actions_context_menu_row
 layout custom_dialog
 layout design_bottom_navigation_item
 layout design_bottom_sheet_dialog
@@ -3307,6 +3323,7 @@ layout design_text_input_start_icon
 layout dev_loading_view
 layout fps_view
 layout hwpush_trans_activity
+layout izooto_drawer_layout
 layout layout_custom_notification
 layout layout_custom_notification_expand
 layout layout_footer
