@@ -4,6 +4,9 @@
 
 ## iZooto React Native SDK Push Notification Plugin
 
+
+[![npm version](https://img.shields.io/npm/v/react-native-izooto.svg)](https://www.npmjs.com/package/react-native-izooto) [![npm downloads](https://img.shields.io/npm/dm/react-native-izooto.svg)](https://www.npmjs.com/package/react-native-izooto)
+
 [iZooto](https://www.izooto.com) provides push notification service for mobile apps. This plugin makes it easy to implement push notifications on your Android and/or iOS apps built on the React Native framework.
 
 #### Installation
