@@ -2549,6 +2549,7 @@ drawable btn_radio_off_to_on_mtrl_animation
 drawable btn_radio_on_mtrl
 drawable btn_radio_on_to_off_mtrl_animation
 drawable cancel
+drawable circle
 drawable common_full_open_on_phone
 drawable common_google_signin_btn_icon_dark
 drawable common_google_signin_btn_icon_dark_focused
@@ -2608,6 +2609,7 @@ drawable ic_notifications_black_24dp
 drawable ic_party_popper
 drawable ic_ring_bell
 drawable ic_shout_out
+drawable iz_circle
 drawable iz_close_btn
 drawable iz_ic_vector
 drawable iz_launcher_background
@@ -2786,7 +2788,9 @@ id chip2
 id chip3
 id chip_group
 id chronometer
+id circle_card
 id circle_center
+id circle_icon
 id circular_progress_bar
 id clear_text
 id clockwise
@@ -2803,6 +2807,7 @@ id custom
 id customPanel
 id cut
 id dark
+id dataNotFound
 id date_picker_actions
 id decelerate
 id decelerateAndComplete
@@ -2893,13 +2898,13 @@ id iz_footer_text
 id iz_tv_layout
 id jumpToEnd
 id jumpToStart
-id l1
 id labeled
 id labelled_by
 id layout
 id left
 id leftToRight
 id light
+id like_icon
 id line1
 id line3
 id linear
@@ -3038,6 +3043,7 @@ id progress_bar_alert
 id progress_bar_alert1
 id progress_circular
 id progress_horizontal
+id publisher_
 id radio
 id react_test_id
 id rectangles
@@ -3115,6 +3121,7 @@ id stop
 id stretch
 id submenuarrow
 id submit_area
+id swipe_layout
 id tabMode
 id tag_accessibility_actions
 id tag_accessibility_clickable_spans
@@ -3515,12 +3522,16 @@ string common_google_play_services_wear_update_text
 string common_open_on_phone
 string common_signin_button_text
 string common_signin_button_text_long
+string copy_toast_msg
 string default_channel_id
 string default_notification_channel_id
 string error_icon_content_description
 string exposed_dropdown_menu_content_description
 string fab_transformation_scrim_behavior
 string fab_transformation_sheet_behavior
+string fallback_menu_item_copy_link
+string fallback_menu_item_open_in_browser
+string fallback_menu_item_share_link
 string fcm_fallback_notification_channel_label
 string footer_text
 string header_description
@@ -4895,6 +4906,7 @@ styleable View android_focusable android_theme paddingEnd paddingStart theme
 styleable ViewBackgroundHelper android_background backgroundTint backgroundTintMode
 styleable ViewPager2 android_orientation
 styleable ViewStubCompat android_id android_inflatedId android_layout
+xml image_share_filepaths
 xml provider_path
 xml rn_dev_preferences
 xml standalone_badge

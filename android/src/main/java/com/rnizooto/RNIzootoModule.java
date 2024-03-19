@@ -1,5 +1,6 @@
 package com.rnizooto;
 
+import android.app.Application;
 import android.content.Context;
 import android.os.Build;
 import android.util.Log;
@@ -49,18 +50,19 @@ public class RNIzootoModule extends ReactContextBaseJavaModule implements TokenR
         if(!isInit) {
             isInit = true;
             try {
-                PreferenceUtil preferenceUtil = PreferenceUtil.getInstance(mReactApplicationContext);
+
+                PreferenceUtil preferenceUtil = PreferenceUtil.getInstance(getReactApplicationContext());
                 preferenceUtil.setBooleanData(AppConstant.DEFAULT_WEB_VIEW,defaultWebView);
                 isDefaultWebView = preferenceUtil.getBoolean(AppConstant.DEFAULT_WEB_VIEW);
                 if (isDefaultWebView) {
-                    iZooto.initialize(mReactApplicationContext)
+                    iZooto.initialize(mReactApplicationContext.getApplicationContext())
                             .setTokenReceivedListener(this)
                             .setNotificationReceiveListener(this)
                             .setNotificationReceiveHybridListener(this)
                             .unsubscribeWhenNotificationsAreDisabled(true)
                             .build();
                 }else {
-                    iZooto.initialize(mReactApplicationContext)
+                    iZooto.initialize(mReactApplicationContext.getApplicationContext())
                             .setTokenReceivedListener(this)
                             .setNotificationReceiveListener(this)
                             .setLandingURLListener(this)

@@ -2548,6 +2548,7 @@ int drawable btn_radio_off_to_on_mtrl_animation 0x0
 int drawable btn_radio_on_mtrl 0x0
 int drawable btn_radio_on_to_off_mtrl_animation 0x0
 int drawable cancel 0x0
+int drawable circle 0x0
 int drawable common_full_open_on_phone 0x0
 int drawable common_google_signin_btn_icon_dark 0x0
 int drawable common_google_signin_btn_icon_dark_focused 0x0
@@ -2607,6 +2608,7 @@ int drawable ic_notifications_black_24dp 0x0
 int drawable ic_party_popper 0x0
 int drawable ic_ring_bell 0x0
 int drawable ic_shout_out 0x0
+int drawable iz_circle 0x0
 int drawable iz_close_btn 0x0
 int drawable iz_ic_vector 0x0
 int drawable iz_launcher_background 0x0
@@ -2785,7 +2787,9 @@ int id chip2 0x0
 int id chip3 0x0
 int id chip_group 0x0
 int id chronometer 0x0
+int id circle_card 0x0
 int id circle_center 0x0
+int id circle_icon 0x0
 int id circular_progress_bar 0x0
 int id clear_text 0x0
 int id clockwise 0x0
@@ -2802,6 +2806,7 @@ int id custom 0x0
 int id customPanel 0x0
 int id cut 0x0
 int id dark 0x0
+int id dataNotFound 0x0
 int id date_picker_actions 0x0
 int id decelerate 0x0
 int id decelerateAndComplete 0x0
@@ -2892,13 +2897,13 @@ int id iz_footer_text 0x0
 int id iz_tv_layout 0x0
 int id jumpToEnd 0x0
 int id jumpToStart 0x0
-int id l1 0x0
 int id labeled 0x0
 int id labelled_by 0x0
 int id layout 0x0
 int id left 0x0
 int id leftToRight 0x0
 int id light 0x0
+int id like_icon 0x0
 int id line1 0x0
 int id line3 0x0
 int id linear 0x0
@@ -3037,6 +3042,7 @@ int id progress_bar_alert 0x0
 int id progress_bar_alert1 0x0
 int id progress_circular 0x0
 int id progress_horizontal 0x0
+int id publisher_ 0x0
 int id radio 0x0
 int id react_test_id 0x0
 int id rectangles 0x0
@@ -3114,6 +3120,7 @@ int id stop 0x0
 int id stretch 0x0
 int id submenuarrow 0x0
 int id submit_area 0x0
+int id swipe_layout 0x0
 int id tabMode 0x0
 int id tag_accessibility_actions 0x0
 int id tag_accessibility_clickable_spans 0x0
@@ -3514,12 +3521,16 @@ int string common_google_play_services_wear_update_text 0x0
 int string common_open_on_phone 0x0
 int string common_signin_button_text 0x0
 int string common_signin_button_text_long 0x0
+int string copy_toast_msg 0x0
 int string default_channel_id 0x0
 int string default_notification_channel_id 0x0
 int string error_icon_content_description 0x0
 int string exposed_dropdown_menu_content_description 0x0
 int string fab_transformation_scrim_behavior 0x0
 int string fab_transformation_sheet_behavior 0x0
+int string fallback_menu_item_copy_link 0x0
+int string fallback_menu_item_open_in_browser 0x0
+int string fallback_menu_item_share_link 0x0
 int string fcm_fallback_notification_channel_label 0x0
 int string footer_text 0x0
 int string header_description 0x0
@@ -6511,6 +6522,7 @@ int[] styleable ViewStubCompat { 0x10100d0, 0x10100f3, 0x10100f2 }
 int styleable ViewStubCompat_android_id 0
 int styleable ViewStubCompat_android_inflatedId 1
 int styleable ViewStubCompat_android_layout 2
+int xml image_share_filepaths 0x0
 int xml provider_path 0x0
 int xml rn_dev_preferences 0x0
 int xml standalone_badge 0x0
