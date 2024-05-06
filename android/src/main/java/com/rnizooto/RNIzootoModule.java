@@ -52,8 +52,8 @@ public class RNIzootoModule extends ReactContextBaseJavaModule implements TokenR
             try {
 
                 PreferenceUtil preferenceUtil = PreferenceUtil.getInstance(getReactApplicationContext());
-                preferenceUtil.setBooleanData(AppConstant.DEFAULT_WEB_VIEW,defaultWebView);
-                isDefaultWebView = preferenceUtil.getBoolean(AppConstant.DEFAULT_WEB_VIEW);
+                preferenceUtil.setBooleanData(AppConstant.IZ_DEFAULT_WEB_VIEW,defaultWebView);
+                isDefaultWebView = preferenceUtil.getBoolean(AppConstant.IZ_DEFAULT_WEB_VIEW);
                 if (isDefaultWebView) {
                     iZooto.initialize(mReactApplicationContext.getApplicationContext())
                             .setTokenReceivedListener(this)

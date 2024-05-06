@@ -36,8 +36,8 @@ export default class App extends React.Component {
     //   iZooto.addEvent('AAAAP',myJSON);
     //  iZooto.setSubscription(true);
 
-    var notificationData =await iZooto.getNotificationFeed(false);
-    console.log(notificationData);
+   // var notificationData =await iZooto.getNotificationFeed(false);
+    //console.log(notificationData);
       }
       else
       {

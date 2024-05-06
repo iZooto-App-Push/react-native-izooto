@@ -2605,7 +2605,10 @@ int drawable ic_mtrl_chip_checked_circle 0x0
 int drawable ic_mtrl_chip_close_circle 0x0
 int drawable ic_news_hub 0x0
 int drawable ic_notifications_black_24dp 0x0
+int drawable ic_other_sign_in 0x0
 int drawable ic_party_popper 0x0
+int drawable ic_passkey 0x0
+int drawable ic_password 0x0
 int drawable ic_ring_bell 0x0
 int drawable ic_shout_out 0x0
 int drawable iz_circle 0x0
@@ -3463,6 +3466,8 @@ int string abc_shareactionprovider_share_with_application 0x0
 int string abc_toolbar_collapse_description 0x0
 int string action_settings 0x0
 int string alert_description 0x0
+int string android_credentials_TYPE_PASSWORD_CREDENTIAL 0x0
+int string androidx_credentials_TYPE_PUBLIC_KEY_CREDENTIAL 0x0
 int string appbar_scrolling_view_behavior 0x0
 int string bottom_sheet_behavior 0x0
 int string bottomsheet_action_expand_halfway 0x0
@@ -4332,6 +4337,7 @@ int style Theme_Design_NoActionBar 0x0
 int style Theme_FullScreenDialog 0x0
 int style Theme_FullScreenDialogAnimatedFade 0x0
 int style Theme_FullScreenDialogAnimatedSlide 0x0
+int style Theme_Hidden 0x0
 int style Theme_Material3_Dark 0x0
 int style Theme_Material3_Dark_BottomSheetDialog 0x0
 int style Theme_Material3_Dark_Dialog 0x0
