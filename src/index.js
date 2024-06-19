@@ -21,6 +21,8 @@ const NOTIF_REGISTER_EVENT = 'remoteNotificationsRegistered';
 const NOTIF_REGISTRATION_ERROR_EVENT = 'remoteNotificationRegistrationError';
 const NOTIF_REMOTE_WEB_URL= 'remoteNotificationLandingURL';
 const NOTIF_REMOTE_RECEIVED_PAYLOAD='remoteNotificationPayload';
+const RESPONSE_ONETAP = 'remoteResponeOneTap';
+
 var  RNIzootoModule, eventManager, RNIzooto, PushNotificationEmitter, _notifHandlers;
 
 if(Platform.OS==='android')
@@ -345,5 +347,29 @@ static navigateToSettings() {
         return RNIzooto.getNotificationFeed(isPagination)
       }
     }
+      /*  one tap response  */
+      static requestOneTapListener(handler){
+        if(Platform.OS === 'android'){
+        RNIzootoModule.requestOneTapListener();
+        eventManager.setEventHandler(ONETAP_RESPONSE, handler);
+        }
+    }
+     /*  users sync details */
+     static syncUserDetailsEmail(email, firstName, lastName) {
+      if(Platform.OS ==='android'){
+        RNIzootoModule.syncUserDetails(email,firstName,lastName);
+      }
+      else{
+        RNIzooto.syncUserDetails(email,fname,lname);
+      }
+    }
+
+     /*  users google one tap authentication  */
+    static requestOneTapActivity() {
+      if(Platform.OS ==='android'){
+        RNIzootoModule.requestOneTapActivity();
+      }
+    }
+
  
 }

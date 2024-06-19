@@ -17,24 +17,31 @@ import com.izooto.AppConstant;
 import com.izooto.NotificationHelperListener;
 import com.izooto.NotificationReceiveHybridListener;
 import com.izooto.NotificationWebViewListener;
+import com.izooto.OneTapCallback;
 import com.izooto.Payload;
 import com.izooto.PreferenceUtil;
 import com.izooto.PushTemplate;
 import com.izooto.TokenReceivedListener;
 import com.izooto.iZooto;
 import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 @SuppressWarnings("unchecked")
-public class RNIzootoModule extends ReactContextBaseJavaModule implements TokenReceivedListener, NotificationHelperListener, NotificationReceiveHybridListener,NotificationWebViewListener {
+public class RNIzootoModule extends ReactContextBaseJavaModule implements TokenReceivedListener, NotificationHelperListener, NotificationReceiveHybridListener,NotificationWebViewListener, OneTapCallback {
 
     private ReactApplicationContext mReactApplicationContext;
     private boolean isDefaultWebView;
 
     private String notificationOpened, notificationToken, notificationWebView, notificationPayload;
     private boolean isInit;
+    private String email, first_name, last_name;
+
+
 
     public RNIzootoModule(ReactApplicationContext reactContext) {
         super(reactContext);
@@ -77,27 +84,7 @@ public class RNIzootoModule extends ReactContextBaseJavaModule implements TokenR
             }
         }
     }
-//    @ReactMethod
-//    public void initAndroid() {
-//        iZooto.isHybrid = true;
-//        if(!isInit) {
-//            isInit=true;
-//            try {
-//                iZooto.initialize(mReactApplicationContext)
-//                        .setTokenReceivedListener(this)
-//                        .setNotificationReceiveListener(this)
-//                        //.setLandingURLListener(this)
-//                        .setNotificationReceiveHybridListener(this)
-//                        .unsubscribeWhenNotificationsAreDisabled(true)
-//                        .build();
-//                iZooto.setPluginVersion(iZootoConstants.IZ_PLUGIN_VERSION);
-//            }
-//            catch (Exception ex)
-//            {
-//                Log.e(iZootoConstants.IZ_EXCEPTION_NAME,iZootoConstants.IZ_INIT_ANDROID+ex);
-//            }
-//        }
-//    }
+
     @ReactMethod
     public void setSubscription(boolean enable) {
         iZooto.setSubscription(enable);
@@ -354,5 +341,51 @@ public class RNIzootoModule extends ReactContextBaseJavaModule implements TokenR
 
         }
     }
+
+
+    @Override
+    public void syncOneTapResponse(String email, String firstName, String lastName) {
+        try {
+            email = email;
+            first_name = firstName;
+            last_name = lastName;
+
+            if (email != null && firstName != null && lastName != null) {
+                JSONObject syncTapResponse = new JSONObject();
+                syncTapResponse.put(iZootoConstants.IZ_EMAIL, email);
+                syncTapResponse.put(iZootoConstants.IZ_NAME, firstName);
+                syncTapResponse.put(iZootoConstants.IZ_L_NAME, lastName);
+                sendEvent(iZootoConstants.ONE_TAP_RESPONSE, syncTapResponse.toString());
+
+            }
+        } catch (JSONException e) {
+            Log.e(iZootoConstants.SYNC_ONE_RESPONSE, e.toString());
+        }
+    }
+
+    @ReactMethod
+    public void requestOneTapActivity() {
+        try {
+            if (LibGuard.hasOneTapLibrary()) {
+                iZooto.requestOneTapActivity(mReactApplicationContext.getCurrentActivity(), this);
+            } else {
+                Log.e(AppConstant.APP_NAME_TAG, "OneTap initialization failed due to missing libraries. Please check the library configuration.");
+            }
+        } catch (Exception e) {
+            Log.e(iZootoConstants.IZ_REQUEST_ONE_TAP_ACTIVITY, "" + e);
+
+        }
+    }
+
+    @ReactMethod
+    public void syncUserDetails(String email, String firstName, String lastName) {
+        try {
+            iZooto.syncUserDetailsEmail(mReactApplicationContext,email,firstName,lastName);
+        } catch (Exception e){
+            Log.e(iZootoConstants.IZ_SYNC_USER_DETAILS,""+e);
+
+        }
+    }
+
 
 }

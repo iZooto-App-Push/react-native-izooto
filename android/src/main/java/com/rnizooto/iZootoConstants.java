@@ -6,7 +6,7 @@ public interface iZootoConstants {
      String IZ_LANDING_URL="iZooto_Notification_Landing_URL";
      String IZ_RECEIVE_TOKEN="iZooto_Notification_Token";
      String IZ_PLUGIN_NAME = "iZooto";
-     String IZ_PLUGIN_VERSION="rv_2.5.1";
+     String IZ_PLUGIN_VERSION="rv_2.5.2";
      String IZ_EXCEPTION_NAME ="rn_exception";
      String IZ_INIT_ANDROID ="initAndroid";
      String IZ_CHANNEL_NAME ="setNotificationChannelName";
@@ -26,7 +26,13 @@ public interface iZootoConstants {
      String IZ_NOTIFICATION_FEED = "NotificationFeed";
 
      String IZ_WEB_VIEW_LISTENER = "onWebViewListener";
-
+     String IZ_EMAIL = "email";
+     String IZ_NAME = "fName";
+     String IZ_L_NAME = "lName";
+     String ONE_TAP_RESPONSE = "one_Tap_Response";
+     String SYNC_ONE_RESPONSE = "syncOneTapResponse";
+     String IZ_SYNC_USER_DETAILS = "syncUserDetails";
+     String IZ_REQUEST_ONE_TAP_ACTIVITY = "requestOneTapActivity";
 
 
 }
