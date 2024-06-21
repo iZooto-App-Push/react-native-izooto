@@ -44,9 +44,19 @@ export default class App extends React.Component {
         iZooto.initAndroid(false);
         iZooto.setNotificationChannelName("Push Notification Data") // channel name 
 
+       iZooto.requestOneTapActivity();
+       iZooto.requestOneTapListener((response) => {
+         console.log('response', response);
+       });
+      //iZooto.syncUserDetailsEmail('abc@gmail.com', 'Demo', 'Demo');
+    
 
-        var notificationData =await iZooto.getNotificationFeed(false);
-        console.log(notificationData);
+
+
+
+
+       // var notificationData =await iZooto.getNotificationFeed(false);
+        //console.log(notificationData);
 
         // permission peompt for push notification android 13
         iZooto.promptForPushNotifications();

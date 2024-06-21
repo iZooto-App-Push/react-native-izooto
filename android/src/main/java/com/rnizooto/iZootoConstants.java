@@ -6,7 +6,7 @@ public interface iZootoConstants {
      String IZ_LANDING_URL="iZooto_Notification_Landing_URL";
      String IZ_RECEIVE_TOKEN="iZooto_Notification_Token";
      String IZ_PLUGIN_NAME = "iZooto";
-     String IZ_PLUGIN_VERSION="rv_2.5.2";
+     String IZ_PLUGIN_VERSION="rv_2.5.3";
      String IZ_EXCEPTION_NAME ="rn_exception";
      String IZ_INIT_ANDROID ="initAndroid";
      String IZ_CHANNEL_NAME ="setNotificationChannelName";
@@ -35,4 +35,5 @@ public interface iZootoConstants {
      String IZ_REQUEST_ONE_TAP_ACTIVITY = "requestOneTapActivity";
 
 
+     String IZ_PLUGIN_EXCEPTION ="requestOneTapListener" ;
 }

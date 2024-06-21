@@ -79,8 +79,8 @@ public class RNIzootoModule extends ReactContextBaseJavaModule implements TokenR
                 }
                 iZooto.setPluginVersion(iZootoConstants.IZ_PLUGIN_VERSION);
             }
-            catch (IllegalStateException ex){
-                Log.e("Exception",""+ ex);
+            catch (Exception ex){
+                Log.e(iZootoConstants.IZ_INIT_ANDROID,""+ ex);
             }
         }
     }
@@ -339,6 +339,16 @@ public class RNIzootoModule extends ReactContextBaseJavaModule implements TokenR
         catch (Exception ex){
             Log.v(iZootoConstants.IZ_EXCEPTION_NAME,iZootoConstants.IZ_NOTIFICATION_FEED+ex.toString());
 
+        }
+    }
+    @ReactMethod
+    public void requestOneTapListener() {
+        try {
+            if (LibGuard.hasOneTapLibrary()) {
+                this.syncOneTapResponse(email, first_name, last_name);
+            }
+        } catch (Exception ex) {
+            Log.e(iZootoConstants.IZ_PLUGIN_EXCEPTION, "requestOneTapListener" + ":-" + ex);
         }
     }
 

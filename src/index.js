@@ -8,6 +8,7 @@ import {
     NOTIFICATION_OPENED,
     NOTIFICATION_TOKEN,
     NOTIFICATION_WEBVIEW,
+    ONETAP_RESPONSE,
 } from './events';
 export type PushNotificationEventName = $Keys<{ 
   onNotificationOpened: string,
@@ -15,6 +16,7 @@ export type PushNotificationEventName = $Keys<{
   onNotificationReceived:String,
   onTokenReceived: string, 
   registrationError: string,
+  oneTapResponse: String,
 }>;
 const DEVICE_NOTIF_EVENT = 'remoteNotificationReceived';
 const NOTIF_REGISTER_EVENT = 'remoteNotificationsRegistered';
@@ -44,7 +46,8 @@ export default class iZooto {
             type === 'onTokenReceived' ||
             type ==='onWebView'||
             type ==='onNotificationReceived'||
-            type === 'registrationError' ,
+            type === 'registrationError' ||
+            type === 'oneTapResponse',
           'iZootoPush Notificaiton  only supports ` onNotificationOpened`, `onNotificationReceived`,`onTokenReceived`, `onWebView` ,Events',
         );
         let listener;
@@ -85,6 +88,14 @@ export default class iZooto {
             },
           );
         }
+        else if (type === 'oneTapResponse') {
+          listener = PushNotificationEmitter.addListener(
+            RESPONSE_ONETAP,
+            (response) => {
+              handler(response);
+            },
+          );
+        }
 
         _notifHandlers.set(type, listener);
       }
@@ -94,7 +105,8 @@ export default class iZooto {
             type === 'onTokenReceived' ||
             type ==='onWebView'||
             type ==='onNotificationReceived'||
-            type === 'registrationError' ,
+            type === 'registrationError' ||
+            type === 'oneTapResponse',
             'iZootoPush Notificaiton  only supports ` onNotificationOpened`, `onNotificationReceived`,`onTokenReceived`, `onWebView` ,Events',
             );
         const listener = _notifHandlers.get(type);
