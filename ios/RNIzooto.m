@@ -249,7 +249,7 @@ RCT_EXPORT_METHOD(initiOSAppID:(NSString *)izooto_app_id)
              [izootoInitSetting setObject:@YES forKey:@"nativeWebview"];
              [izootoInitSetting setObject:@NO forKey:@"provisionalAuthorization"];
        [iZooto initialisationWithIzooto_id:izooto_app_id application:UIApplication.sharedApplication iZootoInitSettings:izootoInitSetting];
-       [iZooto setPluginVersionWithPluginVersion:@"rv_2.5.3"];
+       [iZooto setPluginVersionWithPluginVersion:@"rv_2.5.4"];
 
 }
 
@@ -278,13 +278,32 @@ API_AVAILABLE(ios(10.0)) {
           NSDictionary * additionalData = [aps objectForKey:@"ap"];
           NSString * inApp = [aps objectForKey:@"ia"];
           
-          if (((additionalData == NULL) || ([additionalData  isEqual: @""])) && (![landingURL  isEqual: @""]) && ([inApp  isEqual: @"1"])){
+          if (((additionalData == NULL) || ([additionalData  isEqual: @""])) && ([inApp  isEqual: @"1"])){
+
+              if (landingURL && [landingURL isKindOfClass:[NSString class]]) {
+                  
+                  NSDictionary *dict = @{ @"URL" : landingURL};
+                                   [[NSNotificationCenter defaultCenter] postNotificationName:kRemoteNotificationWebViewData
+                                                                                       object:self
+                                                                                     userInfo:@{@"notification": dict}];
+                  // landingURL is present and is a valid NSString, safe to use
+                  NSLog(@"Landing URL: %@", landingURL);
+              } else {
+                  // Handle the case where landingURL is not present or is not a valid NSString
+                  NSLog(@"Landing URL is not present or is not a valid NSString");
+                  landingURL = @""; // Optional: Explicitly set to nil for clarity
+              }
               
-              NSDictionary *dict = @{ @"URL" : landingURL};
-              [[NSNotificationCenter defaultCenter] postNotificationName:kRemoteNotificationWebViewData
-                                                                  object:self
-                                                                userInfo:@{@"notification": dict}];
+              
+              
+            
           }
+          if (!landingURL && ![landingURL isKindOfClass:[NSString class]]) {
+              NSLog(@"Landing URL: %@", landingURL);
+              landingURL = @""; // Optional: Explicitly set to nil for clarity
+
+          }
+          
           
           NSString * act1name = [aps objectForKey:@"b1"];
           if (act1name == NULL) {
@@ -337,9 +356,6 @@ API_AVAILABLE(ios(10.0)) {
           NSLog(@"Notification Data is not found");
       }
 }
-
-
-
 -(void) handleLandingURLData:(NSNotification *)notification
 {
 
