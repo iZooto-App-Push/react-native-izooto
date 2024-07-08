@@ -203,26 +203,18 @@ static initAndroid(isDefaultWebView) {
         }
       }
 
-  /* To Send Subscription  */
 
-       static setSubscription(isSetSubscribed){
-          if(Platform.OS ==='ios')
-            {
-         invariant(
-                RNIzooto,
-                'iZooto iOS Notification is not available.',
-              );
-          if (isSetSubscribed )   
-         RNIzooto.setSubscription(1);
-         else
-         RNIzooto.setSubscription(0);
+  /* To Send Subscription  */
+  static setSubscription(isSubscribe){
+    if(Platform.OS ==='ios')
+      {
+        RNIzooto.setSubscription(isSubscribe);
        }
-       if(Platform.OS ==='android')
-       {
-         RNIzootoModule.setSubscription(isSetSubscribed);
- 
-       }
-       }
+     if(Platform.OS ==='android')
+      {
+        RNIzootoModule.setSubscription(isSubscribe);
+      }
+ }
 
   /*  setNotificationChannelName */
 

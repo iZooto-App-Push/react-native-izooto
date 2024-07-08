@@ -210,15 +210,15 @@ RCT_EXPORT_METHOD(addEvents:(NSString*)eventName data:(NSString*)eventData)
     
 }
 
-RCT_EXPORT_METHOD(setSubscription:(NSInteger *) isSubscribed)
+// handle the device token register/unregister
+RCT_EXPORT_METHOD(setSubscription:(BOOL)isSubscribed)
 {
-    if (isSubscribed == 1){
-    [iZooto setSubscriptionWithIsSubscribe:true];
-    }
-    else{
-       [iZooto setSubscriptionWithIsSubscribe:false];
-    }
 
+    if (isSubscribed == 0) {
+        [iZooto setSubscriptionWithIsSubscribe:NO];
+    } else {
+        [iZooto setSubscriptionWithIsSubscribe:YES];
+    }
 }
 // added a new method for navigateToSettings
 RCT_EXPORT_METHOD(navigateToSettings)
@@ -249,7 +249,7 @@ RCT_EXPORT_METHOD(initiOSAppID:(NSString *)izooto_app_id)
              [izootoInitSetting setObject:@YES forKey:@"nativeWebview"];
              [izootoInitSetting setObject:@NO forKey:@"provisionalAuthorization"];
        [iZooto initialisationWithIzooto_id:izooto_app_id application:UIApplication.sharedApplication iZootoInitSettings:izootoInitSetting];
-       [iZooto setPluginVersionWithPluginVersion:@"rv_2.5.4"];
+       [iZooto setPluginVersionWithPluginVersion:@"rv_2.5.5"];
 
 }
 
@@ -293,13 +293,9 @@ API_AVAILABLE(ios(10.0)) {
                   NSLog(@"Landing URL is not present or is not a valid NSString");
                   landingURL = @""; // Optional: Explicitly set to nil for clarity
               }
-              
-              
-              
-            
+
           }
           if (!landingURL && ![landingURL isKindOfClass:[NSString class]]) {
-              NSLog(@"Landing URL: %@", landingURL);
               landingURL = @""; // Optional: Explicitly set to nil for clarity
 
           }
