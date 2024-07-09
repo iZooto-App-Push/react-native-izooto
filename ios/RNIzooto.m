@@ -209,6 +209,14 @@ RCT_EXPORT_METHOD(addEvents:(NSString*)eventName data:(NSString*)eventData)
     
     
 }
+// Add Email setUp
+
+RCT_EXPORT_METHOD(syncUserDetails:(NSString *)email firstName:(NSString *) firstName lastName:(NSString *) lastName)
+{
+    [iZooto syncUserDetailsEmailWithEmail:email fName:firstName lName:lastName];
+    
+}
+
 
 // handle the device token register/unregister
 RCT_EXPORT_METHOD(setSubscription:(BOOL)isSubscribed)
