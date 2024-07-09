@@ -363,7 +363,7 @@ static navigateToSettings() {
       if(Platform.OS ==='android'){
         RNIzootoModule.syncUserDetails(email,firstName,lastName);
       }
-      if(Platform.OS ==='android'){
+      if(Platform.OS ==='ios'){
         RNIzooto.syncUserDetails(email,firstName,lastName);
       }
     }

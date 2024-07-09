@@ -12,6 +12,7 @@ export default class App extends React.Component {
       
        if (Platform.OS === 'ios') {
         iZooto.initiOSAppID("11f896fa4cab1d4e159c2f26a257be41b388ecf2");
+        iZooto.syncUserDetailsEmail("amit@gmail.com","amit","kumar");
         
         iZooto.addEventListener('onTokenReceived', (token) => {
           console.log("iZooto Device Token", token)

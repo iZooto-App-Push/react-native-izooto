@@ -74,6 +74,12 @@ export interface iZooto {
   setNotificationChannelName(channelName : String): void
 
   navigateToSettings():void
+  syncUserDetailsEmail(email: string, firstName: string, lastName: string): void
+
+  requestOneTapActivity(): void
+
+  requestOneTapListener(handle?: (response : String) =>void) : void;
+    
   
     
 }

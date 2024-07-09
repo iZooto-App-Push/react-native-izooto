@@ -11,7 +11,7 @@ PODS:
     - ReactCommon/turbomodule/core (= 0.71.4)
   - fmt (6.2.1)
   - glog (0.3.5)
-  - iZootoiOSSDK (2.2.2)
+  - iZootoiOSSDK (2.3.0)
   - RCT-Folly (2021.07.22.00):
     - boost
     - DoubleConversion
@@ -234,7 +234,7 @@ PODS:
   - React-jsinspector (0.71.4)
   - React-logger (0.71.4):
     - glog
-  - react-native-izooto (2.4.1):
+  - react-native-izooto (2.5.6):
     - iZootoiOSSDK
     - React-Core
   - React-perflogger (0.71.4)
@@ -439,7 +439,7 @@ SPEC CHECKSUMS:
   FBReactNativeSpec: 241709e132e3bf1526c1c4f00bc5384dd39dfba9
   fmt: ff9d55029c625d3757ed641535fd4a75fedc7ce9
   glog: 04b94705f318337d7ead9e6d17c019bd9b1f6b1b
-  iZootoiOSSDK: b921bf570fb9fdcd6e37f6a56ea93cc1b19dc3bc
+  iZootoiOSSDK: 17a509a53f395fdeade29dc1687976bf4edf9d4a
   RCT-Folly: 424b8c9a7a0b9ab2886ffe9c3b041ef628fd4fb1
   RCTRequired: 5a024fdf458fa8c0d82fc262e76f982d4dcdecdd
   RCTTypeSafety: b6c253064466411c6810b45f66bc1e43ce0c54ba
@@ -454,7 +454,7 @@ SPEC CHECKSUMS:
   React-jsiexecutor: f423aa99034210dd6fe12723be4bf44e4e113985
   React-jsinspector: 1f51e775819199d3fe9410e69ee8d4c4161c7b06
   React-logger: 0d58569ec51d30d1792c5e86a8e3b78d24b582c6
-  react-native-izooto: 469e6eaa020431997b12ee16e1bbbeb225328bcd
+  react-native-izooto: 7f5c814dc0ce3aef701dd77fcd1af62dbbf413fc
   React-perflogger: 0bb0522a12e058f6eb69d888bc16f40c16c4b907
   React-RCTActionSheet: bfd675a10f06a18728ea15d82082d48f228a213a
   React-RCTAnimation: 2fa220b2052ec75b733112aca39143d34546a941
