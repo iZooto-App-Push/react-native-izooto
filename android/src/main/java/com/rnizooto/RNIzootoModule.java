@@ -258,7 +258,7 @@ public class RNIzootoModule extends ReactContextBaseJavaModule implements TokenR
             if (Build.VERSION.SDK_INT >= 33) {
                 iZooto.promptForPushNotifications();
             }else {
-                Log.v(iZootoConstants.IZ_PROMPT_USER,iZootoConstants.IZ_PROMPT_ERROR);
+                Log.i(iZootoConstants.IZ_PROMPT_USER,iZootoConstants.IZ_PROMPT_ERROR);
             }
         }
         catch (Exception ex){
