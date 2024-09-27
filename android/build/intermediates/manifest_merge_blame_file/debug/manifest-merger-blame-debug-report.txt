@@ -4,12 +4,12 @@
 4
 5    <uses-sdk
 6        android:minSdkVersion="21"
-6-->/Users/pramodrai/Documents/AndroidStudioProjects/GitHubProjects/react-native-izooto/example/node_modules/react-native-izooto/android/src/main/AndroidManifest.xml
-7        android:targetSdkVersion="33" />
-7-->/Users/pramodrai/Documents/AndroidStudioProjects/GitHubProjects/react-native-izooto/example/node_modules/react-native-izooto/android/src/main/AndroidManifest.xml
+6-->/Users/amit_sdk_develoer/Documents/AndroidSDK/ReactSDK/mastercode/react-native-izooto/example/node_modules/react-native-izooto/android/src/main/AndroidManifest.xml
+7        android:targetSdkVersion="34" />
+7-->/Users/amit_sdk_develoer/Documents/AndroidSDK/ReactSDK/mastercode/react-native-izooto/example/node_modules/react-native-izooto/android/src/main/AndroidManifest.xml
 8
 9    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
-9-->/Users/pramodrai/Documents/AndroidStudioProjects/GitHubProjects/react-native-izooto/example/node_modules/react-native-izooto/android/src/main/AndroidManifest.xml:3:1-72
-9-->/Users/pramodrai/Documents/AndroidStudioProjects/GitHubProjects/react-native-izooto/example/node_modules/react-native-izooto/android/src/main/AndroidManifest.xml:3:18-70
+9-->/Users/amit_sdk_develoer/Documents/AndroidSDK/ReactSDK/mastercode/react-native-izooto/example/node_modules/react-native-izooto/android/src/main/AndroidManifest.xml:3:1-72
+9-->/Users/amit_sdk_develoer/Documents/AndroidSDK/ReactSDK/mastercode/react-native-izooto/example/node_modules/react-native-izooto/android/src/main/AndroidManifest.xml:3:18-70
 10
 11</manifest>

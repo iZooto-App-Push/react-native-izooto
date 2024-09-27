@@ -5,14 +5,19 @@ buildscript {
         buildToolsVersion = "30.0.3"
         minSdkVersion = 21
         compileSdkVersion = 34
-        targetSdkVersion = 33
+        targetSdkVersion = 34
+        FLIPPER_VERSION = '0.125.0' // Ensure you are using a valid version
+
     }
     repositories {
         google()
-        jcenter()
+        mavenCentral()
+        jcenter ()
+
+
     }
     dependencies {
-        classpath('com.android.tools.build:gradle:7.3.0')
+        classpath('com.android.tools.build:gradle:7.3.1')
         classpath 'com.google.gms:google-services:4.3.15'
        
     }
@@ -21,6 +26,7 @@ buildscript {
 allprojects {
     repositories {
         google()
+        mavenCentral()
 
         mavenLocal()
         maven {
@@ -34,6 +40,7 @@ allprojects {
         maven { url 'https://maven.google.com' }
 
         jcenter()
-        maven { url 'https://www.jitpack.io' }
+        maven { url 'https://jitpack.io' }
+
     }
 }

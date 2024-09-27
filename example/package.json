@@ -8,11 +8,12 @@
     "start": "react-native start",
     "test": "jest",
     "lint": "eslint ."
-
   },
   "dependencies": {
+    "@react-native-community/cli": "^14.1.1",
+    "@react-native-community/cli-platform-android": "^14.1.1",
     "react": "18.2.0",
-    "react-native": "0.71.4",
+    "react-native": "0.71.0",
     "react-native-izooto": "link:../"
   },
   "devDependencies": {
