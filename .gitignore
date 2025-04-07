@@ -1,0 +1,72 @@
+# ================================
+# React Native Plugin .gitignore
+# ================================
+
+# Node artifact files
+node_modules/
+dist/
+build/
+
+# Logs and temp
+*.log
+*.tmp
+*.swp
+*.lock
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Metro and cache
+.metro-cache/
+.expo/
+.expo-shared/
+
+# Test coverage
+coverage/
+.nyc_output/
+
+# Misc
+.env
+.env.*
+*.orig
+*.rej
+*.patch
+*.diff
+
+# IDE settings
+.idea/
+.vscode/
+
+# macOS specific
+.DS_Store
+
+# Sublime
+*.sublime-workspace
+*.sublime-project
+
+# ==================================
+# Ignore iOS/Android in example app
+# ==================================
+
+example/ios/Pods/
+example/ios/build/
+example/ios/DerivedData/
+example/ios/*.xcworkspace/
+example/ios/*.xcodeproj/project.xcworkspace/
+example/ios/*.xcodeproj/xcuserdata/
+
+example/android/.gradle/
+example/android/build/
+example/android/app/build/
+example/android/.idea/
+example/android/local.properties
+example/android/*.iml
+
+# React Native packager inside example
+example/.expo/
+example/.expo-shared/
+example/.metro-cache/
+
+# Ignore node_modules in example app
+example/node_modules/
+

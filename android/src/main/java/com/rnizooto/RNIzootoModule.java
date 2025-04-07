@@ -1,10 +1,11 @@
 package com.rnizooto;
 
-import android.app.Application;
 import android.content.Context;
 import android.os.Build;
 import android.util.Log;
-import com.facebook.react.bridge.Promise;
+
+import androidx.annotation.NonNull;
+
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
@@ -21,6 +22,7 @@ import com.izooto.PreferenceUtil;
 import com.izooto.PushTemplate;
 import com.izooto.TokenReceivedListener;
 import com.izooto.iZooto;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -29,34 +31,34 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import com.facebook.react.bridge.Promise;
+
 @SuppressWarnings("unchecked")
-public class RNIzootoModule extends ReactContextBaseJavaModule implements TokenReceivedListener, NotificationHelperListener, NotificationReceiveHybridListener,NotificationWebViewListener, OneTapCallback {
-
-    private ReactApplicationContext mReactApplicationContext;
-    private boolean isDefaultWebView;
-
-    private String notificationOpened, notificationToken, notificationWebView, notificationPayload;
+public class RNIzootoModule extends ReactContextBaseJavaModule implements TokenReceivedListener, NotificationWebViewListener, NotificationHelperListener, NotificationReceiveHybridListener, OneTapCallback {
+    private final ReactApplicationContext mReactApplicationContext;
+    private String notificationToken, notificationPayload;
     private boolean isInit;
+    private boolean isDefaultWebView;
     private String email, first_name, last_name;
-
-
 
     public RNIzootoModule(ReactApplicationContext reactContext) {
         super(reactContext);
         mReactApplicationContext = reactContext;
     }
+
+    @NonNull
     @Override
     public String getName() {
         return iZootoConstants.IZ_PLUGIN_NAME;
     }
+
     @ReactMethod
     public void initAndroid(boolean defaultWebView) {
         iZooto.isHybrid = true;
-        if(!isInit) {
+        if (!isInit) {
             isInit = true;
             try {
-
-                PreferenceUtil preferenceUtil = PreferenceUtil.getInstance(getReactApplicationContext());
+                PreferenceUtil preferenceUtil = PreferenceUtil.getInstance(mReactApplicationContext.getApplicationContext());
                 preferenceUtil.setBooleanData(AppConstant.IZ_DEFAULT_WEB_VIEW,defaultWebView);
                 isDefaultWebView = preferenceUtil.getBoolean(AppConstant.IZ_DEFAULT_WEB_VIEW);
                 if (isDefaultWebView) {
@@ -66,7 +68,7 @@ public class RNIzootoModule extends ReactContextBaseJavaModule implements TokenR
                             .setNotificationReceiveHybridListener(this)
                             .unsubscribeWhenNotificationsAreDisabled(true)
                             .build();
-                }else {
+                } else {
                     iZooto.initialize(mReactApplicationContext.getApplicationContext())
                             .setTokenReceivedListener(this)
                             .setNotificationReceiveListener(this)
@@ -76,269 +78,117 @@ public class RNIzootoModule extends ReactContextBaseJavaModule implements TokenR
                             .build();
                 }
                 iZooto.setPluginVersion(iZootoConstants.IZ_PLUGIN_VERSION);
-            }
-            catch (Exception ex){
-                Log.e(iZootoConstants.IZ_INIT_ANDROID,""+ ex);
+            } catch (IllegalStateException ex) {
+                Log.e("Exception", "" + ex);
             }
         }
     }
 
     @ReactMethod
-    public void setSubscription(boolean enable) {
+    public void setSubscription(boolean enable){
         iZooto.setSubscription(enable);
     }
 
     @ReactMethod
-    public void setFirebaseAnalytics(boolean isSet) {
+    public void setFirebaseAnalytics ( boolean isSet){
         iZooto.setFirebaseAnalytics(isSet);
     }
 
     @ReactMethod
-    public void addEvent(String eventName, ReadableMap triggers) {
-        iZooto.addEvent(eventName,triggers.toHashMap());
+    public void addEvent (String eventName, ReadableMap triggers){
+        iZooto.addEvent(eventName, triggers.toHashMap());
     }
 
     @ReactMethod
-    public void addUserProperty(ReadableMap triggers) {
+    public void addUserProperty (ReadableMap triggers){
         iZooto.addUserProperty(triggers.toHashMap());
     }
 
     @ReactMethod
-    public void addTag(ReadableArray topicName) {
+    public void addTag (ReadableArray topicName){
         List<String> list = getArrayList(topicName);
         iZooto.addTag(list);
     }
 
     @ReactMethod
-    public void removeTag(ReadableArray topicName) {
+    public void removeTag (ReadableArray topicName){
         List<String> list = getArrayList(topicName);
         iZooto.removeTag(list);
     }
 
     @ReactMethod
-    public void setDefaultTemplate(int templateID) {
+    public void setDefaultTemplate ( int templateID){
         if (templateID == 2) {
             iZooto.setDefaultTemplate(PushTemplate.TEXT_OVERLAY);
-        }
-        else if(templateID ==3)
-        {
+        } else if (templateID == 3) {
             iZooto.setDefaultTemplate(PushTemplate.DEVICE_NOTIFICATION_OVERLAY);
-
-        }
-        else {
+        } else {
             iZooto.setDefaultTemplate(PushTemplate.DEFAULT);
-
         }
-
     }
 
     @ReactMethod
-    public void setDefaultNotificationBanner(String setBanner) {
+    public void setDefaultNotificationBanner (String setBanner){
         if (getBadgeIcon(mReactApplicationContext, setBanner) != 0)
             iZooto.setDefaultNotificationBanner(getBadgeIcon(mReactApplicationContext, setBanner));
     }
 
     @ReactMethod
-    public void setNotificationSound(String soundName) {
+    public void setNotificationSound (String soundName){
         iZooto.setNotificationSound(soundName);
     }
 
     @ReactMethod
-    public void iZootoHandleNotification(ReadableMap data){
+    public void iZootoHandleNotification (ReadableMap data){
         try {
             iZooto.iZootoHandleNotification(mReactApplicationContext, (Map) data.toHashMap());
-        } catch (Exception ex) {
-            Log.e(iZootoConstants.IZ_EXCEPTION_NAME,iZootoConstants.IZ_HANDLE_NOTIFICATION+ex);
+        } catch (Exception e) {
+            Log.v(iZootoConstants.IZ_HANDLE_NOTIFICATION, e.toString());
         }
     }
+
     @ReactMethod
     public void onNotificationReceivedListener() {
         try {
             this.onNotificationReceivedHybrid(notificationPayload);
             iZooto.notificationReceivedCallback(this);
-        }
-        catch (Exception ex)
-        {
-            Log.e(iZootoConstants.IZ_EXCEPTION_NAME,iZootoConstants.IZ_RECEIVED_LISTENER+ex);
+        } catch (Exception ex) {
+            Log.v("ReceivedListener", ex.toString());
 
         }
     }
+
     @ReactMethod
     public void onNotificationOpenedListener() {
         try {
             iZooto.notificationClick(this);
-        }
-        catch (Exception ex){
-            Log.e(iZootoConstants.IZ_EXCEPTION_NAME,iZootoConstants.IZ_OPEN_LISTENER+ex);
+        } catch (Exception ex) {
+            Log.v("OpenedListener", ex.toString());
 
         }
     }
+
     @ReactMethod
     public void onWebViewListener() {
         try {
             if (!isDefaultWebView) {
                 iZooto.notificationWebView(this);
             }
-        }catch (Exception e){
-            Log.v(iZootoConstants.IZ_EXCEPTION_NAME,iZootoConstants.IZ_WEB_VIEW_LISTENER+e);
+        } catch (Exception e) {
+            Log.v("WebViewListener", e.toString());
         }
     }
+
     @ReactMethod
     public void onTokenReceivedListener() {
         try {
             this.onTokenReceived(notificationToken);
-        }
-        catch (Exception ex){
-            Log.e(iZootoConstants.IZ_EXCEPTION_NAME,iZootoConstants.IZ_ON_TOKEN_LISTENER+ex);
-
-        }
-    }
-    private void sendEvent(String eventName, Object params) {
-        try {
-            mReactApplicationContext
-                    .getJSModule(DeviceEventManagerModule.RCTDeviceEventEmitter.class)
-                    .emit(eventName, params);
-        }catch (Exception ex){
-            Log.e(iZootoConstants.IZ_EXCEPTION_NAME, iZootoConstants.IZ_SEND_EVENT +ex);
-
-
-        }
-    }
-    @Override
-    public void onNotificationReceived(Payload payload) {
-    }
-
-    @Override
-    public void onNotificationOpened(String data) {
-        try {
-            notificationOpened = data;
-            if (data != null) {
-                sendEvent(iZootoConstants.IZ_OPEN_NOTIFICATION, data);
-            }
-        }catch (Exception ex){
-            Log.e(iZootoConstants.IZ_EXCEPTION_NAME,iZootoConstants.IZ_NOTIFICATION_OPENED+ex);
-
-        }
-
-
-    }
-
-    @Override
-    public void onWebView(String landingUrl) {
-        try {
-            notificationWebView = landingUrl;
-            if (landingUrl != null) {
-                sendEvent(iZootoConstants.IZ_LANDING_URL, landingUrl);
-            }
-        }catch (Exception ex){
-            Log.e(iZootoConstants.IZ_EXCEPTION_NAME,iZootoConstants.IZ_ON_WEB_VIEW+ex);
-        }
-
-    }
-
-    @Override
-    public void onTokenReceived(String token) {
-        try {
-            notificationToken = token;
-            if (token != null) {
-                sendEvent(iZootoConstants.IZ_RECEIVE_TOKEN, token);
-            }
-        }catch (Exception ex){
-            Log.e(iZootoConstants.IZ_EXCEPTION_NAME,iZootoConstants.IZ_TOKEN_RECEIVED+ex);
-
-        }
-
-    }
-    // user permission prompt
-    @ReactMethod
-    public void promptForPushNotifications() {
-        try {
-            if (Build.VERSION.SDK_INT >= 33) {
-                iZooto.promptForPushNotifications();
-            }else {
-                Log.v(iZootoConstants.IZ_PROMPT_USER,iZootoConstants.IZ_PROMPT_ERROR);
-            }
-        }
-        catch (Exception ex){
-            Log.e(iZootoConstants.IZ_EXCEPTION_NAME,iZootoConstants.IZ_PROMPT_USER+ex);
-        }
-    }
-
-    private List<String> getArrayList(ReadableArray tagKey){
-        List<String> list = new ArrayList<>();
-        for (Object object : tagKey.toArrayList()) {
-            if (object instanceof String)
-                list.add((String) object);
-        }
-        return list;
-    }
-    @Override
-    public void onNotificationReceivedHybrid(String receiveData) {
-        notificationPayload = receiveData;
-        if (receiveData != null) {
-            try {
-                JSONArray jsonArray = new JSONArray(receiveData);
-                JSONArray toReturn = new JSONArray();
-                if(jsonArray.length() > 0){
-                    toReturn.put(jsonArray.getJSONObject(jsonArray.length() -1));
-                }
-                sendEvent(iZootoConstants.IZ_RECEIVED_NOTIFICATION, toReturn.toString());
-            } catch (Exception ex) {
-                Log.e(iZootoConstants.IZ_EXCEPTION_NAME,iZootoConstants.IZ_ON_NOTIFICATION_RECEIVED+ex);
-            }
-        }
-    }
-    static int getBadgeIcon(Context context, String setBadgeIcon){
-        int bIicon = 0;
-        int checkExistence = context.getResources().getIdentifier(setBadgeIcon, "drawable", context.getPackageName());
-        if ( checkExistence != 0 ) {  // the resource exists...
-            bIicon = checkExistence;
-        }
-        else {  // checkExistence == 0  // the resource does NOT exist!!
-            int checkExistenceMipmap = context.getResources().getIdentifier(
-                    setBadgeIcon, "mipmap", context.getPackageName());
-            if (checkExistenceMipmap != 0) {  // the resource exists...
-                bIicon = checkExistenceMipmap;
-
-            }
-        }
-
-        return bIicon;
-    }
-    /* Added new method for navigate to notification setting page */
-    @ReactMethod
-    public void navigateToSettings() {
-        try {
-             iZooto.navigateToSettings(mReactApplicationContext.getCurrentActivity());
-        }
-        catch (Exception ex){
-            Log.e(iZootoConstants.IZ_EXCEPTION_NAME,iZootoConstants.IZ_NAVIGATE_SETTINGS+ex);
-        }
-    }
-    /* Added new method for setUp  to notification channel name */
-    @ReactMethod
-    public void setNotificationChannelName(String channelName) {
-        try {
-            iZooto.setNotificationChannelName(channelName);
-        }
-        catch (Exception ex){
-            Log.e(iZootoConstants.IZ_EXCEPTION_NAME,iZootoConstants.IZ_CHANNEL_NAME+ex);
+        } catch (Exception ex) {
+            Log.v("TokenReceivedListener", ex.toString());
 
         }
     }
 
-    /* Added new method for returning Notification Data */
-
-    @ReactMethod
-    public void getNotificationFeed(boolean isPagination, Promise promise) {
-        try {
-            promise.resolve(iZooto.getNotificationFeed(isPagination));
-        }
-        catch (Exception ex){
-            Log.v(iZootoConstants.IZ_EXCEPTION_NAME,iZootoConstants.IZ_NOTIFICATION_FEED+ex.toString());
-
-        }
-    }
     @ReactMethod
     public void requestOneTapListener() {
         try {
@@ -347,9 +197,142 @@ public class RNIzootoModule extends ReactContextBaseJavaModule implements TokenR
             }
         } catch (Exception ex) {
             Log.e(iZootoConstants.IZ_PLUGIN_EXCEPTION, "requestOneTapListener" + ":-" + ex);
+
         }
     }
 
+    private void sendEvent (String eventName, Object params){
+        try {
+            mReactApplicationContext
+                    .getJSModule(DeviceEventManagerModule.RCTDeviceEventEmitter.class)
+                    .emit(eventName, params);
+        } catch (Exception ex) {
+            Log.v(iZootoConstants.IZ_SEND_EVENT, ex.toString());
+        }
+    }
+
+    @Override
+    public void onNotificationReceived (Payload payload){
+
+    }
+
+    @Override
+    public void onNotificationOpened (String data){
+        try {
+            if (data != null) {
+                sendEvent(iZootoConstants.OPEN_NOTIFICATION, data);
+            }
+        } catch (Exception ex) {
+            Log.v(iZootoConstants.IZ_NOTIFICATION_OPENED, ex.toString());
+        }
+    }
+
+    @Override
+    public void onWebView (String landingUrl){
+        try {
+            if (landingUrl != null) {
+                sendEvent(iZootoConstants.LANDING_URL, landingUrl);
+            }
+        } catch (Exception ex) {
+            Log.v(iZootoConstants.IZ_WEB_VIEW, ex.toString());
+        }
+    }
+
+    @Override
+    public void onTokenReceived (String token){
+        try {
+            notificationToken = token;
+            if (token != null) {
+                sendEvent(iZootoConstants.RECEIVE_TOKEN, token);
+            }
+        } catch (Exception ex) {
+            Log.v(iZootoConstants.IZ_TOKEN_RECEIVED, ex.toString());
+        }
+    }
+
+    private List<String> getArrayList(ReadableArray tagKey) {
+        List<String> list = new ArrayList<>();
+        for (Object object : tagKey.toArrayList()) {
+            if (object instanceof String)
+                list.add((String) object);
+        }
+        return list;
+    }
+
+    @Override
+    public void onNotificationReceivedHybrid(String receiveData) {
+        notificationPayload = receiveData;
+        if (receiveData != null) {
+            try {
+                JSONArray jsonArray = new JSONArray(receiveData);
+                JSONArray toReturn = new JSONArray();
+                for (int i = jsonArray.length() - 1; i >= 0; i--) {
+                    toReturn.put(jsonArray.getJSONObject(i));
+                }
+                sendEvent(iZootoConstants.RECEIVED_NOTIFICATION, toReturn.toString());
+            } catch (Exception e) {
+                Log.v("onNotificationReceive", e.toString());
+            }
+        }
+    }
+
+    static int getBadgeIcon(Context context, String setBadgeIcon) {
+        int bI_icon = 0;
+        int checkExistence = context.getResources().getIdentifier(setBadgeIcon, "drawable", context.getPackageName());
+        if (checkExistence != 0) {  // the resource exists...
+            bI_icon = checkExistence;
+        } else {  // checkExistence == 0  // the resource does NOT exist!!
+            int checkExistenceMipmap = context.getResources().getIdentifier(
+                setBadgeIcon, "mipmap", context.getPackageName());
+            if (checkExistenceMipmap != 0) {  // the resource exists...
+                bI_icon = checkExistenceMipmap;
+            }
+        }
+        return bI_icon;
+    }
+
+    @ReactMethod
+    public void promptForPushNotifications () {
+        try {
+            if (Build.VERSION.SDK_INT >= 33) {
+                iZooto.promptForPushNotifications();
+            } else {
+                Log.v(iZootoConstants.IZ_USER_PROMPT, iZootoConstants.IZ_PROMPT_MESSAGE);
+            }
+        } catch (Exception ex) {
+            Log.v(iZootoConstants.IZ_USER_PROMPT, ex.toString());
+        }
+    }
+
+    /* Added new method for navigate to notification setting page */
+    @ReactMethod
+    public void navigateToSettings () {
+        try {
+            iZooto.navigateToSettings(mReactApplicationContext.getCurrentActivity());
+        } catch (Exception ex) {
+            Log.v(iZootoConstants.IZ_NAVIGATE_SETTING, ex.toString());
+        }
+    }
+
+    /* Added new method for setUp  to notification channel name */
+    @ReactMethod
+    public void setNotificationChannelName (String channelName){
+        try {
+            iZooto.setNotificationChannelName(channelName);
+        } catch (Exception ex) {
+            Log.v(iZootoConstants.IZ_NOTIFICATION_CHANNEL, ex.toString());
+        }
+    }
+
+    /* Added new method for returning Notification Data */
+    @ReactMethod
+    public void getNotificationFeed ( boolean isPagination, Promise promise){
+        try {
+            promise.resolve(iZooto.getNotificationFeed(isPagination));
+        } catch (Exception ex) {
+            Log.v(iZootoConstants.IZ_NOTIFICATION_FEED, ex.toString());
+        }
+    }
 
     @Override
     public void syncOneTapResponse(String email, String firstName, String lastName) {
@@ -395,5 +378,8 @@ public class RNIzootoModule extends ReactContextBaseJavaModule implements TokenR
         }
     }
 
-
 }
+
+
+
+

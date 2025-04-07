@@ -1,10 +1,8 @@
 apply plugin: "com.android.application"
 apply plugin: 'com.google.gms.google-services'
 import com.android.build.OutputFile
-
-
 project.ext.react = [
-    enableHermes: false,  // clean and rebuild if changing
+        enableHermes: false,  // clean and rebuild if changing
 ]
 
 apply from: "../../node_modules/react-native/react.gradle"
@@ -22,27 +20,24 @@ def jscFlavor = 'org.webkit:android-jsc:+'
 def enableHermes = project.ext.react.get("enableHermes", false);
 
 android {
-    compileSdk rootProject.ext.compileSdkVersion
-
+    compileSdk 34//rootProject.ext.compileSdkVersion
+    namespace "com.example"
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_11
-        targetCompatibility JavaVersion.VERSION_11
+        sourceCompatibility JavaVersion.VERSION_21
+        targetCompatibility JavaVersion.VERSION_21
     }
 
     defaultConfig {
         applicationId "com.example"
         minSdkVersion rootProject.ext.minSdkVersion
-        targetSdkVersion 34
+        targetSdkVersion 33//rootProject.ext.targetSdkVersion
         versionCode 1
         versionName "1.0"
-        manifestPlaceholders = [
-                izooto_app_id: "f8908fd9817ad7f76dea934067955773a8f1c3d5"//"09f06385e06cc10d0fc7a5e1c002cd9338a2c94f"
+        manifestPlaceholders = [//f8908fd9817ad7f76dea934067955773a8f1c3d5
+                izooto_app_id: "aeb7d82c8dcc0bcebc9684c2ad8a4a384980e640"//"c9b6baa1198c2adeb9ba370422077ecf22360cf9"//"09f06385e06cc10d0fc7a5e1c002cd9338a2c94f"
         ]
         multiDexEnabled true // ADD THIS LINE
 
-    }
-    packagingOptions {
-        pickFirst '**/*.so'
     }
     splits {
         abi {
@@ -92,29 +87,27 @@ android {
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
     //noinspection GradleDynamicVersion
-    implementation "com.facebook.react:react-native:0.71.0"  // From node_modules
-
+    implementation "com.facebook.react:react-native:+"
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
     implementation("androidx.credentials:credentials:1.2.2")
     implementation("androidx.credentials:credentials-play-services-auth:1.2.2")
     implementation("com.google.android.libraries.identity.googleid:googleid:1.1.0")
-    implementation 'com.squareup.okhttp3:okhttp:4.9.1' // Adjust to the version your project requires
 
     debugImplementation("com.facebook.flipper:flipper:${FLIPPER_VERSION}") {
-      exclude group:'com.facebook.fbjni'
+        exclude group: 'com.facebook.fbjni'
     }
 
     debugImplementation("com.facebook.flipper:flipper-network-plugin:${FLIPPER_VERSION}") {
-        exclude group:'com.facebook.flipper'
-        exclude group:'com.squareup.okhttp3', module:'okhttp'
+        exclude group: 'com.facebook.flipper'
+        exclude group: 'com.squareup.okhttp3', module: 'okhttp'
     }
 
     debugImplementation("com.facebook.flipper:flipper-fresco-plugin:${FLIPPER_VERSION}") {
-        exclude group:'com.facebook.flipper'
+        exclude group: 'com.facebook.flipper'
     }
 
     if (enableHermes) {
-        def hermesPath = "../../node_modules/hermes-engine/android/";
+        def hermesPath = "../../node_modules/hermes-engine/android/"
         debugImplementation files(hermesPath + "hermes-debug.aar")
         releaseImplementation files(hermesPath + "hermes-release.aar")
     } else {
@@ -122,11 +115,5 @@ dependencies {
     }
 }
 
-// Run this once to be able to run the application with BUCK
-// puts all compile dependencies into folder libs for BUCK to use
-//task copyDownloadableDepsToLibs(type: Copy) {
-//    from configurations.compile
-//    into 'libs'
-//}
 
 apply from: file("../../node_modules/@react-native-community/cli-platform-android/native_modules.gradle"); applyNativeModulesAppBuildGradle(project)

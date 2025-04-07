@@ -1,6 +1,6 @@
 {
   "name": "react-native-izooto",
-  "version": "2.5.9",
+  "version": "2.6.0",
   "description": "React Native iZooto SDK",
   "main": "src/index.js",
   "typings": "src/index.d.ts",
@@ -26,5 +26,12 @@
     "izooto"
   ],
   "author": " iZooto<https://www.izooto.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "@react-native-async-storage/async-storage": "^1.19.1",
+    "@react-native-community/masked-view": "^0.1.11"
+  },
+  "devDependencies": {
+    "@babel/plugin-transform-private-methods": "^7.24.7"
+  }
 }

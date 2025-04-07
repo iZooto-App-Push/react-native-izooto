@@ -6,7 +6,9 @@
 //
 
 #import <UserNotifications/UserNotifications.h>
-
+ 
+@import iZootoiOSSDK;
+ 
 @interface NotificationService : UNNotificationServiceExtension
-
+ 
 @end

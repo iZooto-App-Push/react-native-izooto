@@ -1,4 +1,4 @@
 <resources>
     <string name="app_name">example</string>
-    <string name="izooto_notification_accent_color">0000FF</string>
+    <string name="izooto_notification_accent_color">FF0015</string>
 </resources>

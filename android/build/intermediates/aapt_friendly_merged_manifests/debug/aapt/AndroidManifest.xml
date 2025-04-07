@@ -2,10 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.rnizooto" >
 
-    <uses-sdk
-        android:minSdkVersion="21"
-        android:targetSdkVersion="34" />
+    <uses-sdk android:minSdkVersion="21" />
 
-    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-permission android:name="REQUEST_COMPANION_START_FOREGROUND_SERVICES_FROM_BACKGROUND" />
 
 </manifest>

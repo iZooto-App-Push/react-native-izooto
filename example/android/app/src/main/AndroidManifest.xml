@@ -1,14 +1,15 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-  package="com.example">
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.example">
 
     <uses-permission android:name="android.permission.INTERNET" />
-   <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
+    <uses-permission android:name="REQUEST_COMPANION_START_FOREGROUND_SERVICES_FROM_BACKGROUND"/>
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
     <application
       android:name=".MainApplication"
       android:label="@string/app_name"
       android:icon="@mipmap/iz_appicon"
       android:roundIcon="@mipmap/iz_appicon_round"
-      android:allowBackup="false"
       android:theme="@style/AppTheme">
       <activity
         android:name=".MainActivity"
@@ -16,7 +17,8 @@
         android:configChanges="keyboard|keyboardHidden|orientation|screenSize|uiMode"
         android:launchMode="singleTask"
         android:windowSoftInputMode="adjustResize"
-          android:exported="true">
+          android:exported="true"
+          tools:ignore="RedundantLabel">
         <intent-filter>
             <action android:name="android.intent.action.MAIN" />
             <category android:name="android.intent.category.LAUNCHER" />

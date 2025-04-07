@@ -3,9 +3,81 @@
     "project_number": "1007215295999",
     "firebase_url": "https://fir-1da6c.firebaseio.com",
     "project_id": "fir-1da6c",
-    "storage_bucket": "fir-1da6c.appspot.com"
+    "storage_bucket": "fir-1da6c.firebasestorage.app"
   },
   "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1007215295999:android:677aaa1094ed7456e3bbca",
+        "android_client_info": {
+          "package_name": "com.aaaaa"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1007215295999-br86884ahqd0dah3a085k74p8r6a7dti.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDMql9mySjw5IdGAvoywreX5-Un7D1K53I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1007215295999-br86884ahqd0dah3a085k74p8r6a7dti.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1007215295999-7gqi164k6uutcf55ac7q643m3jrkqe7u.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "izooto.GoogleOneTap"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1007215295999:android:e66f28e19003207ae3bbca",
+        "android_client_info": {
+          "package_name": "com.amit.hms"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1007215295999-br86884ahqd0dah3a085k74p8r6a7dti.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDMql9mySjw5IdGAvoywreX5-Un7D1K53I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1007215295999-br86884ahqd0dah3a085k74p8r6a7dti.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1007215295999-7gqi164k6uutcf55ac7q643m3jrkqe7u.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "izooto.GoogleOneTap"
+              }
+            }
+          ]
+        }
+      }
+    },
     {
       "client_info": {
         "mobilesdk_app_id": "1:1007215295999:android:ebd8e3dfa6a8757ee3bbca",
@@ -30,6 +102,85 @@
             {
               "client_id": "1007215295999-br86884ahqd0dah3a085k74p8r6a7dti.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "1007215295999-7gqi164k6uutcf55ac7q643m3jrkqe7u.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "izooto.GoogleOneTap"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1007215295999:android:f728fc99e1bdf27fe3bbca",
+        "android_client_info": {
+          "package_name": "com.awesomeproject"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1007215295999-br86884ahqd0dah3a085k74p8r6a7dti.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDMql9mySjw5IdGAvoywreX5-Un7D1K53I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1007215295999-br86884ahqd0dah3a085k74p8r6a7dti.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1007215295999-7gqi164k6uutcf55ac7q643m3jrkqe7u.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "izooto.GoogleOneTap"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1007215295999:android:9a0a671a4f82624ce3bbca",
+        "android_client_info": {
+          "package_name": "com.awesomeprojectfirst"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1007215295999-br86884ahqd0dah3a085k74p8r6a7dti.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDMql9mySjw5IdGAvoywreX5-Un7D1K53I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1007215295999-br86884ahqd0dah3a085k74p8r6a7dti.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1007215295999-7gqi164k6uutcf55ac7q643m3jrkqe7u.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "izooto.GoogleOneTap"
+              }
             }
           ]
         }
@@ -59,6 +210,13 @@
             {
               "client_id": "1007215295999-br86884ahqd0dah3a085k74p8r6a7dti.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "1007215295999-7gqi164k6uutcf55ac7q643m3jrkqe7u.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "izooto.GoogleOneTap"
+              }
             }
           ]
         }
@@ -88,6 +246,13 @@
             {
               "client_id": "1007215295999-br86884ahqd0dah3a085k74p8r6a7dti.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "1007215295999-7gqi164k6uutcf55ac7q643m3jrkqe7u.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "izooto.GoogleOneTap"
+              }
             }
           ]
         }
@@ -117,6 +282,13 @@
             {
               "client_id": "1007215295999-br86884ahqd0dah3a085k74p8r6a7dti.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "1007215295999-7gqi164k6uutcf55ac7q643m3jrkqe7u.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "izooto.GoogleOneTap"
+              }
             }
           ]
         }
@@ -146,6 +318,85 @@
             {
               "client_id": "1007215295999-br86884ahqd0dah3a085k74p8r6a7dti.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "1007215295999-7gqi164k6uutcf55ac7q643m3jrkqe7u.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "izooto.GoogleOneTap"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1007215295999:android:e3cdffad4235677fe3bbca",
+        "android_client_info": {
+          "package_name": "com.example.momagic_flutter_example"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1007215295999-br86884ahqd0dah3a085k74p8r6a7dti.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDMql9mySjw5IdGAvoywreX5-Un7D1K53I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1007215295999-br86884ahqd0dah3a085k74p8r6a7dti.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1007215295999-7gqi164k6uutcf55ac7q643m3jrkqe7u.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "izooto.GoogleOneTap"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1007215295999:android:fa39522ec4c85a44e3bbca",
+        "android_client_info": {
+          "package_name": "com.example.recyclerviewkotlin"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1007215295999-br86884ahqd0dah3a085k74p8r6a7dti.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDMql9mySjw5IdGAvoywreX5-Un7D1K53I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1007215295999-br86884ahqd0dah3a085k74p8r6a7dti.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1007215295999-7gqi164k6uutcf55ac7q643m3jrkqe7u.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "izooto.GoogleOneTap"
+              }
             }
           ]
         }
@@ -175,6 +426,13 @@
             {
               "client_id": "1007215295999-br86884ahqd0dah3a085k74p8r6a7dti.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "1007215295999-7gqi164k6uutcf55ac7q643m3jrkqe7u.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "izooto.GoogleOneTap"
+              }
             }
           ]
         }
@@ -212,6 +470,13 @@
             {
               "client_id": "1007215295999-br86884ahqd0dah3a085k74p8r6a7dti.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "1007215295999-7gqi164k6uutcf55ac7q643m3jrkqe7u.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "izooto.GoogleOneTap"
+              }
             }
           ]
         }
@@ -241,6 +506,13 @@
             {
               "client_id": "1007215295999-br86884ahqd0dah3a085k74p8r6a7dti.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "1007215295999-7gqi164k6uutcf55ac7q643m3jrkqe7u.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "izooto.GoogleOneTap"
+              }
             }
           ]
         }

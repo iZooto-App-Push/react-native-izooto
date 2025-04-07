@@ -165,7 +165,6 @@ RCT_EXPORT_MODULE()
 
 RCT_EXPORT_METHOD(addUserProperties:(NSString*)propertiesData)
 {
-    NSLog(@"%@", propertiesData);
 
     if(propertiesData!= @""){
        
@@ -190,7 +189,7 @@ RCT_EXPORT_METHOD(addUserProperties:(NSString*)propertiesData)
 }
 RCT_EXPORT_METHOD(addEvents:(NSString*)eventName data:(NSString*)eventData)
 {
-    if(eventName!=@"" && eventData!= @""){
+    if(![eventName isEqual:@""] && ![eventData isEqual: @""]){
        
         NSData *jsonData = [eventData dataUsingEncoding:NSUTF8StringEncoding];
         NSError *error;
@@ -209,15 +208,6 @@ RCT_EXPORT_METHOD(addEvents:(NSString*)eventName data:(NSString*)eventData)
     
     
 }
-// Add Email setUp
-
-RCT_EXPORT_METHOD(syncUserDetails:(NSString *)email firstName:(NSString *) firstName lastName:(NSString *) lastName)
-{
-    [iZooto syncUserDetailsEmailWithEmail:email fName:firstName lName:lastName];
-    
-}
-
-
 // handle the device token register/unregister
 RCT_EXPORT_METHOD(setSubscription:(BOOL)isSubscribed)
 {
@@ -228,11 +218,22 @@ RCT_EXPORT_METHOD(setSubscription:(BOOL)isSubscribed)
         [iZooto setSubscriptionWithIsSubscribe:YES];
     }
 }
+
+// Add Email setUp
+
+RCT_EXPORT_METHOD(syncUserDetails:(NSString *)email fName:(NSString *) fName lName:(NSString *) lname)
+{
+    [iZooto syncUserDetailsEmailWithEmail:email fName:fName lName:lname];
+    
+}
+
 // added a new method for navigateToSettings
 RCT_EXPORT_METHOD(navigateToSettings)
 {
     [iZooto navigateToSettings];
 }
+
+
 // Get Notification Feed Data
 RCT_EXPORT_METHOD(getNotificationFeed:(BOOL *) isPagination
                  resolver: (RCTPromiseResolveBlock)result
@@ -241,8 +242,10 @@ RCT_EXPORT_METHOD(getNotificationFeed:(BOOL *) isPagination
     
     [iZooto getNotificationFeedWithIsPagination:isPagination completion:^(NSString *jsonString, NSError *error){
         if (error) {
+            NSLog(@"EEEEEE%@", [error localizedDescription]);
             result(error);
         } else if (jsonString) {
+            NSLog(@"Response = %@", jsonString);
             result(jsonString);
           
         }
@@ -257,7 +260,7 @@ RCT_EXPORT_METHOD(initiOSAppID:(NSString *)izooto_app_id)
              [izootoInitSetting setObject:@YES forKey:@"nativeWebview"];
              [izootoInitSetting setObject:@NO forKey:@"provisionalAuthorization"];
        [iZooto initialisationWithIzooto_id:izooto_app_id application:UIApplication.sharedApplication iZootoInitSettings:izootoInitSetting];
-       [iZooto setPluginVersionWithPluginVersion:@"rv_2.5.9"];
+       [iZooto setPluginVersionWithPluginVersion:@"rv_2.6.0"];
 
 }
 
@@ -304,6 +307,7 @@ API_AVAILABLE(ios(10.0)) {
 
           }
           if (!landingURL && ![landingURL isKindOfClass:[NSString class]]) {
+              NSLog(@"Landing URL: %@", landingURL);
               landingURL = @""; // Optional: Explicitly set to nil for clarity
 
           }

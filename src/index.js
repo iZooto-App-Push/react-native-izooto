@@ -18,21 +18,20 @@ export type PushNotificationEventName = $Keys<{
   registrationError: string,
   oneTapResponse: String,
 }>;
+/* Add all listener name */
 const DEVICE_NOTIF_EVENT = 'remoteNotificationReceived';
 const NOTIF_REGISTER_EVENT = 'remoteNotificationsRegistered';
 const NOTIF_REGISTRATION_ERROR_EVENT = 'remoteNotificationRegistrationError';
 const NOTIF_REMOTE_WEB_URL= 'remoteNotificationLandingURL';
 const NOTIF_REMOTE_RECEIVED_PAYLOAD='remoteNotificationPayload';
 const RESPONSE_ONETAP = 'remoteResponeOneTap';
-
 var  RNIzootoModule, eventManager, RNIzooto, PushNotificationEmitter, _notifHandlers;
 
-if(Platform.OS==='android')
-{
+/* Call the listener via plateform based android/ios  */
+if(Platform.OS==='android'){
  RNIzootoModule = NativeModules.iZooto;
  eventManager = new EventManager(RNIzootoModule);
-}
-else{
+} else{
   RNIzooto = NativeModules.RNIzooto;
   PushNotificationEmitter = new NativeEventEmitter(RNIzooto);
   _notifHandlers = new Map();
@@ -42,11 +41,11 @@ export default class iZooto {
  /* Add  Listener in iOS */  
     static addEventListener(type: PushNotificationEventName, handler: Function) {
         invariant(
-          type === 'onNotificationOpened' ||
+            type === 'onNotificationOpened' ||
             type === 'onTokenReceived' ||
-            type ==='onWebView'||
-            type ==='onNotificationReceived'||
-            type === 'registrationError' ||
+            type === 'onWebView'||
+            type === 'onNotificationReceived'||
+            type === 'registrationError'||
             type === 'oneTapResponse',
           'iZootoPush Notificaiton  only supports ` onNotificationOpened`, `onNotificationReceived`,`onTokenReceived`, `onWebView` ,Events',
         );
@@ -88,6 +87,7 @@ export default class iZooto {
             },
           );
         }
+
         else if (type === 'oneTapResponse') {
           listener = PushNotificationEmitter.addListener(
             RESPONSE_ONETAP,
@@ -119,47 +119,26 @@ export default class iZooto {
 
 
 /*  Android initialization   */
-
-      //  static initAndroid() {
-      //   if(Platform.OS ==='android'){
-      //    RNIzootoModule.initAndroid();
-      //   }  
-      //  }
-
-static initAndroid(isDefaultWebView) {
-  if(Platform.OS ==='android'){
-   RNIzootoModule.initAndroid(isDefaultWebView);
-  }  
- }
-  static promptForPushNotifications() {
-        if(Platform.OS==='android'){
-          RNIzootoModule.promptForPushNotifications();
-        }
-      }
+       static initAndroid(isDefaultWebView) {
+        if(Platform.OS ==='android'){
+         RNIzootoModule.initAndroid(isDefaultWebView);
+        }  
+       }
 
  /*  iOS initialization   */
- 
-   static initiOSAppID(izooto_app_id)
-   {
-     if(izooto_app_id!=null)
-     {
-     if(Platform.OS==='ios')
-       {
+   static initiOSAppID(izooto_app_id) {
+     if(izooto_app_id!=null){
+      if(Platform.OS==='ios'){
          RNIzooto.initiOSAppID(izooto_app_id);
-
-       }
-       else
-       {
+        } else {
          console.log("Plateform Error");
-
        }
-   }
-   else{
+    } else{
      console.log("iZooto app id is not null ");
-   }
- }
- /* To Send Event Properties */
+    }
+  }
 
+ /* To Send Event Properties */
       static addEvent(eventName, eventData)
       {
         if(Platform.OS ==='ios')
@@ -180,8 +159,8 @@ static initAndroid(isDefaultWebView) {
         }     
       
       }
-  /* To Send User Properties */
 
+  /* To Send User Properties */
       static addUserProperty(propertiesData){
         if(Platform.OS === 'ios')
         {
@@ -203,28 +182,32 @@ static initAndroid(isDefaultWebView) {
         }
       }
 
-
   /* To Send Subscription  */
-  static setSubscription(isSubscribe){
-    if(Platform.OS ==='ios')
-      {
-        RNIzooto.setSubscription(isSubscribe);
+       static setSubscription(isSubscribe){
+          if(Platform.OS ==='ios')
+            {
+         RNIzooto.setSubscription(isSubscribe);
        }
-     if(Platform.OS ==='android')
-      {
-        RNIzootoModule.setSubscription(isSubscribe);
-      }
- }
+       if(Platform.OS ==='android')
+       {
+         RNIzootoModule.setSubscription(isSubscribe);
+       }
+       }
 
-  /*  setNotificationChannelName */
-
+/* Push Notificaiton prompt */
+static promptForPushNotifications() {
+  if(Platform.OS==='android'){
+    RNIzootoModule.promptForPushNotifications();
+  }
+}
+  
+/*  setNotificationChannelName */
 static setNotificationChannelName(channelName) {
   if(Platform.OS==='android'){
     RNIzootoModule.setNotificationChannelName(channelName);
   }
 }
 /*  setNotificationChannelName */
-
 static navigateToSettings() {
   if(Platform.OS==='android'){
     RNIzootoModule.navigateToSettings();
@@ -236,20 +219,20 @@ static navigateToSettings() {
   }
 }
 
-/*  To Send  FirebaseAnalytics Events   */
+/* To get iOS NotificationFeed Data*/
+static getNotificationFeed(isPagination){
+  return RNIzooto.getNotificationFeed(isPagination)
+}
 
+/*  To Send  FirebaseAnalytics Events   */
   static setFirebaseAnalytics(isSetFirebaseAnalytics){
     if(Platform.OS==='android'){
      RNIzootoModule.setFirebaseAnalytics(isSetFirebaseAnalytics);
     }
-    else
-    {
-      console.log("Under developement Analytics feature in iOS")
-    }
+   
  }
 
  /*  To Add Topic Properties   */
-
  static addTag(topicName) {
     if(Platform.OS ==='android')
     {
@@ -261,7 +244,6 @@ static navigateToSettings() {
       }
 
 /*  To Remove Topic  Properties   */
-
   static removeTag(topicName) {
           if(Platform.OS ==='android')
           {
@@ -273,7 +255,6 @@ static navigateToSettings() {
         }
      
 /*  Token Listener  */
-
         static onTokenReceivedListener(handler){
             if(Platform.OS ==='android'){
             RNIzootoModule.onTokenReceivedListener();
@@ -282,7 +263,6 @@ static navigateToSettings() {
         }
 
  /*  DeepLink Listener  */
-       
         static onNotificationOpenedListener(handler){
             if(Platform.OS === 'android')
             {
@@ -292,7 +272,6 @@ static navigateToSettings() {
         }
 
    /*  Receive Notification Listener  */
-      
         static onNotificationReceivedListener(handler){
             if(Platform.OS === 'android'){
             RNIzootoModule.onNotificationReceivedListener();
@@ -301,7 +280,6 @@ static navigateToSettings() {
         }
 
    /*  WebView Listener  */
-      
         static onWebViewListener(handler){
             if(Platform.OS === 'android')
             {
@@ -310,8 +288,15 @@ static navigateToSettings() {
             }
         }
 
+          /*  one tap response  */
+          static requestOneTapListener(handler){
+            if(Platform.OS === 'android'){
+            RNIzootoModule.requestOneTapListener();
+            eventManager.setEventHandler(ONETAP_RESPONSE, handler);
+            }
+        }
+
  /*  To Add Notificaiton Preview */
-     
     static setDefaultTemplate(templateID) {
       if(Platform.OS ==='android'){
         RNIzootoModule.setDefaultTemplate(templateID);
@@ -319,7 +304,6 @@ static navigateToSettings() {
     }
 
  /*  To Add Notificaiton Preview  Banner*/
-
     static setDefaultNotificationBanner(setBanner) {
       if(Platform.OS ==='android'){
         RNIzootoModule.setDefaultNotificationBanner(setBanner);
@@ -327,16 +311,13 @@ static navigateToSettings() {
     }
 
  /*  To Add Notificaiton Sound */
-
     static setNotificationSound(soundName) {
       if(Platform.OS==='android'){
         RNIzootoModule.setNotificationSound(soundName);
       }
     }
 
-
-    /*  To Add Notification Feed  */
-
+  /*  To Add Notification Feed  */
     static async getNotificationFeed(isPagination) {
       if(Platform.OS==='android'){
         const notificationFeed = await RNIzootoModule.getNotificationFeed(isPagination);
@@ -346,26 +327,19 @@ static navigateToSettings() {
           return "No more data";
         }
       }
-      if(Platform.OS==='ios')
-      {
-        return RNIzooto.getNotificationFeed(isPagination)
-      }
     }
-      /*  one tap response  */
-      static requestOneTapListener(handler){
-        if(Platform.OS === 'android'){
-        RNIzootoModule.requestOneTapListener();
-        eventManager.setEventHandler(ONETAP_RESPONSE, handler);
-        }
-    }
-     /*  users sync details */
-     static syncUserDetailsEmail(email, firstName, lastName) {
+
+
+    /*  users sync details */
+    static syncUserDetailsEmail(email, firstName, lastName) {
       if(Platform.OS ==='android'){
         RNIzootoModule.syncUserDetails(email,firstName,lastName);
       }
-      if(Platform.OS ==='ios'){
-        RNIzooto.syncUserDetails(email,firstName,lastName);
-      }
+      if(Platform.OS === 'ios')
+        {
+          RNIzooto.syncUserDetails(email,firstName,lastName);
+      
+        }
     }
 
      /*  users google one tap authentication  */
@@ -375,5 +349,4 @@ static navigateToSettings() {
       }
     }
 
- 
 }
