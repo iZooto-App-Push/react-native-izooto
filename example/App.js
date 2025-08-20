@@ -1,85 +1,77 @@
-import React from 'react';
+import React, { Component } from 'react';
 import {
   Platform,
+  StyleSheet,
+  TouchableOpacity,
   Text,
   View,
-  TouchableOpacity,
-  StyleSheet,
 } from 'react-native';
+
 import iZooto from '../src';
-import {PushTemplate} from '../src/PushTemplate';
 
 export default class App extends React.Component {
   async componentDidMount() {
     if (Platform.OS === 'ios') {
-      iZooto.initiOSAppID('d8586f035eb5723058304989c05be301ca87a26b');
-      iZooto.syncUserDetailsEmail('ios1@gmail.com', 'Demo', 'Demo');
+      iZooto.initiOSAppID('11f896fa4cab1d4e159c2f26a257be41b388ecf2');
 
-      iZooto.addEventListener('onTokenReceived', token => {
+      iZooto.addEventListener('onTokenReceived', (token) => {
         console.log('iZooto Device Token', token);
       });
 
-      iZooto.addEventListener('onNotificationOpened', openData => {
+      iZooto.addEventListener('onNotificationOpened', (openData) => {
         alert('DeepLink');
         console.log('Notification Deep Link Data', openData);
       });
 
-      iZooto.addEventListener('onWebView', urlData => {
+      iZooto.addEventListener('onWebView', (urlData) => {
         alert('Webview');
         console.log('Notification WebView URL Data', urlData);
       });
 
-      iZooto.addEventListener('onNotificationReceived', data => {
-        // console.log("Notification Payload Data ",data);
+      iZooto.addEventListener('onNotificationReceived', (data) => {
+        // Handle notification received
       });
 
       const notificationData = await iZooto.getNotificationFeed(false);
       console.log(notificationData);
     } else {
       iZooto.initAndroid(false);
-
       iZooto.promptForPushNotifications();
 
-      iZooto.onNotificationOpenedListener(data => {
+      iZooto.onNotificationOpenedListener((data) => {
         console.log('DeepLink Data Received', data);
       });
 
-      iZooto.onNotificationReceivedListener(payload => {
+      iZooto.onNotificationReceivedListener((payload) => {
         console.log('Notification Payload', payload);
       });
 
-      iZooto.onWebViewListener(landingUrl => {
+      iZooto.onWebViewListener((landingUrl) => {
         console.log('Landing URL', landingUrl);
       });
 
-      iZooto.onTokenReceivedListener(token => {
+      iZooto.onTokenReceivedListener((token) => {
         console.log('Token Received', token);
       });
 
-      iZooto.syncUserDetailsEmail('abc@gmail.com', 'Demo', 'Demo');
+      iZooto.addUserProperty({ language: 'english' });
     }
   }
 
   render() {
     return (
       <View style={styles.container}>
-        {/* Title */}
-        <Text style={styles.title}>iZooto React Native Demo App</Text>
-
-        {/* Buttons */}
+      
         <CustomButton
-          label="Go to Settings"
-          color="#007bff"
+          title="Go to Settings"
           onPress={() => iZooto.navigateToSettings()}
         />
         <CustomButton
-          label="Unsubscribe"
-          color="#dc3545"
+          title="Unsubscribe"
           onPress={() => iZooto.setSubscription(false)}
         />
         <CustomButton
-          label="Subscribe"
-          color="#28a745"
+          title="Subscribe"
           onPress={() => iZooto.setSubscription(true)}
         />
       </View>
@@ -87,44 +79,29 @@ export default class App extends React.Component {
   }
 }
 
-// Reusable button component
-const CustomButton = ({label, onPress, color}) => (
-  <TouchableOpacity
-    style={[styles.button, {backgroundColor: color}]}
-    onPress={onPress}>
-    <Text style={styles.buttonText}>{label}</Text>
+const CustomButton = ({ title, onPress }) => (
+  <TouchableOpacity onPress={onPress} style={styles.button}>
+    <Text style={styles.buttonText}>{title}</Text>
   </TouchableOpacity>
 );
 
-// Styles
 const styles = StyleSheet.create({
   container: {
+    padding: 24,
     flex: 1,
     justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#f8f9fa',
-    padding: 20,
-  },
-  title: {
-    fontSize: 22,
-    fontWeight: '700',
-    marginBottom: 20,
-    color: '#333',
+    backgroundColor: '#F5F5F5',
   },
   button: {
-    width: '80%',
+    backgroundColor: '#4A90E2',
     paddingVertical: 14,
-    borderRadius: 12,
-    marginVertical: 8,
+    paddingHorizontal: 20,
+    borderRadius: 8,
+    marginBottom: 16,
     alignItems: 'center',
-    shadowColor: '#000',
-    shadowOffset: {width: 0, height: 2},
-    shadowOpacity: 0.2,
-    shadowRadius: 4,
-    elevation: 3,
   },
   buttonText: {
-    color: '#fff',
+    color: '#FFF',
     fontSize: 16,
     fontWeight: '600',
   },
