@@ -20,7 +20,7 @@ def jscFlavor = 'org.webkit:android-jsc:+'
 def enableHermes = project.ext.react.get("enableHermes", false);
 
 android {
-    compileSdk 34//rootProject.ext.compileSdkVersion
+    compileSdk 35//rootProject.ext.compileSdkVersion
     namespace "com.example"
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_21
@@ -30,7 +30,7 @@ android {
     defaultConfig {
         applicationId "com.example"
         minSdkVersion rootProject.ext.minSdkVersion
-        targetSdkVersion 33//rootProject.ext.targetSdkVersion
+        targetSdkVersion 35//rootProject.ext.targetSdkVersion
         versionCode 1
         versionName "1.0"
         manifestPlaceholders = [//f8908fd9817ad7f76dea934067955773a8f1c3d5
