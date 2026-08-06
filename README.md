@@ -21,7 +21,7 @@ Please see iZooto's [React Native SDK References](https://help.izooto.com/docs/r
 
 Please visit [izooto.com](https://www.izooto.com) or write to [support@izooto.com](mailto:support@izooto.com) for any kind of issues.
 
-#### Demo Project
+#### Demo Project (example)
 
 For reference, we have uploaded a demo project with the latest SDK in the <code>/example</code> folder of this repository.
 

@@ -5,19 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a0f98848-5994-4a6b-affe-e6a0a8a9aeb2" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/eventmanager.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/build/intermediates/compile_library_classes_jar/debug/classes.jar" beforeDir="false" afterPath="$PROJECT_DIR$/android/build/intermediates/compile_library_classes_jar/debug/classes.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/build/intermediates/javac/debug/classes/com/rnizooto/BuildConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/android/build/intermediates/javac/debug/classes/com/rnizooto/BuildConfig.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/build/intermediates/javac/debug/classes/com/rnizooto/RNIzootoModule.class" beforeDir="false" afterPath="$PROJECT_DIR$/android/build/intermediates/javac/debug/classes/com/rnizooto/RNIzootoModule.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/build/intermediates/javac/debug/classes/com/rnizooto/RNIzootoPackage.class" beforeDir="false" afterPath="$PROJECT_DIR$/android/build/intermediates/javac/debug/classes/com/rnizooto/RNIzootoPackage.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/build/intermediates/javac/debug/classes/com/rnizooto/iZootoConstants.class" beforeDir="false" afterPath="$PROJECT_DIR$/android/build/intermediates/javac/debug/classes/com/rnizooto/iZootoConstants.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/build/tmp/compileDebugJavaWithJavac/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/android/build/tmp/compileDebugJavaWithJavac/previous-compilation-data.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ClangdSettings">
+    <option name="formatViaClangd" value="false" />
+  </component>
+  <component name="EmbeddingIndexingInfo">
+    <option name="cachedIndexableFilesCount" value="143" />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -25,6 +24,73 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
+  <component name="McpProjectServerCommands">
+    <commands />
+    <urls />
+  </component>
+  <component name="NextEditCompletionFeaturesState">
+    <decayedCancelled>
+      <entry key="MS100" value="1.0000064601540555" />
+      <entry key="MS500" value="1.0916322973243255" />
+      <entry key="S2" value="1.550280448227412" />
+      <entry key="S5" value="1.8116213077093777" />
+      <entry key="S10" value="2.0429421980113243" />
+      <entry key="S30" value="2.49878421531604" />
+      <entry key="S60" value="2.7136523775273034" />
+      <entry key="M2" value="2.8464624933344824" />
+      <entry key="M5" value="2.9358882570791724" />
+      <entry key="M10" value="2.967475975483436" />
+      <entry key="M15" value="2.978211851166633" />
+      <entry key="M30" value="2.989052830079087" />
+      <entry key="H1" value="2.994513072737266" />
+      <entry key="H2" value="2.9972531922010655" />
+      <entry key="H4" value="2.9986257589822114" />
+      <entry key="D1" value="2.9997708434724584" />
+      <entry key="W1" value="2.9999672605024337" />
+    </decayedCancelled>
+    <decayedSelected>
+      <entry key="MS100" value="0.0" />
+      <entry key="MS500" value="0.0" />
+      <entry key="S2" value="0.0" />
+      <entry key="S5" value="0.0" />
+      <entry key="S10" value="0.0" />
+      <entry key="S30" value="0.0" />
+      <entry key="S60" value="0.0" />
+      <entry key="M2" value="0.0" />
+      <entry key="M5" value="0.0" />
+      <entry key="M10" value="0.0" />
+      <entry key="M15" value="0.0" />
+      <entry key="M30" value="0.0" />
+      <entry key="H1" value="0.0" />
+      <entry key="H2" value="0.0" />
+      <entry key="H4" value="0.0" />
+      <entry key="D1" value="0.0" />
+      <entry key="W1" value="0.0" />
+    </decayedSelected>
+    <decayedShown>
+      <entry key="MS100" value="0.8766117488528992" />
+      <entry key="MS500" value="1.0643750369523504" />
+      <entry key="S2" value="1.5418123554709764" />
+      <entry key="S5" value="1.807759460791254" />
+      <entry key="S10" value="2.0405589638519483" />
+      <entry key="S30" value="2.497601653104617" />
+      <entry key="S60" value="2.7129639171966042" />
+      <entry key="M2" value="2.8460878310226043" />
+      <entry key="M5" value="2.9357301454220965" />
+      <entry key="M10" value="2.967395459037735" />
+      <entry key="M15" value="2.9781578422819495" />
+      <entry key="M30" value="2.9890256583125483" />
+      <entry key="H1" value="2.994499444701992" />
+      <entry key="H2" value="2.997246367605065" />
+      <entry key="H4" value="2.99862234403456" />
+      <entry key="D1" value="2.999770273946079" />
+      <entry key="W1" value="2.9999671791324936" />
+    </decayedShown>
+  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 2,
+  "fromUser": false
+}]]></component>
   <component name="ProjectId" id="2XqdyEMD2sXMp5U1P2jYgnGAeOx" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -32,11 +98,20 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.MCP Project settings loaded": "true",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.cidr.known.project.marker": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.readMode.enableVisualFormatting": "true",
+    "cf.first.check.clang-format": "false",
     "cidr.known.project.marker": "true",
     "dart.analysis.tool.window.visible": "false",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/Users/shashank/Documents/Prod-SDK/react-native-izooto",
     "show.migrate.to.gradle.popup": "false"
   }
 }]]></component>
