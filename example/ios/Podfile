@@ -1,38 +1,57 @@
-require_relative '../node_modules/react-native/scripts/react_native_pods'
-require_relative '../node_modules/@react-native-community/cli-platform-ios/native_modules'
+require Pod::Executable.execute_command(
+  'node',
+  [
+    '-p',
+    'require.resolve(
+      "react-native/scripts/react_native_pods.rb",
+      {paths: [process.argv[1]]},
+    )',
+    __dir__,
+  ],
+).strip
 
-platform :ios, '13.0'
+platform :ios, '15.1'
+prepare_react_native_project!
 
 target 'example' do
-
   config = use_native_modules!
 
-
-  use_react_native!(:path => config[:reactNativePath],:hermes_enabled => false)
+  use_react_native!(
+    :path => config[:reactNativePath],
+    :app_path => "#{Pod::Config.instance.installation_root}/..",
+    :hermes_enabled => false
+  )
 
   target 'exampleTests' do
     inherit! :complete
-    # Pods for testing
   end
+
   target 'iZootoNotificationServiceExtesnion' do
     pod 'iZootoiOSSDK'
-end
+  end
 
-  # Enables Flipper.
-  #
-  # Note that if you have use_frameworks! enabled, Flipper will not work and
-  # you should disable these next few lines.
-#  use_flipper!
-#  post_install do |installer|
-#    flipper_post_install(installer)
-#  end
+  post_install do |installer|
+  react_native_post_install(
+    installer,
+    config[:reactNativePath],
+    :mac_catalyst_enabled => false
+  )
+
+  installer.pods_project.targets.each do |target|
+    if target.name == "fmt" || target.name == "RCT-Folly"
+      target.build_configurations.each do |build_config|
+        build_config.build_settings["CLANG_CXX_LANGUAGE_STANDARD"] = "gnu++17"
+        build_config.build_settings["CLANG_CXX_LIBRARY"] = "libc++"
+      end
+    end
+  end
+
+  installer.pods_project.save
+end
 end
 
 target 'example-tvOS' do
-  # Pods for example-tvOS
-
   target 'example-tvOSTests' do
     inherit! :search_paths
-    # Pods for testing
   end
 end

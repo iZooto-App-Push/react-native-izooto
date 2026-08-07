@@ -1,28 +1,33 @@
 // metro.config.js
 //
-// with multiple workarounds for this issue with symlinks:
-// https://github.com/facebook/metro/issues/1
-//
-// with thanks to @johnryan (<https://github.com/johnryan>)
-// for the pointers to multiple workaround solutions here:
-// https://github.com/facebook/metro/issues/1#issuecomment-541642857
-//
-// see also this discussion:
-// https://github.com/brodybits/create-react-native-module/issues/232
+// Extends React Native's default Metro config (required from RN 0.73+).
+// The `react-native-izooto` package under test is linked from the repo root
+// (`"react-native-izooto": "link:../"`), so its source lives one level up and
+// must be watched and have its dependencies resolved from this example app.
 
-const path = require('path')
+const {getDefaultConfig, mergeConfig} = require('@react-native/metro-config');
+const path = require('path');
 
-module.exports = {
-  // workaround for an issue with symlinks encountered starting with
-  // metro@0.55 / React Native 0.61
-  // (not needed with React Native 0.60 / metro@0.54)
+const projectRoot = __dirname;
+// The linked react-native-izooto package (repo root, contains ./src).
+const packageRoot = path.resolve(projectRoot, '..');
+
+/**
+ * @type {import('@react-native/metro-config').MetroConfig}
+ */
+const config = {
+  // Let Metro read the linked package's source outside the project root.
+  watchFolders: [packageRoot],
   resolver: {
-    extraNodeModules: new Proxy(
-      {},
-      { get: (_, name) => path.resolve('.', 'node_modules', name) }
-    )
+    // The linked package has no node_modules of its own; resolve its
+    // dependencies (react-native, invariant, ...) from this example app.
+    nodeModulesPaths: [path.resolve(projectRoot, 'node_modules')],
+    // Ensure a single copy of react / react-native is used everywhere.
+    extraNodeModules: {
+      react: path.resolve(projectRoot, 'node_modules/react'),
+      'react-native': path.resolve(projectRoot, 'node_modules/react-native'),
+    },
   },
+};
 
-  // quick workaround for another issue with symlinks
-  watchFolders: ['.', '..']
-}
+module.exports = mergeConfig(getDefaultConfig(projectRoot), config);

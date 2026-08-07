@@ -7,7 +7,8 @@ import {
   View,
 } from 'react-native';
 
-import iZooto from '../src';
+// import iZooto from '../src';
+import iZooto from 'react-native-izooto';
 
 export default class App extends React.Component {
   async componentDidMount() {
