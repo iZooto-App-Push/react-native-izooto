@@ -11,17 +11,21 @@
     "build:ios": "react-native bundle --entry-file='index.js' --bundle-output='./ios/main.jsbundle' --dev=false --platform='ios'"
   },
   "dependencies": {
-    "@react-navigation/native": "^6.1.17",
-    "@react-navigation/stack": "^6.4.0",
+    "@react-navigation/native": "^6.1.18",
+    "@react-navigation/stack": "^6.4.1",
     "react": "18.2.0",
-    "react-native": "0.70.0",
+    "react-native": "0.76.9",
     "react-native-izooto": "link:../"
   },
   "devDependencies": {
     "@babel/core": "^7.13.8",
     "@babel/plugin-transform-private-methods": "^7.24.7",
     "@babel/runtime": "^7.13.9",
+    "@react-native-community/cli": "15.0.1",
+    "@react-native-community/cli-platform-android": "15.0.1",
+    "@react-native-community/cli-platform-ios": "15.0.1",
     "@react-native-community/eslint-config": "^2.0.0",
+    "@react-native/metro-config": "0.76.9",
     "babel-jest": "^26.6.3",
     "eslint": "^7.21.0",
     "jest": "^26.6.3",
