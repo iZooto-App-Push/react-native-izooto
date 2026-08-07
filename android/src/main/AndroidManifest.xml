@@ -1,5 +1,4 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="com.rnizooto">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
     <uses-permission android:name="REQUEST_COMPANION_START_FOREGROUND_SERVICES_FROM_BACKGROUND"/>
 
 </manifest>

@@ -1,52 +1,50 @@
 apply plugin: "com.android.application"
-apply plugin: 'com.google.gms.google-services'
-import com.android.build.OutputFile
-project.ext.react = [
-        enableHermes: false,  // clean and rebuild if changing
-]
+apply plugin: "com.facebook.react"
+apply plugin: "com.google.gms.google-services"
 
-apply from: "../../node_modules/react-native/react.gradle"
+/**
+ * This is the configuration block to customize your React Native Android app.
+ * By default you don't need to apply any configuration, just uncomment the lines you need.
+ */
+react {
+    /* Autolinking */
+    autolinkLibrariesWithApp()
+}
 
-
-def enableSeparateBuildPerCPUArchitecture = false
-
-
+/**
+ * Set this to true to Run Proguard on Release builds to minify the Java bytecode.
+ */
 def enableProguardInReleaseBuilds = false
 
-
+/**
+ * The preferred build flavor of JavaScriptCore (JSC)
+ */
 def jscFlavor = 'org.webkit:android-jsc:+'
 
-
-def enableHermes = project.ext.react.get("enableHermes", false);
-
 android {
-    compileSdk 35//rootProject.ext.compileSdkVersion
+    ndkVersion rootProject.ext.ndkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
+    compileSdk rootProject.ext.compileSdkVersion
+
     namespace "com.example"
+
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_21
-        targetCompatibility JavaVersion.VERSION_21
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
     }
 
     defaultConfig {
         applicationId "com.example"
         minSdkVersion rootProject.ext.minSdkVersion
-        targetSdkVersion 35//rootProject.ext.targetSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
         versionName "1.0"
-        manifestPlaceholders = [//f8908fd9817ad7f76dea934067955773a8f1c3d5
-                izooto_app_id: "aeb7d82c8dcc0bcebc9684c2ad8a4a384980e640"//"c9b6baa1198c2adeb9ba370422077ecf22360cf9"//"09f06385e06cc10d0fc7a5e1c002cd9338a2c94f"
+        manifestPlaceholders = [
+                izooto_app_id: "aeb7d82c8dcc0bcebc9684c2ad8a4a384980e640"
         ]
-        multiDexEnabled true // ADD THIS LINE
+        multiDexEnabled true
+    }
 
-    }
-    splits {
-        abi {
-            reset()
-            enable enableSeparateBuildPerCPUArchitecture
-            universalApk false  // If true, also generate a universal APK
-            include "armeabi-v7a", "x86", "arm64-v8a", "x86_64"
-        }
-    }
     signingConfigs {
         debug {
             storeFile file('debug.keystore')
@@ -55,6 +53,7 @@ android {
             keyPassword 'android'
         }
     }
+
     buildTypes {
         debug {
             signingConfig signingConfigs.debug
@@ -67,53 +66,20 @@ android {
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
         }
     }
-
-    // applicationVariants are e.g. debug, release
-    applicationVariants.all { variant ->
-        variant.outputs.each { output ->
-            // For each separate APK per architecture, set a unique version code as described here:
-            // https://developer.android.com/studio/build/configure-apk-splits.html
-            def versionCodes = ["armeabi-v7a": 1, "x86": 2, "arm64-v8a": 3, "x86_64": 4]
-            def abi = output.getFilter(OutputFile.ABI)
-            if (abi != null) {  // null for the universal-debug, universal-release variants
-                output.versionCodeOverride =
-                        versionCodes.get(abi) * 1048576 + defaultConfig.versionCode
-            }
-
-        }
-    }
 }
 
 dependencies {
-    implementation fileTree(dir: "libs", include: ["*.jar"])
-    //noinspection GradleDynamicVersion
-    implementation "com.facebook.react:react-native:+"
+    // The version of react-native is set by the React Native Gradle Plugin
+    implementation("com.facebook.react:react-android")
+
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
     implementation("androidx.credentials:credentials:1.2.2")
     implementation("androidx.credentials:credentials-play-services-auth:1.2.2")
     implementation("com.google.android.libraries.identity.googleid:googleid:1.1.0")
 
-    debugImplementation("com.facebook.flipper:flipper:${FLIPPER_VERSION}") {
-        exclude group: 'com.facebook.fbjni'
-    }
-
-    debugImplementation("com.facebook.flipper:flipper-network-plugin:${FLIPPER_VERSION}") {
-        exclude group: 'com.facebook.flipper'
-        exclude group: 'com.squareup.okhttp3', module: 'okhttp'
-    }
-
-    debugImplementation("com.facebook.flipper:flipper-fresco-plugin:${FLIPPER_VERSION}") {
-        exclude group: 'com.facebook.flipper'
-    }
-
-    if (enableHermes) {
-        def hermesPath = "../../node_modules/hermes-engine/android/"
-        debugImplementation files(hermesPath + "hermes-debug.aar")
-        releaseImplementation files(hermesPath + "hermes-release.aar")
+    if (hermesEnabled.toBoolean()) {
+        implementation("com.facebook.react:hermes-android")
     } else {
         implementation jscFlavor
     }
 }
-
-
-apply from: file("../../node_modules/@react-native-community/cli-platform-android/native_modules.gradle"); applyNativeModulesAppBuildGradle(project)

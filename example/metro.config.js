@@ -22,8 +22,12 @@ const config = {
     // The linked package has no node_modules of its own; resolve its
     // dependencies (react-native, invariant, ...) from this example app.
     nodeModulesPaths: [path.resolve(projectRoot, 'node_modules')],
-    // Ensure a single copy of react / react-native is used everywhere.
     extraNodeModules: {
+      // Yarn cannot materialise `node_modules/react-native-izooto` (the
+      // `link:../` target is an ancestor of this project), so map the module
+      // name to the package root explicitly.
+      'react-native-izooto': packageRoot,
+      // Ensure a single copy of react / react-native is used everywhere.
       react: path.resolve(projectRoot, 'node_modules/react'),
       'react-native': path.resolve(projectRoot, 'node_modules/react-native'),
     },
