@@ -2,7 +2,10 @@
 	<img src="https://user-images.githubusercontent.com/60651012/129727793-bc8b8f01-b317-4f1c-bace-c6882b86bff7.png">
 </p>
 
-## iZooto React Native SDK Push Notification Plugin
+# iZooto React Native SDK 
+
+[![npm version](https://img.shields.io/npm/v/react-native-izooto.svg)](https://www.npmjs.com/package/react-native-izooto) [![npm downloads](https://img.shields.io/npm/dm/react-native-izooto.svg)](https://www.npmjs.com/package/react-native-izooto)
+
 
 [iZooto](https://www.izooto.com) provides push notification service for mobile apps. This plugin makes it easy to implement push notifications on your Android and/or iOS apps built on the React Native framework.
 
@@ -18,11 +21,11 @@ Please see iZooto's [React Native SDK References](https://help.izooto.com/docs/r
 
 Please visit [izooto.com](https://www.izooto.com) or write to [support@izooto.com](mailto:support@izooto.com) for any kind of issues.
 
-#### Demo Project
+#### Demo Project (example)
 
 For reference, we have uploaded a demo project with the latest SDK in the <code>/example</code> folder of this repository.
 
 #### Supports:
 
-* Tested and validated from Android 5.0 (API level 21) to Android 11 (API level 30).
-* Tested and validated rom iOS 10 to iOS 15.
+* Tested and validated from Android 5.0 (API level 21) to Android 13 (API level 31).
+* Tested and validated rom iOS 10 to iOS 15+.

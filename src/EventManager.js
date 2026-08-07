@@ -3,14 +3,16 @@ import {
     NOTIFICATION_RECEIVED,
     NOTIFICATION_OPENED,
     NOTIFICATION_TOKEN,
-    NOTIFICATION_WEBVIEW
+    NOTIFICATION_WEBVIEW,
+    ONETAP_RESPONSE
 } from './events';
 
 const eventList = [
     NOTIFICATION_RECEIVED,
     NOTIFICATION_OPENED,
     NOTIFICATION_TOKEN,
-    NOTIFICATION_WEBVIEW
+    NOTIFICATION_WEBVIEW,
+    ONETAP_RESPONSE
 ]
 
 export default class EventManager {
@@ -41,12 +43,7 @@ export default class EventManager {
         this.eventHandlerArrayMap = new Map();
     }
 
-    /**
-     * Sets the event handler on the JS side of the bridge
-     * Supports only one handler at a time
-     * @param  {string} eventName
-     * @param  {function} handler
-     */
+  
      setEventHandler(eventName, handler) {
         this.eventHandlerMap.set(eventName, handler);
     }
@@ -64,3 +61,4 @@ export default class EventManager {
         return this.izootoEventEmitter.addListener(eventName, addListenerCallback);
     }
 }
+// rename the file name

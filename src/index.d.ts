@@ -1,43 +1,90 @@
+//  declare module 'react-native-izooto'
+//   {
+    export type PushTemplate =  1 | 2 | 3 ;
 
+  
+    export type PushNotificationEventName =
+    | 'onNotificationOpened'
+    | 'onTokenReceived'
+    | 'onWebView'
+    | 'onNotificationReceived'
+    | 'registrationError';
+  
+  export interface iZooto {
 
-
-declare module 'react-native-izooto'
-{
-    export interface iZooto {
-        /**
-         * Completes iZooto initialization.
-         * @returns void
-         */
-        initialize(): void;
-
-
-        setFirebaseAnalytics(isSetFirebaseAnalytics: boolean): void;
-
-        setSubscription(isSetSubscribed: boolean): void;
-
-        addEvent(eventName: String,triggers: object): void;
-
-        addUserProperty(triggers: object): void;
+    // for ios 
+    initiOSAppID(izooto_app_id:string):void;
+    setSubscription(isSubscribe:boolean): void;
+    addUserProperty(propertiesData:Map<string,any>):void;
+    addEvent(eventName:string,eventData:Map<string,any>):void;
     
-       // addTag(keys: string[]);
+    addEventListener(
+      type: 'onNotificationOpened',
+      handler: (notification: string) => void,
+    ): void;
+    addEventListener(
+      type: 'onWebView',
+      handler: (notification: string) => void,
+    ): void;
+    addEventListener(
+      type: 'onNotificationReceived',
+      handler: (notification: string) => void,
+    ): void;
+    addEventListener(
+      type: 'onTokenReceived',
+      handler: (deviceToken: string) => void,
+    ): void;
+    addEventListener(
+      type: 'registrationError',
+      handler: (error: {message: string; code: number; details: any}) => void,
+    ): void;
+    removeEventListener(type: PushNotificationEventName): void;
+    // for Android only 
 
-        
-       // removeTag(keys: string[]);
+    initAndroid(isDefaultWebView: boolean): void;
 
-        onTokenReceivedListener(handle?: (token : String) =>void) : void;
+    promptForPushNotifications(): void;
 
-        onNotificationOpenedListener(handle?: (data : String) => void) :void;
+    setFirebaseAnalytics(isSetFirebaseAnalytics: boolean): void;
 
-        onNotificationReceivedListener(handle?: (payload :String) => void): void;
+    setSubscription(isSetSubscribed: boolean): void;
+
+    addEvent(eventName: String,triggers: object): void;
+
+    addUserProperty(triggers: object): void;
+    
+    addTag(keys: string[]);
+
+    removeTag(keys: string[]);
+
+    onTokenReceivedListener(handle?: (token : String) =>void) : void;
+
+    onNotificationOpenedListener(handle?: (data : String) => void) :void;
+
+    onNotificationReceivedListener(handle?: (payload :String) => void): void;
      
-        onWebViewListener(handle?: (landingUrl : String) => void) : void;
+    onWebViewListener(handle?: (landingUrl : String) => void) : void;
+
+    setDefaultTemplate(templateID: PushTemplate): void;
+
+    setDefaultNotificationBanner(setBanner: String): void;
+
+    setNotificationSound(soundName: String): void;
+
+    setNotificationChannelName(channelName : String): void
+
+    navigateToSettings():void
+
+    sendTags(email:String,fName:String,lName:String):void
+
+    syncUserDetailsEmail(email: string, firstName: string, lastName: string): void
+
+    requestOneTapActivity(): void
+  
+    requestOneTapListener(handle?: (response : String) =>void) : void;
       
-      
-      }
-     const iZooto: iZooto;
+  }
+    //  const iZooto: iZooto;
      export default iZooto;
-
-
-
-
-}
+// }
+ 

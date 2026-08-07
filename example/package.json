@@ -1,22 +1,25 @@
 {
   "name": "example",
-  "version": "1.4.0",
+  "version": "1.0.1",
   "private": true,
   "scripts": {
     "android": "react-native run-android",
     "ios": "react-native run-ios",
     "start": "react-native start",
     "test": "jest",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "build:ios": "react-native bundle --entry-file='index.js' --bundle-output='./ios/main.jsbundle' --dev=false --platform='ios'"
   },
   "dependencies": {
-    "@react-native-community/push-notification-ios": "^1.10.1",
-    "react": "16.13.1",
-    "react-native": "0.63.4",
-    "react-native-izooto": "git+https://github.com/izooto-mobile-sdk/react-native-izooto.git#develop"
+    "@react-navigation/native": "^6.1.17",
+    "@react-navigation/stack": "^6.4.0",
+    "react": "18.2.0",
+    "react-native": "0.70.0",
+    "react-native-izooto": "link:../"
   },
   "devDependencies": {
     "@babel/core": "^7.13.8",
+    "@babel/plugin-transform-private-methods": "^7.24.7",
     "@babel/runtime": "^7.13.9",
     "@react-native-community/eslint-config": "^2.0.0",
     "babel-jest": "^26.6.3",

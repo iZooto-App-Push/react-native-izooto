@@ -10,15 +10,13 @@ Pod::Spec.new do |s|
   s.homepage     = "https://github.com/github_account/react-native-izooto"
   s.license      = "MIT"
   s.authors      = { "Amit Kumar Gupta" => "amit@datability.co" }
-  s.platforms    = { :ios => "10.0" }
+  s.platforms    = { :ios => "12.0" }
   s.source       = { :git => "https://github.com/github_account/react-native-izooto.git", :tag => "#{s.version}" }
 
   s.source_files = "ios/**/*.{h,c,m,swift}"
   s.requires_arc = true
   s.dependency "iZootoiOSSDK"
+  s.dependency "React-Core"
 
-  s.dependency "React"
-  # ...
-  # s.dependency "..."
 end
 

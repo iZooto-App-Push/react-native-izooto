@@ -3,7 +3,7 @@
 #import <React/RCTBridge.h>
 #import <React/RCTBundleURLProvider.h>
 #import <React/RCTRootView.h>
-#import <RNCPushNotificationIOS.h>
+#import <RNIzooto.h>
 
 #ifdef FB_SONARKIT_ENABLED
 #import <FlipperKit/FlipperClient.h>
@@ -12,11 +12,9 @@
 #import <FlipperKitNetworkPlugin/FlipperKitNetworkPlugin.h>
 #import <SKIOSNetworkPlugin/SKIOSNetworkAdapter.h>
 #import <FlipperKitReactPlugin/FlipperKitReactPlugin.h>
-#import <RNIzooto.h>
 
-
+@import iZootoiOSSDK;
 @import UserNotifications;
-
 
 static void InitializeFlipper(UIApplication *application) {
   FlipperClient *client = [FlipperClient sharedClient];
@@ -28,11 +26,6 @@ static void InitializeFlipper(UIApplication *application) {
   [client start];
 }
 #endif
-
-
-
-
-
 
 @implementation AppDelegate
 
@@ -48,7 +41,6 @@ static void InitializeFlipper(UIApplication *application) {
                                             initialProperties:nil];
 
   rootView.backgroundColor = [[UIColor alloc] initWithRed:1.0f green:1.0f blue:1.0f alpha:1];
-  
 
   self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
   UIViewController *rootViewController = [UIViewController new];
@@ -56,73 +48,86 @@ static void InitializeFlipper(UIApplication *application) {
   self.window.rootViewController = rootViewController;
   [self.window makeKeyAndVisible];
   
+  if(launchOptions!= nil)
+  {
+    NSLog(@"DeepLink",@"DeepLink");
+  }
   
-  // iZooto initalise
+  UNUserNotificationCenter *center =
+       [UNUserNotificationCenter currentNotificationCenter];
+   center.delegate = self;
   
-  dispatch_async(dispatch_get_main_queue(), ^{
-     //define settings
-     NSMutableDictionary *izootoInitSetting = [[NSMutableDictionary alloc]init];
-     [izootoInitSetting setObject:@YES forKey:@"auto_prompt"];
-     [izootoInitSetting setObject:@NO forKey:@"nativeWebview"];
-     [izootoInitSetting setObject:@NO forKey:@"provisionalAuthorization"];
-    NSLog(@"iZooto  initialisation with SDK");
-     // initalise the iZooto SDK
-     [iZooto initialisationWithIzooto_id:@"11f896fa4cab1d4e159c2f26a257be41b388ecf2" application:application iZootoInitSettings:izootoInitSetting];
-         iZooto.notificationReceivedDelegate = self;
-        iZooto.landingURLDelegate = self;
-        iZooto.notificationOpenDelegate = self;
-   });
+  
+  
+  
+//   NSMutableDictionary *izootoInitSetting = [[NSMutableDictionary alloc]init];
+//         [izootoInitSetting setObject:@YES forKey:@"auto_prompt"];
+//         [izootoInitSetting setObject:@NO forKey:@"nativeWebview"];
+//         [izootoInitSetting setObject:@NO forKey:@"provisionalAuthorization"];
+//   [iZooto initialisationWithIzooto_id:@"11f896fa4cab1d4e159c2f26a257be41b388ecf2" application:application iZootoInitSettings:izootoInitSetting];
+  // [iZooto notificationOpenDelegate] = self;
+  // iZooto.notificationReceivedDelegate = self;
+  // iZooto.landingURLDelegate = self;
+  iZooto.notificationOpenDelegate=self;
+  // iZooto.notificationOpenDelegate = self;
+   //[UNUserNotificationCenter currentNotificationCenter].delegate = self;
+  
   
   
   
   return YES;
 }
--(void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
-  [iZooto getTokenWithDeviceToken:deviceToken];
-  [RNCPushNotificationIOS didRegisterForRemoteNotificationsWithDeviceToken:deviceToken];
+/* Call the method when notification tap in killed state */
+-(void) HandleKilledStateNotification: (NSDictionary*) userInfo {
+  [RNIzooto willKillNotificationData:userInfo];
+}
+/* Received the device token  when app is registered sucessfully  */
 
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
+    [RNIzooto didRegisterForRemoteNotificationsWithDeviceToken:deviceToken];
   
-
 }
 
+/* Received the paylaod when app is foreground */
 -(void)userNotificationCenter:(UNUserNotificationCenter *)center willPresentNotification:(UNNotification *)notification withCompletionHandler:(void (^)(UNNotificationPresentationOptions options))completionHandler{
-  NSLog(@"Received");
+ 
+  [RNIzooto willPresentNotificaiton:notification.request.content.userInfo];
   [iZooto handleForeGroundNotificationWithNotification:notification displayNotification:@"NONE" completionHandler:completionHandler];
-}
 
--(void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
 }
+- (void)application:(UIApplication *)application
+    didReceiveRemoteNotification:(NSDictionary *)userInfo
+          fetchCompletionHandler:
+              (void (^)(UIBackgroundFetchResult))completionHandler {
+  [RNIzooto didReceiveRemoteNotification:userInfo
+                               fetchCompletionHandler:completionHandler];
+}
+/* Handle the notification tap */
+- (void)userNotificationCenter:(UNUserNotificationCenter *)center
+    didReceiveNotificationResponse:(UNNotificationResponse *)response
+             withCompletionHandler:(void (^)(void))completionHandler {
+  [RNIzooto didReceiveNotificationResponse:response];
 
--(void)userNotificationCenter:(UNUserNotificationCenter *)center
-didReceiveNotificationResponse:(UNNotificationResponse *)response
-     withCompletionHandler:(void (^)(void))completionHandler {
-       [iZooto notificationHandlerWithResponse:response];
-       completionHandler();
+  completionHandler();
 }
 
 - (NSURL *)sourceURLForBridge:(RCTBridge *)bridge
 {
 #if DEBUG
-  return [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index" fallbackResource:nil];
+  return [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index"];
+
 #else
-  return [[NSBundle mainBundle] URLForResource:@"main" withExtension:@"jsbundle"];
+   return [[NSBundle mainBundle] URLForResource:@"main" withExtension:@"jsbundle"];
 #endif
 }
 
+
 - (void)onHandleLandingURLWithUrl:(NSString * _Nonnull)url {
-  NSLog(@"URL");
+  [RNIzooto onHandleLandingURLWithUrl:url];
 }
-
+/* handle the deeplink Data*/
 - (void)onNotificationOpenWithAction:(NSDictionary<NSString *,id> * _Nonnull)action {
-  NSLog(@"action");
+  [RNIzooto onNotificationOpenWithAction:action];
 
 }
-
-- (void)onNotificationReceivedWithPayload:(Payload * _Nonnull)payload {
-  NSLog(@"Payload");
-}
-
-
-
 @end
-
