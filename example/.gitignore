@@ -1,9 +1,15 @@
+# =============================================================================
+# example/ — React Native demo app (RN 0.76)
+# The repository root .gitignore already covers most cases; this file keeps the
+# demo app self-contained if it is ever extracted into its own project.
+# =============================================================================
+
 # OSX
-#
 .DS_Store
 
-# Xcode
-#
+# -----------------------------------------------------------------------------
+# Xcode / iOS
+# -----------------------------------------------------------------------------
 build/
 *.pbxuser
 !default.pbxuser
@@ -13,47 +19,97 @@ build/
 !default.mode2v3
 *.perspectivev3
 !default.perspectivev3
-xcuserdata
+xcuserdata/
 *.xccheckout
 *.moved-aside
-DerivedData
+DerivedData/
 *.hmap
 *.ipa
 *.xcuserstate
+*.dSYM.zip
+*.dSYM
 
-# Android/IntelliJ
-#
-build/
-.idea
-.gradle
+# Machine-specific node path for the RN Xcode build phases
+ios/.xcode.env.local
+
+# CocoaPods (Podfile.lock is committed on purpose)
+ios/Pods/
+ios/*.xcworkspace/
+
+# -----------------------------------------------------------------------------
+# Android / Gradle / IntelliJ
+# -----------------------------------------------------------------------------
+.gradle/
 local.properties
+.idea/
 *.iml
+android/app/build/
+android/build/
+android/.cxx/
+android/.kotlin/
+android/captures/
+android/app/release/
+*.apk
+*.aab
+*.hprof
 
-# node.js
-#
+# Stray Gradle user-home caches sometimes generated inside android/
+android/daemon/
+android/native/
+android/wrapper/
+
+# Keep the Gradle wrapper and the debug keystore
+!android/gradle/wrapper/gradle-wrapper.jar
+!android/gradle/wrapper/gradle-wrapper.properties
+*.keystore
+!android/app/debug.keystore
+
+# -----------------------------------------------------------------------------
+# Node / Yarn / Metro
+# -----------------------------------------------------------------------------
 node_modules/
 npm-debug.log
 yarn-error.log
+.eslintcache
+coverage/
 
+# Yarn Berry: keep yarn.lock + .yarnrc.yml, drop caches and local state
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
+.pnp.*
+
+# Metro / Expo
+.metro-health-check*
+.metro-cache/
+.expo/
+.expo-shared/
+
+# -----------------------------------------------------------------------------
 # BUCK
+# -----------------------------------------------------------------------------
 buck-out/
 \.buckd/
-*.keystore
-!debug.keystore
 
-# fastlane
-#
-# It is recommended to not store the screenshots in the git repo. Instead, use fastlane to re-generate the
-# screenshots whenever they are needed.
-# For more information about the recommended setup visit:
-# https://docs.fastlane.tools/best-practices/source-control/
-
+# -----------------------------------------------------------------------------
+# Fastlane
+# -----------------------------------------------------------------------------
 */fastlane/report.xml
 */fastlane/Preview.html
 */fastlane/screenshots
+*/fastlane/test_output
 
-# Bundle artifact
+# -----------------------------------------------------------------------------
+# Bundle artifacts / env
+# -----------------------------------------------------------------------------
 *.jsbundle
+.env
+.env.*
+!.env.example
 
-# CocoaPods
-/ios/Pods/
+# Ruby
+vendor/bundle/
+.bundle/
