@@ -54,7 +54,7 @@ export default class App extends React.Component {
         console.log('Token Received', token);
       });
 
-      iZooto.addUserProperty({ reacttest: 'android' });
+      iZooto.addUserProperty({ 'reacttest': 'android' });
     }
   }
 
