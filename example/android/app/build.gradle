@@ -20,8 +20,11 @@ def jscFlavor = 'org.webkit:android-jsc:+'
 def enableHermes = project.ext.react.get("enableHermes", false);
 
 android {
-    compileSdk 35//rootProject.ext.compileSdkVersion
+    compileSdk 35
     namespace "com.example"
+    buildFeatures {
+        buildConfig = true
+    }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_17
         targetCompatibility JavaVersion.VERSION_17
@@ -29,12 +32,12 @@ android {
 
     defaultConfig {
         applicationId "com.example"
-        minSdkVersion rootProject.ext.minSdkVersion
-        targetSdkVersion 35//rootProject.ext.targetSdkVersion
+        minSdkVersion 23
+        targetSdkVersion 33
         versionCode 1
         versionName "1.0"
-        manifestPlaceholders = [//f8908fd9817ad7f76dea934067955773a8f1c3d5
-                izooto_app_id: "aeb7d82c8dcc0bcebc9684c2ad8a4a384980e640"//"c9b6baa1198c2adeb9ba370422077ecf22360cf9"//"09f06385e06cc10d0fc7a5e1c002cd9338a2c94f"
+        manifestPlaceholders = [
+                izooto_app_id: "40e7d042104bd5d1a615224801ccb8cb5fd0c386"
         ]
         multiDexEnabled true // ADD THIS LINE
 

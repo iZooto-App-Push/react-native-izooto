@@ -54,14 +54,14 @@ export default class App extends React.Component {
         console.log('Token Received', token);
       });
 
-      iZooto.addUserProperty({ language: 'english' });
+      iZooto.addUserProperty({ 'reacttest': 'android' });
     }
   }
 
   render() {
     return (
       <View style={styles.container}>
-      
+
         <CustomButton
           title="Go to Settings"
           onPress={() => iZooto.navigateToSettings()}
