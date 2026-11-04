@@ -1,2 +1,29 @@
-example
-.git
+# Swift Package Manager
+.build/
+.swiftpm/
+
+# Node dependencies
+node_modules/
+**/node_modules/
+
+# Android generated files
+**/.gradle/
+android/build/
+android/local.properties
+
+# Xcode generated and user-specific files
+**/xcuserdata/
+**/.xcode.env.local
+
+# IDE files
+.idea/
+.vscode/
+
+# Example app
+example/
+
+# Package archives
+*.tgz
+
+# OS files
+.DS_Store

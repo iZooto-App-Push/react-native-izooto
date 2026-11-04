@@ -2,6 +2,16 @@
 # React Native Plugin .gitignore
 # ================================
 
+# Swift Package Manager local files
+.swiftpm/
+.build/
+
+# Local Xcode environment
+example/ios/.xcode.env.local
+
+# npm package archives
+*.tgz
+
 # Node artifact files
 node_modules/
 dist/
