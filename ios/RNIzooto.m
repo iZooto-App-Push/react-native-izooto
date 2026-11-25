@@ -252,7 +252,7 @@ RCT_EXPORT_METHOD(initiOSAppID : (NSString *)izooto_app_id) {
   [iZooto initialisationWithIzooto_id:izooto_app_id
                           application:UIApplication.sharedApplication
                    iZootoInitSettings:izootoInitSetting];
-  [iZooto setPluginVersionWithPluginVersion:@"rv_2.7.3"];
+  [iZooto setPluginVersionWithPluginVersion:@"rv_2.7.4"];
 }
 
 + (void)didReceiveNotificationResponse:(UNNotificationResponse *)response
